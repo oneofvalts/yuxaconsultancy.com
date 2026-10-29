@@ -13,7 +13,7 @@ EMAIL = "contact@yuxaconsultancy.com"
 
 # WhatsApp Business › Business tools › Short link (https://wa.me/message/...).
 # Empty: no WhatsApp button anywhere on the site.
-WHATSAPP_LINK = ""
+WHATSAPP_LINK = "https://wa.me/message/E5OQUKF24TRFM1"
 # Google Calendar appointment schedule for the free 15-minute call.
 # Empty: the booking buttons open an e-mail instead.
 BOOKING_LINK = ""
