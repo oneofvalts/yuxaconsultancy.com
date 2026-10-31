@@ -32,12 +32,11 @@ PAGES = {
     "tr": {
         "path": "",
         "locale": "tr_TR",
-        "title": "YUXA Consultancy · Matematik, programlama, LaTeX dizgi ve ahşap · "
-                 "İstanbul",
+        "title": "YUXA · Matematik dersi, LaTeX dizgi ve ahşap oyma · İstanbul",
         "description": (
-            "Üniversite matematiği ve programlama, IB ve Fransızca matematik, GSÜ "
-            "Fransızca hazırlık; LaTeX ile tez dizgisi; n8n ile otomasyon; elde "
-            "oyulmuş ahşap ve oyma atölyeleri. Online ya da İstanbul’da yüz yüze."
+            "Abdullah Uyu’dan matematik ve programlama dersi, LaTeX dizgi ve "
+            "otomasyon; Durmuş Uyu’dan elde oyulmuş kaşık, kuksa ve oyma atölyeleri. "
+            "İstanbul ve online."
         ),
         "skip": "İçeriğe geç",
         "home": "Ana sayfa",
@@ -81,12 +80,11 @@ PAGES = {
     "en": {
         "path": "en/",
         "locale": "en_GB",
-        "title": "YUXA Consultancy · Mathematics, programming, LaTeX and woodwork · "
-                 "Istanbul",
+        "title": "YUXA · Maths lessons, LaTeX typesetting and woodcarving · Istanbul",
         "description": (
-            "University mathematics and programming, IB and French-curriculum maths; "
-            "thesis typesetting in LaTeX; automation with n8n; hand-carved woodwork "
-            "and carving workshops. Online or in person in Istanbul."
+            "Maths and programming lessons, LaTeX typesetting and automation with "
+            "Abdullah Uyu; hand-carved spoons, kuksas and workshops with Durmuş Uyu, "
+            "in Istanbul."
         ),
         "skip": "Skip to content",
         "home": "Home",
@@ -129,13 +127,11 @@ PAGES = {
     "fr": {
         "path": "fr/",
         "locale": "fr_FR",
-        "title": "YUXA Consultancy · Mathématiques, informatique, LaTeX et travail du "
-                 "bois · Istanbul",
+        "title": "YUXA · Cours de maths, composition LaTeX et bois sculpté · Istanbul",
         "description": (
-            "Cours de mathématiques en français, du collège à la terminale, bac et "
-            "IB ; mathématiques universitaires et programmation ; composition de "
-            "thèses en LaTeX ; objets en bois sculptés à la main et ateliers. À "
-            "Istanbul ou en ligne."
+            "Cours de maths et de programmation, composition LaTeX avec Abdullah "
+            "Uyu ; cuillères, kuksas et ateliers de sculpture avec Durmuş Uyu, à "
+            "Istanbul."
         ),
         "skip": "Aller au contenu",
         "home": "Accueil",
@@ -178,11 +174,18 @@ PAGES = {
 }
 
 # The people of YUXA, in the order the home page shows them; page is the key
-# of their work page in WORK_PAGES.
+# of their work page in WORK_PAGES, facts what search engines read about them
+# (schema.org Person properties).
 TEAM = [
     {
         "name": "Abdullah Uyu",
         "page": "maths",
+        "facts": {
+            "alumniOf": {"@type": "CollegeOrUniversity",
+                         "name": "Galatasaray Üniversitesi"},
+            "knowsLanguage": ["tr", "fr", "en"],
+            "knowsAbout": ["Mathematics", "Programming", "LaTeX", "Lean", "n8n"],
+        },
         "role": {
             "tr": "Matematik ve bilgisayar dersleri, LaTeX dizgi, otomasyon",
             "en": "Mathematics and computing lessons, LaTeX typesetting, automation",
@@ -232,6 +235,9 @@ TEAM = [
     {
         "name": "Durmuş Uyu",
         "page": "woodwork",
+        "facts": {
+            "knowsAbout": ["Woodcarving", "Woodworking"],
+        },
         "role": {
             "tr": "Ahşap oyma ve ahşap işçiliği",
             "en": "Woodcarving and woodworking",
@@ -281,9 +287,9 @@ MATHS = {
             "path": "matematik/",
             "title": "Matematik özel ders ve LaTeX tez dizgisi · İstanbul · YUXA",
             "description": (
-                "Üniversite matematiği ve programlama, IB ve Fransız müfredatı, GSÜ "
-                "Fransızca hazırlık için özel ders; LaTeX ile tez dizgisi; n8n ile "
-                "otomasyon. Online ya da İstanbul’da yüz yüze."
+                "Üniversite matematiği, programlama, IB ve Fransız müfredatı, GSÜ "
+                "hazırlık için özel ders; LaTeX ile tez dizgisi; otomasyon. Online ya "
+                "da İstanbul’da yüz yüze."
             ),
             "ids": {"offers": "hizmetler", "how": "nasil", "prices": "ucretler",
                     "events": "atolye", "faq": "sss", "contact": "iletisim"},
@@ -828,12 +834,11 @@ WOODWORK = {
     "pages": {
         "tr": {
             "path": "ahsap/",
-            "title": "El yapımı ahşap kaşık, kuksa ve oyma atölyeleri · "
-                     "YUXA Consultancy",
+            "title": "El yapımı ahşap kaşık, kuksa ve oyma atölyesi · İstanbul · YUXA",
             "description": (
-                "Durmuş Uyu’nun elde oyduğu kaşık, ölçek, kuksa, kase ve kutular; "
-                "sipariş üzerine yapım. Yeni başlayanlar için kaşık oyma, gruplar için "
-                "ahşap işçiliği atölyeleri; İstanbul."
+                "Durmuş Uyu’nun elde oyduğu kaşık, kuksa, kase ve kutular, sipariş "
+                "üzerine. Yeni başlayanlar için kaşık oyma, gruplar için ahşap "
+                "atölyeleri; İstanbul."
             ),
             "ids": {"gallery": "isler", "offers": "siparis-ve-atolyeler",
                     "prices": "fiyatlar", "contact": "iletisim"},
@@ -930,8 +935,7 @@ WOODWORK = {
         },
         "en": {
             "path": "en/woodwork/",
-            "title": "Hand-carved wooden spoons, kuksas and carving workshops · "
-                     "YUXA Consultancy",
+            "title": "Hand-carved wooden spoons, kuksas and carving workshops · YUXA",
             "description": (
                 "Spoons, scoops, kuksas, bowls and boxes carved by hand by Durmuş Uyu, "
                 "made to order. Spoon carving for beginners and woodworking workshops "
@@ -1034,12 +1038,12 @@ WOODWORK = {
         },
         "fr": {
             "path": "fr/bois/",
-            "title": "Cuillères, kuksas et ateliers de sculpture sur bois · "
-                     "YUXA Consultancy",
+            "title": "Cuillères en bois, kuksas et ateliers de sculpture · Istanbul · "
+                     "YUXA",
             "description": (
-                "Cuillères, doseurs, kuksas, bols et boîtes sculptés à la main par "
-                "Durmuş Uyu, sur commande. Ateliers de sculpture de cuillère pour "
-                "débutants et de travail du bois pour les groupes, à Istanbul."
+                "Cuillères, kuksas, bols et boîtes sculptés à la main par Durmuş Uyu, "
+                "sur commande ; ateliers de sculpture pour débutants et pour groupes, à "
+                "Istanbul."
             ),
             "ids": {"gallery": "realisations", "offers": "commandes-et-ateliers",
                     "prices": "tarifs", "contact": "contact"},
@@ -1147,7 +1151,7 @@ WORK_PAGES = {"maths": MATHS, "woodwork": WOODWORK}
 # The workshop page, in Turkish only: /atolye/
 WORKSHOP = {
     "path": "atolye/",
-    "title": "LaTeX ile Tez · Atölye · 28 Kasım 2026 · YUXA Consultancy",
+    "title": "LaTeX ile Tez atölyesi · 28 Kasım 2026, online · YUXA",
     "description": (
         "Tez yazan yüksek lisans ve doktora öğrencileri için üç saatlik çevrim içi "
         "LaTeX atölyesi: 28 Kasım 2026 Cumartesi, 10.00–13.00. 600 TL; 20 Kasım’a "
@@ -1181,6 +1185,15 @@ WORKSHOP = {
         "Kaynakça, şekil ve tablolar için hazır kalıplar",
         "Teslim öncesi kontrol listesi (PDF)",
         "31 Aralık’a kadar tez şablonu kurulumunda %15 indirim",
+    ],
+    # The same facts for search engines: Istanbul time, prices in TL with the
+    # moments each is on sale from and until.
+    "start": "2026-11-28T10:00:00+03:00",
+    "end": "2026-11-28T13:00:00+03:00",
+    "capacity": 20,
+    "offers": [
+        ("450", "2026-10-29T00:00:00+03:00", "2026-11-20T23:59:59+03:00"),
+        ("600", "2026-11-21T00:00:00+03:00", "2026-11-28T10:00:00+03:00"),
     ],
     "register_title": "Kayıt",
     "register_text": (

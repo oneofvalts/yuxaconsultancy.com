@@ -13,6 +13,7 @@ committed and served by GitHub Pages.
 import html
 import json
 import re
+from datetime import date
 from pathlib import Path
 from urllib.parse import quote
 
@@ -110,15 +111,18 @@ def image(spec, stem: str, alt: str, prefix: str):
 
 
 def document(*, lang, prefix, title, description, canonical, locale, body,
-             image="assets/og.png", jsonld=None, alternates=()):
+             image="assets/og.png", jsonld=(), alternates=(), index=True):
     """A complete HTML page. prefix leads from the page to the site root;
-    image is the social preview, 1200 x 630."""
+    image is the social preview, 1200 x 630; jsonld the schema.org nodes
+    describing the page; alternates the same page in each language."""
     head = [
         '<meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         f"<title>{esc(title)}</title>",
         f'<meta name="description" content="{esc(description)}">',
     ]
+    if not index:
+        head.append('<meta name="robots" content="noindex">')
     if canonical:
         head.append(f'<link rel="canonical" href="{canonical}">')
     head += [f'<link rel="alternate" hreflang="{h}" href="{u}">' for h, u in alternates]
@@ -135,17 +139,22 @@ def document(*, lang, prefix, title, description, canonical, locale, body,
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
         f'<meta property="og:locale" content="{locale}">',
+    ]
+    head += [f'<meta property="og:locale:alternate" content="{C.PAGES[h]["locale"]}">'
+             for h, _ in alternates if h in C.PAGES and C.PAGES[h]["locale"] != locale]
+    head += [
         '<meta name="twitter:card" content="summary_large_image">',
         '<meta name="theme-color" content="#16212e">',
         f'<link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">',
         f'<link rel="apple-touch-icon" href="{prefix}assets/apple-touch-icon.png">',
-        f'<link rel="preload" href="{prefix}assets/fonts/Go-Regular.woff2" as="font" '
-        'type="font/woff2" crossorigin>',
-        f'<link rel="stylesheet" href="{prefix}assets/style.css">',
     ]
+    head += [f'<link rel="preload" href="{prefix}assets/fonts/{font}.woff2" as="font" '
+             'type="font/woff2" crossorigin>' for font in ("Go-Regular", "Go-Medium")]
+    head.append(f'<link rel="stylesheet" href="{prefix}assets/style.css">')
     if jsonld:
+        graph = {"@context": "https://schema.org", "@graph": list(jsonld)}
         head.append('<script type="application/ld+json">'
-                    + json.dumps(jsonld, ensure_ascii=False) + "</script>")
+                    + json.dumps(graph, ensure_ascii=False) + "</script>")
     head_html = "\n".join(head)
     return (f'<!doctype html>\n<html lang="{lang}">\n<head>\n{head_html}\n</head>\n'
             f"<body>\n{body}\n</body>\n</html>\n")
@@ -228,21 +237,56 @@ def footer(text):
     return f'<footer class="site"><div class="wrap"><p>{text}</p></div></footer>'
 
 
-def organisation():
-    return {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "YUXA Consultancy",
-        "url": url(""),
-        "email": f"mailto:{C.EMAIL}",
-        "image": url("assets/og.png"),
-        "address": {"@type": "PostalAddress", "addressLocality": "İstanbul",
-                    "addressCountry": "TR"},
-        "areaServed": ["Beşiktaş", "Kadıköy", "Üsküdar", "Pendik", "Tuzla"],
-        "knowsLanguage": ["tr", "fr", "en"],
-        "founder": {"@type": "Person", "name": "Abdullah Uyu"},
-        "member": [{"@type": "Person", "name": m["name"]} for m in C.TEAM],
-    }
+# Structured data: one node per thing, linked by @id across the pages.
+ORGANISATION, WEBSITE = url("#organisation"), url("#website")
+
+
+def organisation(full=True):
+    """YUXA itself; full on the home pages, a reference elsewhere."""
+    node = {"@type": "ProfessionalService", "@id": ORGANISATION,
+            "name": "YUXA Consultancy", "url": url("")}
+    if full:
+        node.update({
+            "alternateName": "YUXA",
+            "logo": url("assets/apple-touch-icon.png"),
+            "image": url("assets/og.png"),
+            "email": C.EMAIL,
+            "address": {"@type": "PostalAddress", "addressLocality": "İstanbul",
+                        "addressCountry": "TR"},
+            "areaServed": {"@type": "City", "name": "İstanbul"},
+            "knowsLanguage": C.LANGS,
+            "founder": {"@id": person_id(C.TEAM[0])},
+            "member": [{"@id": person_id(m)} for m in C.TEAM],
+        })
+    return node
+
+
+def website():
+    """The site, which gives search results its name."""
+    return {"@type": "WebSite", "@id": WEBSITE, "name": "YUXA Consultancy",
+            "alternateName": "YUXA", "url": url(""), "inLanguage": C.LANGS,
+            "publisher": {"@id": ORGANISATION}}
+
+
+def person_id(person):
+    return url(page_path(person["page"], "tr")) + "#person"
+
+
+def person_node(person, lang):
+    """One of us, as their work page in lang describes them."""
+    return {"@type": "Person", "@id": person_id(person), "name": person["name"],
+            "jobTitle": person["role"][lang], "url": url(page_path(person["page"], lang)),
+            "worksFor": {"@id": ORGANISATION}, **person.get("facts", {})}
+
+
+def breadcrumbs(lang, name, path):
+    """Home, then the page at path."""
+    home = C.PAGES[lang]
+    return {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": home["home"],
+         "item": url(home["path"])},
+        {"@type": "ListItem", "position": 2, "name": name, "item": url(path)},
+    ]}
 
 
 def home_page(lang):
@@ -289,10 +333,11 @@ def home_page(lang):
     ])
     alternates = [(code, url(C.PAGES[code]["path"])) for code in C.LANGS]
     alternates.append(("x-default", url("")))
+    jsonld = [website(), organisation(), *(person_node(m, lang) for m in C.TEAM)]
     return document(lang=lang, prefix=prefix, title=page["title"],
                     description=page["description"],
                     canonical=url(page["path"]), locale=page["locale"],
-                    body=body, jsonld=organisation(), alternates=alternates)
+                    body=body, jsonld=jsonld, alternates=alternates)
 
 
 def gallery(spec, lang, prefix):
@@ -381,15 +426,8 @@ def work_page(key, lang):
         "</main>",
         footer(t(page["footer"])),
     ])
-    jsonld = {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": person["name"],
-        "jobTitle": person["role"][lang],
-        "url": url(w["path"]),
-        "memberOf": {"@type": "Organization", "name": "YUXA Consultancy",
-                     "url": url("")},
-    }
+    jsonld = [person_node(person, lang), organisation(full=False),
+              breadcrumbs(lang, dict(page["nav"])[key], w["path"])]
     alternates = [(code, url(page_path(key, code))) for code in C.LANGS]
     alternates.append(("x-default", url(page_path(key, "tr"))))
     return document(lang=lang, prefix=prefix, title=w["title"],
@@ -415,21 +453,25 @@ def workshop_page():
     if C.WHATSAPP_LINK:
         buttons.append(f'<a class="btn" href="{C.WHATSAPP_LINK}" rel="noopener">'
                        f'{page["cta_whatsapp"]}</a>')
+    teacher = next(m for m in C.TEAM if m["page"] == "maths")
     event = {
-        "@context": "https://schema.org",
         "@type": "EducationEvent",
-        "name": "LaTeX ile Tez",
+        "name": w["heading"],
         "description": w["description"],
-        "startDate": "2026-11-28T10:00:00+03:00",
-        "endDate": "2026-11-28T13:00:00+03:00",
+        "startDate": w["start"],
+        "endDate": w["end"],
         "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
         "eventStatus": "https://schema.org/EventScheduled",
         "inLanguage": "tr",
         "location": {"@type": "VirtualLocation", "url": url(w["path"])},
-        "organizer": {"@type": "Organization", "name": "YUXA Consultancy",
-                      "url": url("")},
-        "offers": {"@type": "Offer", "price": "600", "priceCurrency": "TRY",
-                   "url": url(w["path"]), "availability": "https://schema.org/InStock"},
+        "maximumAttendeeCapacity": w["capacity"],
+        "organizer": organisation(full=False),
+        "performer": {"@type": "Person", "@id": person_id(teacher),
+                      "name": teacher["name"]},
+        "offers": [{"@type": "Offer", "price": price, "priceCurrency": "TRY",
+                    "validFrom": start, "validThrough": until, "url": url(w["path"]),
+                    "availability": "https://schema.org/InStock"}
+                   for price, start, until in w["offers"]],
         "image": url("assets/og.png"),
     }
     body = "\n".join([
@@ -457,7 +499,8 @@ def workshop_page():
     ])
     return document(lang="tr", prefix=prefix, title=w["title"],
                     description=w["description"], canonical=url(w["path"]),
-                    locale="tr_TR", body=body, jsonld=event)
+                    locale="tr_TR", body=body,
+                    jsonld=[event, breadcrumbs("tr", w["heading"], w["path"])])
 
 
 def not_found_page():
@@ -474,35 +517,45 @@ def not_found_page():
     ])
     return document(lang="tr", prefix="/", title="Sayfa bulunamadı · YUXA Consultancy",
                     description=page["description"], canonical=None,
-                    locale="tr_TR", body=body)
+                    locale="tr_TR", body=body, index=False)
 
 
-def sitemap():
-    paths = [C.PAGES[code]["path"] for code in C.LANGS]
-    paths += [page_path(key, code) for key in C.WORK_PAGES for code in C.LANGS]
-    paths.append(C.WORKSHOP["path"])
-    urls = "".join(f"<url><loc>{url(p)}</loc></url>\n" for p in paths)
+def sitemap(lastmod):
+    """Every page with the day it last changed: lastmod maps paths to dates."""
+    urls = "".join(f"<url><loc>{url(p)}</loc><lastmod>{day}</lastmod></url>\n"
+                   for p, day in lastmod.items())
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
             f"{urls}</urlset>\n")
 
 
-def write(path: str, text: str) -> None:
+def write(path: str, text: str) -> bool:
+    """Write text to path; whether that changed the file."""
     target = ROOT / path
+    changed = not target.exists() or target.read_text(encoding="utf-8") != text
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text, encoding="utf-8")
     print(f"wrote {path}")
+    return changed
 
 
 def main() -> None:
-    for lang in C.LANGS:
-        write(f"{C.PAGES[lang]['path']}index.html", home_page(lang))
-    for key in C.WORK_PAGES:
-        for lang in C.LANGS:
-            write(f"{page_path(key, lang)}index.html", work_page(key, lang))
-    write(f"{C.WORKSHOP['path']}index.html", workshop_page())
+    pages = {C.PAGES[lang]["path"]: lambda lang=lang: home_page(lang)
+             for lang in C.LANGS}
+    pages.update({page_path(key, lang): lambda key=key, lang=lang: work_page(key, lang)
+                  for key in C.WORK_PAGES for lang in C.LANGS})
+    pages[C.WORKSHOP["path"]] = workshop_page
+    # A page keeps the date of its last change in the sitemap until it changes.
+    old = ROOT / "sitemap.xml"
+    known = dict(re.findall(r"<loc>([^<]+)</loc><lastmod>([^<]+)</lastmod>",
+                            old.read_text() if old.exists() else ""))
+    today = date.today().isoformat()
+    lastmod = {}
+    for path, make in pages.items():
+        changed = write(f"{path}index.html", make())
+        lastmod[path] = today if changed or url(path) not in known else known[url(path)]
     write("404.html", not_found_page())
-    write("sitemap.xml", sitemap())
+    write("sitemap.xml", sitemap(lastmod))
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {url('sitemap.xml')}\n")
 
 
