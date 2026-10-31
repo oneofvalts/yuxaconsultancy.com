@@ -111,10 +111,11 @@ def image(spec, stem: str, alt: str, prefix: str):
 
 
 def document(*, lang, prefix, title, description, canonical, locale, body,
-             image="assets/og.png", jsonld=(), alternates=(), index=True):
+             image="assets/og.png", jsonld=(), alternates=(), scripts=(), index=True):
     """A complete HTML page. prefix leads from the page to the site root;
     image is the social preview, 1200 x 630; jsonld the schema.org nodes
-    describing the page; alternates the same page in each language."""
+    describing the page; alternates the same page in each language; scripts
+    the paths of the scripts the page runs once it is parsed."""
     head = [
         '<meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -151,6 +152,7 @@ def document(*, lang, prefix, title, description, canonical, locale, body,
     head += [f'<link rel="preload" href="{prefix}assets/fonts/{font}.woff2" as="font" '
              'type="font/woff2" crossorigin>' for font in ("Go-Regular", "Go-Medium")]
     head.append(f'<link rel="stylesheet" href="{prefix}assets/style.css">')
+    head += [f'<script src="{prefix}{path}" defer></script>' for path in scripts]
     if jsonld:
         graph = {"@context": "https://schema.org", "@graph": list(jsonld)}
         head.append('<script type="application/ld+json">'
@@ -339,7 +341,8 @@ def home_page(lang):
 
 
 def gallery(spec, lang, prefix):
-    """Photographs in justified rows; each opens its 2000 px copy."""
+    """Photographs in justified rows; each links to its 2000 px copy, which
+    assets/viewer.js shows in the viewer instead."""
     figures = []
     for stem, *_ in spec["photos"]:
         text = caption(spec, stem, lang)
@@ -348,6 +351,28 @@ def gallery(spec, lang, prefix):
                        f'<a href="{prefix}{spec["photo_dir"]}{stem}-2000.jpg">{img}</a>'
                        f"<figcaption>{esc(text)}</figcaption></figure>")
     return '<div class="gallery">' + "".join(figures) + "</div>"
+
+
+# The viewer's buttons and the paths of their icons, drawn on a 24 x 24 grid.
+VIEWER_BUTTONS = {
+    "close": "M6 6l12 12M18 6 6 18",
+    "prev": "M15 5l-7 7 7 7",
+    "next": "M9 5l7 7-7 7",
+}
+
+
+def viewer(lang, label):
+    """The dialog in which assets/viewer.js shows the gallery's photographs
+    one at a time, as large as the window allows; label names it."""
+    words = C.PAGES[lang]["viewer"]
+    buttons = "".join(
+        f'<button class="{name}" type="button" aria-label="{words[name]}">'
+        f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{path}"/></svg></button>'
+        for name, path in VIEWER_BUTTONS.items())
+    return (f'<dialog class="viewer" aria-label="{esc(label)}">{buttons}'
+            '<div class="frame"></div>'
+            '<p class="caption" aria-live="polite"><span class="text"></span> '
+            '<span class="count"></span></p></dialog>')
 
 
 def work_page(key, lang):
@@ -362,11 +387,13 @@ def work_page(key, lang):
     person = next(m for m in C.TEAM if m["name"] == spec["person"])
     buttons = dict(subject=w["mail_subject"], booking=spec["booking"])
 
-    sections = []
+    sections, scripts = [], []
     if "photos" in spec:
         sections.append(section(ids["gallery"], t(w["gallery_title"]),
                                 gallery(spec, lang, prefix),
-                                f'<p class="note">{t(w["gallery_note"])}</p>'))
+                                f'<p class="note">{t(w["gallery_note"])}</p>',
+                                viewer(lang, w["gallery_title"])))
+        scripts.append("assets/viewer.js")
     offers = []
     for offer in w["offers"]:
         anchor = f' id="{offer["id"]}"' if "id" in offer else ""
@@ -427,7 +454,7 @@ def work_page(key, lang):
     return document(lang=lang, prefix=prefix, title=w["title"],
                     description=w["description"], canonical=url(w["path"]),
                     locale=page["locale"], body=body, image=spec["image"],
-                    jsonld=jsonld, alternates=alternates)
+                    jsonld=jsonld, alternates=alternates, scripts=scripts)
 
 
 def workshop_page():

@@ -41,6 +41,9 @@ PAGES = {
         "skip": "İçeriğe geç",
         "home": "Ana sayfa",
         "back": "Ana sayfaya dön",
+        # The buttons of the photo viewer, as screen readers announce them.
+        "viewer": {"close": "Kapat", "prev": "Önceki fotoğraf",
+                   "next": "Sonraki fotoğraf"},
         "ids": {"contact": "iletisim"},
         "nav_label": "Ana menü",
         # A work page by its key in WORK_PAGES, or a section of the page.
@@ -84,6 +87,7 @@ PAGES = {
         "skip": "Skip to content",
         "home": "Home",
         "back": "Back to the home page",
+        "viewer": {"close": "Close", "prev": "Previous photo", "next": "Next photo"},
         "ids": {"contact": "contact"},
         "nav_label": "Main menu",
         "nav": [
@@ -126,6 +130,8 @@ PAGES = {
         "skip": "Aller au contenu",
         "home": "Accueil",
         "back": "Retour à l’accueil",
+        "viewer": {"close": "Fermer", "prev": "Photo précédente",
+                   "next": "Photo suivante"},
         "ids": {"contact": "contact"},
         "nav_label": "Menu principal",
         "nav": [

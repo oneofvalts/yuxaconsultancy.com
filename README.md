@@ -33,7 +33,8 @@ Every person has a panel on the home page and a work page of their own.
    Its `panel` holds what the home page says about the person, under the
    `cover` picture (3:2). Add the key to `nav` to put the page in the menu.
 3. Photographs go in `assets/<topic>/`, made by `make photos` in the private
-   repository; a work page with `photos` shows them first.
+   repository; a work page with `photos` shows them first, and a click opens
+   them large in the photo viewer.
 
 ## Settings in `content.py`
 
@@ -72,6 +73,11 @@ only as copies stripped of their metadata (camera data, GPS positions).
 - `assets/woodwork/`: photographs of Durmuş Uyu's work, `<name>-1000.jpg` for
   the page and `<name>-2000.jpg` for the full view, made by `make photos` in
   the private repository, which keeps the originals.
+- `assets/viewer.js`: the photo viewer of the work pages and the site's only
+  script, standard JavaScript with no library. It shows each photograph's
+  2000 px copy in a dialog with its caption; buttons, arrow keys and swipes
+  turn the photographs, and the back button closes it. Without the script,
+  a photograph's link opens the 2000 px copy itself.
 
 ## Domain
 

@@ -494,11 +494,138 @@ table.price td + td {
   background: var(--panel);
 }
 
+.gallery a {
+  cursor: zoom-in;
+}
+
 .gallery figcaption {
   margin-top: 0.4rem;
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.35;
+}
+
+/* The photo viewer (viewer.js): one photograph at a time on the dark
+   ground, in either colour scheme, with the close button above it, the
+   previous and next buttons beside it and the caption below; on narrow
+   screens the buttons flank the caption. The frame is a size container, so
+   the photograph, of aspect ratio --r, takes the largest box that fits.
+   Sideways swipes belong to the viewer, not to the browser, which would
+   take them for going back; fingers may still zoom. */
+
+html:has(dialog.viewer[open]) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+dialog.viewer {
+  --ink: #e8e5df;
+  --muted: #a2a9b4;
+  --accent: #e3714f;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0 0 0.75rem;
+  border: 0;
+  background: #111821;
+  color: var(--ink);
+  touch-action: pan-y pinch-zoom;
+}
+
+dialog.viewer[open] {
+  display: grid;
+  grid-template:
+    ".    .     close" 4rem
+    "prev frame next " 1fr
+    ".    text  .    " auto
+    / 4rem 1fr 4rem;
+  animation: viewer-in 0.2s ease-out;
+}
+
+@keyframes viewer-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.viewer button {
+  display: grid;
+  place-items: center;
+  place-self: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.viewer button:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+.viewer svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.viewer .close {
+  grid-area: close;
+}
+
+.viewer .prev {
+  grid-area: prev;
+}
+
+.viewer .next {
+  grid-area: next;
+}
+
+.viewer .frame {
+  grid-area: frame;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+  container-type: size;
+}
+
+.viewer img {
+  display: block;
+  width: min(100cqw, 100cqh * var(--r));
+  height: auto;
+  aspect-ratio: var(--r);
+  object-fit: cover;
+  background: rgb(255 255 255 / 0.04) center / cover no-repeat;
+}
+
+.viewer .caption {
+  grid-area: text;
+  margin: 0;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.viewer .count {
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.viewer[open] {
+    animation: none;
+  }
 }
 
 /* Workshop page */
@@ -560,6 +687,14 @@ footer.site {
 
   .gallery {
     --row: 9.5rem;
+  }
+
+  dialog.viewer[open] {
+    grid-template:
+      ".     .     close" 3.5rem
+      "frame frame frame" 1fr
+      "prev  text  next " auto
+      / 3.5rem 1fr 3.5rem;
   }
 
   nav.sections {
