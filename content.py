@@ -16,7 +16,7 @@ EMAIL = "contact@yuxaconsultancy.com"
 WHATSAPP_LINK = "https://wa.me/message/E5OQUKF24TRFM1"
 # Google Calendar appointment schedule for the free 15-minute call.
 # Empty: the booking buttons open an e-mail instead.
-BOOKING_LINK = ""
+BOOKING_LINK = "https://calendar.app.google/b4TrMwy2mpcnn3G67"
 # Google Form for the workshop. Empty: registration by e-mail.
 WORKSHOP_FORM = ""
 
