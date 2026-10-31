@@ -187,7 +187,8 @@ nav.langs a[aria-current] {
 }
 
 .hero h1 {
-  max-width: 22ch;
+  max-width: 26ch;
+  text-wrap: balance;
   margin: 0 0 1.25rem;
   font-size: clamp(2.2rem, 5.6vw, 3.6rem);
   font-weight: 500;

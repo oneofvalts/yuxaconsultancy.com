@@ -48,12 +48,8 @@ PAGES = {
             ("woodwork", "Ahşap"),
             ("contact", "İletişim"),
         ],
-        "hero_title": "İki kişi, iki iş: matematik ve ahşap.",
-        "hero_lead": (
-            "YUXA, İstanbul’da küçük bir ekip. Abdullah Uyu matematik ve programlama "
-            "öğretiyor, LaTeX ile belge diziyor; Durmuş Uyu elde ahşap oyuyor ve oyma "
-            "atölyeleri düzenliyor."
-        ),
+        "hero_title": "Abdullah matematik öğretiyor, Durmuş da ahşap oyuyor.",
+        "hero_lead": "YUXA, İstanbul’da küçük bir ekip.",
         # Dated events under the panels; remove each once it is over.
         "upcoming_label": "Yaklaşan",
         "upcoming": [
@@ -95,12 +91,8 @@ PAGES = {
             ("woodwork", "Woodwork"),
             ("contact", "Contact"),
         ],
-        "hero_title": "Two people, two crafts: mathematics and wood.",
-        "hero_lead": (
-            "YUXA is a small team in Istanbul. Abdullah Uyu teaches mathematics and "
-            "programming and typesets documents in LaTeX; Durmuş Uyu carves wood by "
-            "hand and runs carving workshops."
-        ),
+        "hero_title": "Abdullah teaches maths and Durmuş carves wood.",
+        "hero_lead": "YUXA is a small team in Istanbul.",
         "upcoming_label": "Coming up",
         "upcoming": [
             {
@@ -142,12 +134,8 @@ PAGES = {
             ("woodwork", "Bois"),
             ("contact", "Contact"),
         ],
-        "hero_title": "Deux personnes, deux métiers : les mathématiques et le bois.",
-        "hero_lead": (
-            "YUXA est une petite équipe à Istanbul. Abdullah Uyu enseigne les "
-            "mathématiques et la programmation et compose des documents en LaTeX ; "
-            "Durmuş Uyu sculpte le bois à la main et anime des ateliers de sculpture."
-        ),
+        "hero_title": "Abdullah enseigne les maths, Durmuş sculpte le bois.",
+        "hero_lead": "YUXA est une petite équipe à Istanbul.",
         "upcoming_label": "À venir",
         "upcoming": [
             {
@@ -266,7 +254,7 @@ TEAM = [
 # sections, in this order; those marked * are optional:
 #   gallery*   photographs, when the spec lists photos
 #   offers     cards of what the person offers, then offers_note*
-#   how*       steps of how working together goes
+#   how*       steps of how working together goes, one sentence each
 #   prices     price groups, then prices_note
 #   events*    dated events, each leading to its page
 #   about      the person's bio from TEAM, and aside_title and aside* next to it
@@ -296,9 +284,10 @@ MATHS = {
             "panel": {
                 "title": "Matematik, programlama ve LaTeX",
                 "text": (
-                    "Türkçe, Fransızca ve İngilizce özel ders: üniversite matematiği ve "
-                    "programlama, IB ve Fransız müfredatı, GSÜ Fransızca hazırlık. LaTeX "
-                    "ile tez ve belge dizgisi; küçük ekipler için otomasyon."
+                    "Türkçe, Fransızca ya da İngilizce özel ders veriyor: üniversite "
+                    "matematiği ve programlama, IB ve Fransız müfredatı, GSÜ Fransızca "
+                    "hazırlık. LaTeX ile tez ve belge diziyor, küçük ekipler için "
+                    "otomasyon kuruyor."
                 ),
                 "alt": (
                     "Desargues teoremi: bir noktaya göre perspektif iki üçgenin "
@@ -313,11 +302,12 @@ MATHS = {
                 "link": "Dersler, dizgi ve ücretler",
             },
             "kicker": "Matematik ve LaTeX · Abdullah Uyu",
-            "heading": "Matematik, programlama ve LaTeX.",
+            "heading": "Matematik, programlama ve LaTeX",
             "lead": (
-                "Türkçe, Fransızca ve İngilizce özel ders; LaTeX ile tez ve belge "
-                "dizgisi; küçük ekipler için otomasyon. Dersler online ya da "
-                "İstanbul’da yüz yüze: Beşiktaş, Kadıköy, Üsküdar, Pendik–Tuzla."
+                "Abdullah Türkçe, Fransızca ya da İngilizce özel ders veriyor, LaTeX ile "
+                "tez ve belge diziyor, küçük ekipler için otomasyon kuruyor. Dersler "
+                "online ya da İstanbul’da yüz yüze: Beşiktaş, Kadıköy, Üsküdar, "
+                "Pendik–Tuzla."
             ),
             "mail_subject": "Bilgi talebi",
             "offers_title": "Hizmetler",
@@ -339,8 +329,7 @@ MATHS = {
                 },
                 {
                     "title": "LaTeX dizgi",
-                    "body": "Tezler, makaleler ve sunumlar: kurallara uygun ve göze "
-                            "güzel.",
+                    "body": "Kurallara uyan, rahat okunan tez, makale ve sunumlar.",
                     "items": [
                         "Enstitü kılavuzuna uygun tez şablonu",
                         "Word’den LaTeX’e dönüşüm",
@@ -362,17 +351,17 @@ MATHS = {
                 },
             ],
             "offers_note": (
-                "Her dersten sonra, işlediğimiz konuların ve çözdüğümüz soruların "
-                "dizilmiş kısa bir PDF özeti sizinle."
+                "Her dersten sonra, işlediğimiz konuları ve çözdüğümüz soruları "
+                "özetleyen, dizilmiş kısa bir PDF gönderiyoruz."
             ),
             "how_title": "Nasıl çalışır",
             "how": [
-                ("Tanışalım.", "15 dakikalık ücretsiz bir görüşmede ihtiyacı, seviyeyi "
-                 "ve hedefi konuşuruz."),
-                ("Çalışalım.", "Online (Google Meet) ya da yüz yüze; ödeme dersten önce "
-                 "banka havalesiyle."),
-                ("Kalıcı olsun.", "Her dersten sonra dizilmiş özet notlar; her işin "
-                 "sonunda derlenmiş kaynak dosyalar."),
+                "15 dakikalık ücretsiz bir görüşmede ihtiyacınızı, seviyenizi ve "
+                "hedefinizi konuşuruz.",
+                "Dersler online (Google Meet) ya da yüz yüze olur; ödemeyi dersten önce "
+                "banka havalesiyle yaparsınız.",
+                "Her dersten sonra dizilmiş özet notlar, her işin sonunda da derlenmiş "
+                "kaynak dosyalar sizde kalır.",
             ],
             "prices_title": "Ücretler",
             "prices": [
@@ -407,8 +396,9 @@ MATHS = {
                 {
                     "title": "LaTeX ile Tez",
                     "text": (
-                        "28 Kasım Cumartesi, 10.00–13.00, online. Şablondan teslime üç "
-                        "saat. 600 TL; 20 Kasım’a kadar 450 TL."
+                        "28 Kasım Cumartesi, 10.00–13.00, online. Tez yazanlar için üç "
+                        "saatlik bir LaTeX atölyesi: enstitü şablonu, kaynakça, şekiller "
+                        "ve teslim öncesi kontrol. 600 TL; 20 Kasım’a kadar 450 TL."
                     ),
                     "link": "Ayrıntılar ve kayıt",
                     "page": "workshop",
@@ -454,10 +444,11 @@ MATHS = {
             "panel": {
                 "title": "Mathematics, programming and LaTeX",
                 "text": (
-                    "Private lessons in Turkish, French or English: university "
-                    "mathematics and programming, IB and French-curriculum maths, "
-                    "French for Galatasaray University’s preparatory year. Theses and "
-                    "documents typeset in LaTeX; automation for small teams."
+                    "He gives private lessons in Turkish, French or English: university "
+                    "mathematics and programming, IB and French-curriculum maths, and "
+                    "French for Galatasaray University’s preparatory year. He also "
+                    "typesets theses and documents in LaTeX and builds automations for "
+                    "small teams."
                 ),
                 "alt": (
                     "Desargues’s theorem: when two triangles are in perspective from a "
@@ -471,11 +462,12 @@ MATHS = {
                 "link": "Lessons, typesetting and prices",
             },
             "kicker": "Maths and LaTeX · Abdullah Uyu",
-            "heading": "Mathematics, programming and LaTeX.",
+            "heading": "Mathematics, programming and LaTeX",
             "lead": (
-                "Private lessons in Turkish, French or English; theses and documents "
-                "typeset in LaTeX; automation for small teams. Lessons online, or in "
-                "person in Istanbul: Beşiktaş, Kadıköy, Üsküdar, Pendik–Tuzla."
+                "Abdullah gives private lessons in Turkish, French or English, typesets "
+                "theses and documents in LaTeX and builds automations for small teams. "
+                "Lessons are online, or in person in Istanbul: Beşiktaş, Kadıköy, "
+                "Üsküdar, Pendik–Tuzla."
             ),
             "mail_subject": "Enquiry",
             "offers_title": "Services",
@@ -526,12 +518,12 @@ MATHS = {
             ),
             "how_title": "How it works",
             "how": [
-                ("Meet.", "A free 15-minute call to agree on the need, the level and "
-                 "the goal."),
-                ("Work.", "Online (Google Meet) or in person; payment by bank transfer "
-                 "before the lesson."),
-                ("Keep it.", "Typeset notes after every lesson; compiled source files "
-                 "at the end of every job."),
+                "We start with a free 15-minute call about what you need, your level "
+                "and your goal.",
+                "Lessons are online (Google Meet) or in person; you pay by bank "
+                "transfer before the lesson.",
+                "You keep typeset notes from every lesson, and the compiled source "
+                "files at the end of every job.",
             ],
             "prices_title": "Prices",
             "prices": [
@@ -566,9 +558,10 @@ MATHS = {
                 {
                     "title": "LaTeX ile Tez (in Turkish)",
                     "text": (
-                        "Saturday 28 November, 10:00–13:00, online. From template to "
-                        "submission in three hours. 600 TL, or 450 TL until "
-                        "20 November."
+                        "Saturday 28 November, 10:00–13:00, online. Three hours of LaTeX "
+                        "for anyone writing a thesis: the template, the bibliography, "
+                        "figures and the check before submission. 600 TL, or 450 TL "
+                        "until 20 November."
                     ),
                     "link": "Details and registration (Turkish)",
                     "page": "workshop",
@@ -615,11 +608,11 @@ MATHS = {
             "panel": {
                 "title": "Mathématiques, informatique et LaTeX",
                 "text": (
-                    "Cours particuliers en français, en turc ou en anglais : "
-                    "mathématiques du collège à l’université, programme français, bac "
-                    "et IB, programmation ; français pour l’année préparatoire de "
-                    "l’Université Galatasaray. Thèses et documents composés en LaTeX ; "
-                    "automatisation pour les petites équipes."
+                    "Il donne des cours particuliers en français, en turc ou en anglais : "
+                    "mathématiques du collège à l’université, programme français, bac et "
+                    "IB, programmation, et français pour l’année préparatoire de "
+                    "l’Université Galatasaray. Il compose aussi thèses et documents en "
+                    "LaTeX et automatise des tâches pour les petites équipes."
                 ),
                 "alt": (
                     "Théorème de Desargues : si deux triangles sont en perspective par "
@@ -634,12 +627,12 @@ MATHS = {
                 "link": "Cours, composition et tarifs",
             },
             "kicker": "Maths et LaTeX · Abdullah Uyu",
-            "heading": "Mathématiques, informatique et LaTeX.",
+            "heading": "Mathématiques, informatique et LaTeX",
             "lead": (
-                "Cours particuliers en français, en turc ou en anglais ; thèses et "
-                "documents composés en LaTeX ; automatisation pour les petites équipes. "
-                "Cours en ligne, ou à Istanbul : Beşiktaş, Kadıköy, Üsküdar, "
-                "Pendik–Tuzla."
+                "Abdullah donne des cours particuliers en français, en turc ou en "
+                "anglais, compose thèses et documents en LaTeX et automatise des tâches "
+                "pour les petites équipes. Les cours ont lieu en ligne, ou à Istanbul : "
+                "Beşiktaş, Kadıköy, Üsküdar, Pendik–Tuzla."
             ),
             "mail_subject": "Demande de renseignements",
             "offers_title": "Services",
@@ -685,17 +678,17 @@ MATHS = {
                 },
             ],
             "offers_note": (
-                "Après chaque séance, une fiche de synthèse soigneusement composée (PDF) "
-                "de ce que nous avons vu et résolu."
+                "Après chaque séance, vous recevez une courte fiche composée (PDF) qui "
+                "reprend ce que nous avons vu et résolu."
             ),
             "how_title": "Comment ça marche",
             "how": [
-                ("Faisons connaissance.", "Un appel gratuit de 15 minutes pour cerner "
-                 "le besoin, le niveau et l’objectif."),
-                ("Travaillons.", "En ligne (Google Meet) ou en présentiel ; paiement "
-                 "par virement avant la séance."),
-                ("Gardez une trace.", "Une fiche composée après chaque séance ; les "
-                 "fichiers sources compilés à la fin de chaque travail."),
+                "Nous commençons par un appel gratuit de 15 minutes pour cerner votre "
+                "besoin, votre niveau et votre objectif.",
+                "Les séances ont lieu en ligne (Google Meet) ou en présentiel ; vous "
+                "payez par virement avant la séance.",
+                "Vous gardez une fiche composée de chaque séance, et les fichiers "
+                "sources compilés à la fin de chaque travail.",
             ],
             "prices_title": "Tarifs",
             "prices": [
@@ -731,8 +724,10 @@ MATHS = {
                 {
                     "title": "LaTeX ile Tez (en turc)",
                     "text": (
-                        "Samedi 28 novembre, de 10 h à 13 h, en ligne. Du gabarit au "
-                        "dépôt en trois heures. 600 TL, ou 450 TL jusqu’au 20 novembre."
+                        "Samedi 28 novembre, de 10 h à 13 h, en ligne. Trois heures de "
+                        "LaTeX pour qui rédige une thèse : le gabarit, la bibliographie, "
+                        "les figures et la vérification avant dépôt. 600 TL, ou 450 TL "
+                        "jusqu’au 20 novembre."
                     ),
                     "link": "Détails et inscription (en turc)",
                     "page": "workshop",
@@ -830,9 +825,9 @@ WOODWORK = {
             "panel": {
                 "title": "Elde oyulmuş ahşap",
                 "text": (
-                    "Kaşık, ölçek, kuksa, kase ve kutu; her parça tek tek, elde yapılır. "
-                    "Sipariş üzerine yapım; yeni başlayanlar ve gruplar için oyma "
-                    "atölyeleri."
+                    "Sipariş üzerine kaşık, ölçek, kuksa, kase ve kutu oyuyor; her "
+                    "parçayı tek tek, elde yapıyor. Yeni başlayanlara ve gruplara oyma "
+                    "atölyeleri veriyor."
                 ),
                 "alt": "Durmuş Uyu’nun oyduğu üç kuksa",
                 # Starting prices; keep them in step with the price list below.
@@ -844,11 +839,11 @@ WOODWORK = {
                 "link": "İşler, sipariş ve atölyeler",
             },
             "kicker": "Ahşap · Durmuş Uyu",
-            "heading": "Elde oyulmuş ahşap.",
+            "heading": "Elde oyulmuş ahşap",
             "lead": (
-                "Kaşık, ölçek, kuksa, kase ve kutu: her parça tek tek, elde yapılır. "
-                "Sipariş üzerine yapım; yeni başlayanlar ve gruplar için oyma ve ahşap "
-                "işçiliği atölyeleri."
+                "Durmuş sipariş üzerine kaşık, ölçek, kuksa, kase ve kutu oyuyor; her "
+                "parçayı tek tek, elde yapıyor. Yeni başlayanlara ve gruplara oyma ve "
+                "ahşap işçiliği atölyeleri veriyor."
             ),
             "mail_subject": "Ahşap",
             "gallery_title": "İşler",
@@ -931,9 +926,9 @@ WOODWORK = {
             "panel": {
                 "title": "Hand-carved woodwork",
                 "text": (
-                    "Spoons, scoops, kuksas, bowls and boxes, each made by hand, one at "
-                    "a time. Made to order; carving workshops for beginners and for "
-                    "groups."
+                    "He carves spoons, scoops, kuksas, bowls and boxes to order, by hand "
+                    "and one at a time. He also runs carving workshops for beginners and "
+                    "for groups."
                 ),
                 "alt": "Three kuksas carved by Durmuş Uyu",
                 "rows": [
@@ -944,17 +939,17 @@ WOODWORK = {
                 "link": "Work, commissions and workshops",
             },
             "kicker": "Woodwork · Durmuş Uyu",
-            "heading": "Carved by hand.",
+            "heading": "Hand-carved woodwork",
             "lead": (
-                "Spoons, scoops, kuksas, bowls and boxes, each made one at a time, by "
-                "hand. Made to order; carving and woodworking workshops for beginners "
-                "and for groups."
+                "Durmuş carves spoons, scoops, kuksas, bowls and boxes to order, by "
+                "hand and one at a time. He also runs carving and woodworking workshops "
+                "for beginners and for groups."
             ),
             "mail_subject": "Woodwork",
             "gallery_title": "Work",
             "gallery_note": (
                 "The pieces shown may already be sold; we make similar ones to order. "
-                "Being handmade, no two are ever quite alike."
+                "Each is made by hand, so no two are exactly the same."
             ),
             "offers_title": "Commissions and workshops",
             "offers": [
@@ -1035,9 +1030,9 @@ WOODWORK = {
             "panel": {
                 "title": "Bois sculpté à la main",
                 "text": (
-                    "Cuillères, doseurs, kuksas, bols et boîtes, chaque pièce faite à la "
-                    "main, une à une. Sur commande ; ateliers de sculpture pour "
-                    "débutants et pour groupes."
+                    "Il sculpte sur commande cuillères, doseurs, kuksas, bols et boîtes, "
+                    "à la main et une à une. Il anime aussi des ateliers de sculpture "
+                    "pour débutants et pour groupes."
                 ),
                 "alt": "Trois kuksas de Durmuş Uyu",
                 "rows": [
@@ -1048,11 +1043,11 @@ WOODWORK = {
                 "link": "Réalisations, commandes et ateliers",
             },
             "kicker": "Bois · Durmuş Uyu",
-            "heading": "Sculpté à la main.",
+            "heading": "Bois sculpté à la main",
             "lead": (
-                "Cuillères, doseurs, kuksas, bols et boîtes, chaque pièce faite à la "
-                "main, une à une. Sur commande ; ateliers de sculpture et de travail du "
-                "bois pour débutants et pour groupes."
+                "Durmuş sculpte sur commande cuillères, doseurs, kuksas, bols et "
+                "boîtes, à la main et une à une. Il anime aussi des ateliers de "
+                "sculpture et de travail du bois pour débutants et pour groupes."
             ),
             "mail_subject": "Travail du bois",
             "gallery_title": "Réalisations",
@@ -1145,8 +1140,8 @@ WORKSHOP = {
     "kicker": "Atölye · 28 Kasım 2026",
     "heading": "LaTeX ile Tez",
     "lead": (
-        "Üç saatte şablondan teslime. Tez yazan yüksek lisans ve doktora öğrencileri "
-        "için çevrim içi atölye."
+        "Tez yazan yüksek lisans ve doktora öğrencileri için üç saatlik, çevrim içi "
+        "bir LaTeX atölyesi."
     ),
     "facts": [
         ("Tarih", "28 Kasım 2026 Cumartesi, 10.00–13.00 (10 dakika ara)"),
@@ -1189,7 +1184,8 @@ WORKSHOP = {
     "register_email": "E-postayla kaydolun",
     "register_subject": "Atölye kaydı: LaTeX ile Tez",
     "who": (
-        "Atölyeyi Abdullah Uyu veriyor: Galatasaray Üniversitesi Matematik mezunu, "
-        "yüksek lisans öğrencisi, onlarca LaTeX belgesinin dizgicisi."
+        "Atölyeyi Abdullah Uyu veriyor. Galatasaray Üniversitesi Matematik "
+        "Bölümü’nü bitirdi, aynı üniversitede yüksek lisans yapıyor ve onlarca "
+        "belgeyi LaTeX ile dizdi."
     ),
 }

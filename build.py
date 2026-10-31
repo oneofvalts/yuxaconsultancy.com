@@ -381,7 +381,7 @@ def work_page(key, lang):
         f'<p class="note notes-line">{t(w["offers_note"])}</p>' if "offers_note" in w
         else ""))
     if "how" in w:
-        steps = "".join(f"<li><strong>{t(a)}</strong> {t(b)}</li>" for a, b in w["how"])
+        steps = "".join(f"<li>{t(step)}</li>" for step in w["how"])
         sections.append(section(ids["how"], t(w["how_title"]),
                                 f'<ol class="steps">{steps}</ol>'))
     groups = "".join(f"<div><h3>{t(name)}</h3>{price_table(rows, t)}</div>"
