@@ -220,11 +220,7 @@ PAGES = {
             "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, bir dizgi ya da "
             "otomasyon işi, ya da ahşap. En geç bir iş günü içinde döneriz."
         ),
-        "contact_note": (
-            "Mesajı tercih ediyoruz; bilinmeyen numaralardan gelen aramalar "
-            "sessizdedir."
-        ),
-        "footer": "© 2026 YUXA Consultancy · İstanbul · Go yazı tipleriyle dizildi.",
+        "footer": "© 2026 YUXA Consultancy · İstanbul",
     },
     "en": {
         "path": "en/",
@@ -422,8 +418,7 @@ PAGES = {
             "typesetting or automation job, or woodwork. We reply within one working "
             "day."
         ),
-        "contact_note": "We prefer messages; calls from unknown numbers are silenced.",
-        "footer": "© 2026 YUXA Consultancy · Istanbul · Set in the Go typefaces.",
+        "footer": "© 2026 YUXA Consultancy · Istanbul",
     },
     "fr": {
         "path": "fr/",
@@ -622,11 +617,7 @@ PAGES = {
             "un travail de composition ou d’automatisation, ou le bois. Nous répondons "
             "sous un jour ouvré."
         ),
-        "contact_note": (
-            "Nous préférons les messages ; les appels de numéros inconnus sont mis en "
-            "silencieux."
-        ),
-        "footer": "© 2026 YUXA Consultancy · Istanbul · Composé en Go.",
+        "footer": "© 2026 YUXA Consultancy · Istanbul",
     },
 }
 
@@ -650,8 +641,8 @@ TEAM = [
                 "siber güvenlik araştırma şirketinde matematikçi danışman, Ziraat "
                 "Teknoloji’de yapay zekâ uygulamaları alanında yazılım danışmanı olarak "
                 "çalıştı; n8n ile ajan tabanlı iş akışları geliştirdi.",
-                "Onlarca belgeyi LaTeX ile dizdi. Bu site ve YUXA’nın bütün basılı "
-                "işleri Go yazı tipiyle dizili; matematik için Go Math’i o hazırladı.",
+                "Onlarca belgeyi LaTeX ile dizdi; Go Math adlı matematik yazı tipini "
+                "hazırladı.",
             ],
             "en": [
                 "Abdullah graduated in mathematics from Galatasaray University in 2025, "
@@ -662,8 +653,8 @@ TEAM = [
                 "worked as a mathematician consultant at a cyber-security research "
                 "company and as a programmer consultant on AI applications at Ziraat "
                 "Teknoloji, building agentic workflows in n8n.",
-                "He has typeset dozens of documents in LaTeX. This site and everything "
-                "YUXA prints are set in Go; for mathematics he made Go Math.",
+                "He has typeset dozens of documents in LaTeX and made a mathematics "
+                "typeface, Go Math.",
             ],
             "fr": [
                 "Diplômé en mathématiques de l’Université Galatasaray en 2025, où "
@@ -675,9 +666,8 @@ TEAM = [
                 "cybersécurité, puis consultant en programmation au département des "
                 "applications d’IA de Ziraat Teknoloji, où il construisait des flux "
                 "agentiques avec n8n.",
-                "Il a composé des dizaines de documents en LaTeX. Ce site et tous les "
-                "imprimés de YUXA sont composés en Go ; pour les mathématiques, il a "
-                "créé Go Math.",
+                "Il a composé des dizaines de documents en LaTeX et créé une fonte "
+                "mathématique, Go Math.",
             ],
         },
     },

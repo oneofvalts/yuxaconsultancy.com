@@ -266,8 +266,6 @@ def home_page(lang):
                     + link + "</article>")
     faq = "".join(f"<details><summary>{t(q)}</summary><p>{t(a)}</p></details>"
                   for q, a in page["faq"])
-    note = (f'<p class="note">{t(page["contact_note"])}</p>'
-            if C.WHATSAPP_LINK else "")
 
     body = "\n".join([
         header(lang=lang, prefix=prefix, current="home"),
@@ -308,7 +306,6 @@ def home_page(lang):
         f'<h2>{t(page["contact_title"])}</h2>',
         f'<p>{t(page["contact_text"])}</p>',
         contact_buttons(page, email_label=C.EMAIL),
-        note,
         "</div></section>",
         "</main>",
         footer(t(page["footer"])),
@@ -350,8 +347,6 @@ def work_page(key, lang):
     prices = (f'<div class="price-group"><h3>{t(w["prices_title"])}</h3>'
               f'{price_table(w["prices"][1], t)}</div>' if "prices" in w else "")
     bio = "".join(f"<p>{t(p)}</p>" for p in person["bio"][lang])
-    note = (f'<p class="note">{t(page["contact_note"])}</p>'
-            if C.WHATSAPP_LINK else "")
     buttons = dict(subject=w["mail_subject"], booking=False)
 
     body = "\n".join([
@@ -383,7 +378,6 @@ def work_page(key, lang):
         f'<h2>{t(w["contact_title"])}</h2>',
         f'<p>{t(w["contact_text"])}</p>',
         contact_buttons(page, email_label=C.EMAIL, **buttons),
-        note,
         f'<p><a href="{prefix}{page["path"]}">← {t(w["back"])}</a></p>',
         "</div></section>",
         "</main>",
