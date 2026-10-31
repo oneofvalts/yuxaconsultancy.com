@@ -373,6 +373,11 @@ table.price td + td {
   white-space: nowrap;
 }
 
+.price-group {
+  max-width: var(--measure);
+  margin-top: 2rem;
+}
+
 .teasers {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));

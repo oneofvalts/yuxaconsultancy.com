@@ -163,8 +163,7 @@ PAGES = {
         ],
         "prices_note": (
             "Kasım 2026 ücretleridir. Yüz yüze dersler Beşiktaş, Kadıköy, Üsküdar ve "
-            "Pendik–Tuzla’da. Ahşap parçaların ve atölyelerin fiyatını yazışarak "
-            "belirliyoruz."
+            "Pendik–Tuzla’da."
         ),
         "workshops_title": "Atölyeler",
         "workshops": [
@@ -182,9 +181,9 @@ PAGES = {
                 "title": "Kaşık oyma",
                 "by": "Durmuş Uyu",
                 "text": (
-                    "Yeni başlayanlar için: aletler ve ahşap bizden, kaşık sizin. "
-                    "Okul, şirket ve dernekler için grup atölyeleri; açık atölyelerin "
-                    "tarihleri duyurulacak."
+                    "Yeni başlayanlar için, 3–4 saat: aletler ve ahşap bizden, kaşık "
+                    "sizin. Kişi başı 1.250 TL. Okul, şirket ve dernekler için grup "
+                    "atölyeleri; açık atölyelerin tarihleri duyurulacak."
                 ),
                 "link": "Ayrıntılar",
                 "page": "woodwork",
@@ -364,8 +363,7 @@ PAGES = {
         ],
         "prices_note": (
             "Prices as of November 2026. In-person lessons in Beşiktaş, Kadıköy, "
-            "Üsküdar and Pendik–Tuzla. Woodwork and its workshops are priced on "
-            "request."
+            "Üsküdar and Pendik–Tuzla."
         ),
         "workshops_title": "Workshops",
         "workshops": [
@@ -383,9 +381,10 @@ PAGES = {
                 "title": "Spoon carving",
                 "by": "Durmuş Uyu",
                 "text": (
-                    "For beginners: we bring the tools and the wood, you take your "
-                    "spoon home. Group workshops for schools, companies and "
-                    "associations; dates of open workshops to be announced."
+                    "For beginners, 3–4 h: we bring the tools and the wood, you take "
+                    "your spoon home. 1,250 TL per person. Group workshops for schools, "
+                    "companies and associations; dates of open workshops to be "
+                    "announced."
                 ),
                 "link": "Details",
                 "page": "woodwork",
@@ -564,7 +563,7 @@ PAGES = {
         ],
         "prices_note": (
             "Tarifs de novembre 2026. Séances en présentiel à Beşiktaş, Kadıköy, "
-            "Üsküdar et Pendik–Tuzla. Pour le bois, pièces et ateliers sur devis."
+            "Üsküdar et Pendik–Tuzla."
         ),
         "workshops_title": "Ateliers",
         "workshops": [
@@ -582,9 +581,10 @@ PAGES = {
                 "title": "Sculpture de cuillère",
                 "by": "Durmuş Uyu",
                 "text": (
-                    "Pour débutants : nous apportons les outils et le bois, vous "
-                    "repartez avec votre cuillère. Ateliers de groupe pour écoles, "
-                    "entreprises et associations ; dates des ateliers ouverts à venir."
+                    "Pour débutants, 3 à 4 h : nous apportons les outils et le bois, "
+                    "vous repartez avec votre cuillère. 1 250 TL par personne. Ateliers "
+                    "de groupe pour écoles, entreprises et associations ; dates des "
+                    "ateliers ouverts à venir."
                 ),
                 "link": "Détails",
                 "page": "woodwork",
@@ -814,10 +814,21 @@ WOODWORK = {
                     ],
                 },
             ],
+            # The price group also joins the price list of the home page.
+            "prices_title": "Fiyatlar",
+            "prices": ("Ahşap", [
+                ("Kaşık ve ölçek", "750 TL’den"),
+                ("Kuksa", "2.000 TL’den"),
+                ("Kase ve kutu", "2.500 TL’den"),
+                ("Kaşık oyma atölyesi: 3–4 saat, 4–8 kişi; ahşap ve aletler dahil",
+                 "kişi başı 1.250 TL"),
+                ("Okul, şirket ya da dernek için grup atölyesi, en az 6 kişi",
+                 "kişi başı 1.250 TL"),
+            ]),
             "offers_note": (
-                "Fiyat parçaya ve ölçüye, atölyelerde kişi sayısına ve süreye göre "
-                "değişir; yazın, birlikte belirleyelim. Açık atölyelerin tarihleri bu "
-                "sayfada duyurulacak."
+                "Parçalarda kesin fiyat ölçüye ve işçiliğe göre değişir. Tepsi ve tek "
+                "parça işler ile ahşap işçiliği atölyelerinin fiyatı için yazın. Açık "
+                "atölyelerin tarihleri bu sayfada duyurulacak."
             ),
             "care_title": "Bakım",
             "care": (
@@ -888,11 +899,21 @@ WOODWORK = {
                     ],
                 },
             ],
+            "prices_title": "Prices",
+            "prices": ("Woodwork", [
+                ("Spoons and scoops", "from 750 TL"),
+                ("Kuksas", "from 2,000 TL"),
+                ("Bowls and boxes", "from 2,500 TL"),
+                ("Spoon carving: 3–4 h, 4–8 people, wood and tools included",
+                 "1,250 TL per person"),
+                ("Group workshop for a school, company or association, 6 people or "
+                 "more", "1,250 TL per person"),
+            ]),
             "offers_note": (
-                "Prices depend on the piece and its size, and for workshops on the "
-                "group and the length; write to us and we will agree on one. Dates of "
-                "open workshops will be announced on this page. Workshops are in "
-                "Turkish; ask us about English."
+                "For pieces, the final price depends on the size and the work. For "
+                "trays, one-off pieces and woodworking workshops, ask us for a price. "
+                "Dates of open workshops will be announced on this page. Workshops are "
+                "in Turkish; ask us about English."
             ),
             "care_title": "Care",
             "care": (
@@ -965,11 +986,22 @@ WOODWORK = {
                     ],
                 },
             ],
+            "prices_title": "Tarifs",
+            "prices": ("Travail du bois", [
+                ("Cuillères et doseurs", "à partir de 750 TL"),
+                ("Kuksas", "à partir de 2 000 TL"),
+                ("Bols et boîtes", "à partir de 2 500 TL"),
+                ("Sculpture de cuillère : 3 à 4 h, 4 à 8 personnes, bois et outils "
+                 "fournis", "1 250 TL par personne"),
+                ("Atelier de groupe pour une école, une entreprise ou une association, "
+                 "6 personnes au moins", "1 250 TL par personne"),
+            ]),
             "offers_note": (
-                "Le prix dépend de la pièce et de sa taille ; pour les ateliers, du "
-                "groupe et de la durée. Écrivez-nous, nous le fixerons ensemble. Les "
-                "dates des ateliers ouverts seront annoncées sur cette page. Ateliers "
-                "en turc ; pour l’anglais, demandez-nous."
+                "Pour les pièces, le prix final dépend de la taille et du travail. Pour "
+                "les plateaux, les pièces uniques et les ateliers de travail du bois, "
+                "demandez-nous un devis. Les dates des ateliers ouverts seront "
+                "annoncées sur cette page. Ateliers en turc ; pour l’anglais, "
+                "demandez-nous."
             ),
             "care_title": "Entretien",
             "care": (

@@ -189,6 +189,13 @@ def byline(name):
     return f'<p class="by">{name}</p>'
 
 
+def price_table(rows, t):
+    """Items and their prices; t applies the page language's typography."""
+    body = "".join(f"<tr><td>{t(item)}</td><td>{t(price)}</td></tr>"
+                   for item, price in rows)
+    return f'<table class="price"><tbody>{body}</tbody></table>'
+
+
 def footer(text):
     return f'<footer class="site"><div class="wrap"><p>{text}</p></div></footer>'
 
@@ -235,12 +242,12 @@ def home_page(lang):
             f'<div>{text}<p><a href="{target}">{t(service["link"])} →</a></p></div>'
             "</article>")
     steps = "".join(f"<li><strong>{t(a)}</strong> {t(b)}</li>" for a, b in page["how"])
-    price_groups = []
-    for name, rows in page["prices"]:
-        body = "".join(f"<tr><td>{t(item)}</td><td>{t(price)}</td></tr>"
-                       for item, price in rows)
-        price_groups.append(f'<div><h3>{t(name)}</h3>'
-                            f'<table class="price"><tbody>{body}</tbody></table></div>')
+    # The price list ends with the price group of each work page that has one.
+    groups = page["prices"] + [spec["pages"][lang]["prices"]
+                               for spec in C.WORK_PAGES.values()
+                               if "prices" in spec["pages"][lang]]
+    price_groups = [f"<div><h3>{t(name)}</h3>{price_table(rows, t)}</div>"
+                    for name, rows in groups]
     teasers = []
     for w in page["workshops"]:
         target = f"{prefix}{page_path(w['page'], lang)}"
@@ -340,6 +347,8 @@ def work_page(key, lang):
         offers.append(f'<article class="card" id="{offer["id"]}">'
                       f'<h3>{t(offer["title"])}</h3><p>{t(offer["body"])}</p>'
                       f"<ul>{items}</ul></article>")
+    prices = (f'<div class="price-group"><h3>{t(w["prices_title"])}</h3>'
+              f'{price_table(w["prices"][1], t)}</div>' if "prices" in w else "")
     bio = "".join(f"<p>{t(p)}</p>" for p in person["bio"][lang])
     note = (f'<p class="note">{t(page["contact_note"])}</p>'
             if C.WHATSAPP_LINK else "")
@@ -362,6 +371,7 @@ def work_page(key, lang):
         f'<section id="{w["ids"]["offers"]}"><div class="wrap">',
         f'<h2>{t(w["offers_title"])}</h2>',
         f'<div class="cards">{"".join(offers)}</div>',
+        prices,
         f'<p class="note notes-line">{t(w["offers_note"])}</p>',
         "</div></section>",
         '<section><div class="wrap two">',
