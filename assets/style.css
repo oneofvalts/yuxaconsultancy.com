@@ -159,7 +159,8 @@ nav.langs a {
 }
 
 nav.sections a:hover,
-nav.langs a:hover {
+nav.langs a:hover,
+nav.sections a[aria-current] {
   color: var(--accent);
 }
 
@@ -283,6 +284,7 @@ h3 {
   padding: 1.4rem 1.4rem 1.1rem;
   border-left: 3px solid var(--accent);
   background: var(--panel);
+  scroll-margin-top: 1rem;
 }
 
 .card p {
@@ -296,6 +298,31 @@ h3 {
 
 .card li {
   margin: 0.3rem 0;
+}
+
+.card ul + p {
+  margin-top: 0.9rem;
+}
+
+p.by {
+  margin: -0.35rem 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* A service shown with a photograph: picture and text side by side. */
+.feature {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem 2rem;
+  align-items: center;
+  margin-top: 1.25rem;
+}
+
+.feature img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 ol.steps {
@@ -346,6 +373,12 @@ table.price td + td {
   white-space: nowrap;
 }
 
+.teasers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1.25rem;
+}
+
 .teaser {
   padding: 1.6rem 1.6rem 0.6rem;
   border-left: 3px solid var(--accent);
@@ -372,9 +405,49 @@ table.price td + td {
   margin: 0 0 0.8rem;
 }
 
+.role {
+  color: var(--muted);
+}
+
 .person .role {
   margin-bottom: 1rem;
+}
+
+/* Work pages: photographs in justified rows. Each figure grows in proportion
+   to its aspect ratio --r, so the pictures of a row share one height; the
+   last row keeps its natural height. */
+
+.gallery {
+  --row: 11rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.gallery::after {
+  content: "";
+  flex-grow: 1000;
+}
+
+.gallery figure {
+  flex-grow: calc(var(--r) * 100);
+  flex-basis: calc(var(--r) * var(--row));
+  margin: 0;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--panel);
+}
+
+.gallery figcaption {
+  margin-top: 0.4rem;
   color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
 }
 
 details {
@@ -443,6 +516,10 @@ footer.site {
 
   .hero {
     padding: 3rem 0 2.5rem;
+  }
+
+  .gallery {
+    --row: 9.5rem;
   }
 
   nav.sections {

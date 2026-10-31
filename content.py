@@ -1,7 +1,8 @@
 """Words and settings for yuxaconsultancy.com; build.py turns them into HTML.
 
 PAGES holds the home page in each language, TEAM the people of YUXA (adding
-a person means adding an entry there), WORKSHOP the workshop page.
+a person means adding an entry there), WORK_PAGES the pages that show one
+person's work (the woodwork pages so far), WORKSHOP the workshop page.
 
 Strings may contain inline HTML. French strings are written with ordinary
 spaces; build.py adds the unbreakable spaces French typography wants before
@@ -29,11 +30,12 @@ PAGES = {
     "tr": {
         "path": "",
         "locale": "tr_TR",
-        "title": "YUXA Consultancy · Matematik, programlama ve LaTeX dizgi · İstanbul",
+        "title": "YUXA Consultancy · Matematik, programlama, LaTeX dizgi ve ahşap · "
+                 "İstanbul",
         "description": (
             "Üniversite matematiği ve programlama, IB ve Fransızca matematik, GSÜ "
-            "Fransızca hazırlık; LaTeX ile tez dizgisi; n8n ile otomasyon. Türkçe, "
-            "Fransızca, İngilizce; online ya da İstanbul’da yüz yüze."
+            "Fransızca hazırlık; LaTeX ile tez dizgisi; n8n ile otomasyon; elde "
+            "oyulmuş ahşap ve oyma atölyeleri. Online ya da İstanbul’da yüz yüze."
         ),
         "skip": "İçeriğe geç",
         "ids": {"services": "hizmetler", "how": "nasil", "prices": "ucretler",
@@ -43,25 +45,28 @@ PAGES = {
         "nav": [
             ("services", "Hizmetler"),
             ("prices", "Ücretler"),
-            ("workshops", "Atölye"),
+            ("woodwork", "Ahşap"),
+            ("workshops", "Atölyeler"),
             ("team", "Ekip"),
             ("contact", "İletişim"),
         ],
-        "hero_title": "Matematik, bilgisayar ve dizgi.",
+        "hero_title": "Matematik, bilgisayar, dizgi ve ahşap.",
         "hero_lead": (
             "Türkçe, Fransızca ve İngilizce özel ders; LaTeX ile tez ve belge "
-            "dizgisi; küçük ekipler için otomasyon. Online ya da İstanbul’da yüz "
-            "yüze: Beşiktaş, Kadıköy, Üsküdar, Pendik–Tuzla."
+            "dizgisi; küçük ekipler için otomasyon; elde oyulmuş ahşap ve oyma "
+            "atölyeleri. Dersler online ya da İstanbul’da yüz yüze: Beşiktaş, "
+            "Kadıköy, Üsküdar, Pendik–Tuzla."
         ),
         "cta_whatsapp": "WhatsApp’tan yazın",
         "cta_book": "Ücretsiz ön görüşme",
         "cta_email": "E-posta gönderin",
-        "mail_subject": "Ders talebi",
+        "mail_subject": "Bilgi talebi",
         "book_subject": "Ön görüşme",
         "services_title": "Hizmetler",
         "services": [
             {
                 "title": "Özel ders",
+                "by": "Abdullah Uyu",
                 "body": (
                     "Üniversite matematiği ve programlama; IB Diploma ve Fransız "
                     "müfredatında lise matematiği; GSÜ Fransızca hazırlık desteği."
@@ -77,6 +82,7 @@ PAGES = {
             },
             {
                 "title": "LaTeX dizgi",
+                "by": "Abdullah Uyu",
                 "body": "Tezler, makaleler ve sunumlar: kurallara uygun ve göze güzel.",
                 "items": [
                     "Enstitü kılavuzuna uygun tez şablonu",
@@ -87,6 +93,7 @@ PAGES = {
             },
             {
                 "title": "Otomasyon ve yapay zekâ",
+                "by": "Abdullah Uyu",
                 "body": (
                     "Tekrarlayan işler için n8n iş akışları ve yapay zekâ ajanları; "
                     "günlük işte yapay zekâ kullanımı üzerine birebir çalışma."
@@ -96,6 +103,23 @@ PAGES = {
                     "Kurulmuş ve belgelenmiş iş akışları",
                     "Yapay zekâ koçluğu",
                 ],
+            },
+            {
+                "title": "Ahşap",
+                "by": "Durmuş Uyu",
+                "body": (
+                    "Elde oyulmuş kaşık, ölçek, kuksa, kase ve kutu; oyma ve ahşap "
+                    "işçiliği atölyeleri."
+                ),
+                "items": [
+                    "Sipariş üzerine, her parça tek tek elde",
+                    "Mutfak, sofra ve hediye için",
+                    "Yeni başlayanlar için kaşık oyma",
+                    "Okul, şirket ve dernekler için grup atölyeleri",
+                ],
+                "photo": "three-kuksas",
+                "page": "woodwork",
+                "link": "İşler ve atölyeler",
             },
         ],
         "notes_line": (
@@ -139,14 +163,34 @@ PAGES = {
         ],
         "prices_note": (
             "Kasım 2026 ücretleridir. Yüz yüze dersler Beşiktaş, Kadıköy, Üsküdar ve "
-            "Pendik–Tuzla’da."
+            "Pendik–Tuzla’da. Ahşap parçaların ve atölyelerin fiyatını yazışarak "
+            "belirliyoruz."
         ),
-        "workshop_title": "Atölye: LaTeX ile Tez",
-        "workshop_text": (
-            "28 Kasım Cumartesi, 10.00–13.00, online. Şablondan teslime üç saat. "
-            "600 TL; 20 Kasım’a kadar 450 TL."
-        ),
-        "workshop_link": "Ayrıntılar ve kayıt",
+        "workshops_title": "Atölyeler",
+        "workshops": [
+            {
+                "title": "LaTeX ile Tez",
+                "by": "Abdullah Uyu",
+                "text": (
+                    "28 Kasım Cumartesi, 10.00–13.00, online. Şablondan teslime üç "
+                    "saat. 600 TL; 20 Kasım’a kadar 450 TL."
+                ),
+                "link": "Ayrıntılar ve kayıt",
+                "page": "workshop",
+            },
+            {
+                "title": "Kaşık oyma",
+                "by": "Durmuş Uyu",
+                "text": (
+                    "Yeni başlayanlar için: aletler ve ahşap bizden, kaşık sizin. "
+                    "Okul, şirket ve dernekler için grup atölyeleri; açık atölyelerin "
+                    "tarihleri duyurulacak."
+                ),
+                "link": "Ayrıntılar",
+                "page": "woodwork",
+                "anchor": "atolyeler",
+            },
+        ],
         "team_title": "Ekip",
         "faq_title": "Sık sorulanlar",
         "faq": [
@@ -174,8 +218,8 @@ PAGES = {
         ],
         "contact_title": "İletişim",
         "contact_text": (
-            "Hangi ders ya da iş için yazdığınızı ve seviyenizi kısaca yazın; en geç "
-            "bir iş günü içinde döneriz."
+            "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, bir dizgi ya da "
+            "otomasyon işi, ya da ahşap. En geç bir iş günü içinde döneriz."
         ),
         "contact_note": (
             "Mesajı tercih ediyoruz; bilinmeyen numaralardan gelen aramalar "
@@ -186,11 +230,12 @@ PAGES = {
     "en": {
         "path": "en/",
         "locale": "en_GB",
-        "title": "YUXA Consultancy · Mathematics, programming and LaTeX typesetting · Istanbul",
+        "title": "YUXA Consultancy · Mathematics, programming, LaTeX and woodwork · "
+                 "Istanbul",
         "description": (
             "University mathematics and programming, IB and French-curriculum maths; "
-            "thesis typesetting in LaTeX; automation with n8n. In Turkish, French or "
-            "English; online or in person in Istanbul."
+            "thesis typesetting in LaTeX; automation with n8n; hand-carved woodwork "
+            "and carving workshops. Online or in person in Istanbul."
         ),
         "skip": "Skip to content",
         "ids": {"services": "services", "how": "how", "prices": "prices",
@@ -200,25 +245,28 @@ PAGES = {
         "nav": [
             ("services", "Services"),
             ("prices", "Prices"),
-            ("workshops", "Workshop"),
+            ("woodwork", "Woodwork"),
+            ("workshops", "Workshops"),
             ("team", "Team"),
             ("contact", "Contact"),
         ],
-        "hero_title": "Mathematics, computing and typesetting.",
+        "hero_title": "Mathematics, computing, typesetting and woodwork.",
         "hero_lead": (
             "Private lessons in Turkish, French or English; theses and documents "
-            "typeset in LaTeX; automation for small teams. Online, or in person in "
-            "Istanbul: Beşiktaş, Kadıköy, Üsküdar, Pendik–Tuzla."
+            "typeset in LaTeX; automation for small teams; hand-carved woodwork and "
+            "carving workshops. Lessons online, or in person in Istanbul: Beşiktaş, "
+            "Kadıköy, Üsküdar, Pendik–Tuzla."
         ),
         "cta_whatsapp": "Message on WhatsApp",
         "cta_book": "Book a free call",
         "cta_email": "Send an e-mail",
-        "mail_subject": "Lesson enquiry",
+        "mail_subject": "Enquiry",
         "book_subject": "Free call",
         "services_title": "Services",
         "services": [
             {
                 "title": "Lessons",
+                "by": "Abdullah Uyu",
                 "body": (
                     "University mathematics and programming; IB Diploma and "
                     "French-curriculum school maths; French for Galatasaray "
@@ -235,6 +283,7 @@ PAGES = {
             },
             {
                 "title": "LaTeX typesetting",
+                "by": "Abdullah Uyu",
                 "body": "Theses, papers and slides that follow the rules and read well.",
                 "items": [
                     "Thesis templates built to your graduate school’s guide",
@@ -245,6 +294,7 @@ PAGES = {
             },
             {
                 "title": "Automation and AI",
+                "by": "Abdullah Uyu",
                 "body": (
                     "n8n workflows and AI agents for repetitive work, and one-to-one "
                     "coaching on using AI in your daily work."
@@ -254,6 +304,23 @@ PAGES = {
                     "Workflows built and documented",
                     "AI coaching",
                 ],
+            },
+            {
+                "title": "Woodwork",
+                "by": "Durmuş Uyu",
+                "body": (
+                    "Spoons, scoops, kuksas, bowls and boxes carved by hand; carving "
+                    "and woodworking workshops."
+                ),
+                "items": [
+                    "Made to order, each piece by hand",
+                    "For the kitchen, the table and as gifts",
+                    "Spoon carving for beginners",
+                    "Group workshops for schools, companies and associations",
+                ],
+                "photo": "three-kuksas",
+                "page": "woodwork",
+                "link": "Work and workshops",
             },
         ],
         "notes_line": (
@@ -297,14 +364,34 @@ PAGES = {
         ],
         "prices_note": (
             "Prices as of November 2026. In-person lessons in Beşiktaş, Kadıköy, "
-            "Üsküdar and Pendik–Tuzla."
+            "Üsküdar and Pendik–Tuzla. Woodwork and its workshops are priced on "
+            "request."
         ),
-        "workshop_title": "Workshop: LaTeX ile Tez (in Turkish)",
-        "workshop_text": (
-            "Saturday 28 November, 10:00–13:00, online. From template to submission "
-            "in three hours. 600 TL, or 450 TL until 20 November."
-        ),
-        "workshop_link": "Details and registration (Turkish)",
+        "workshops_title": "Workshops",
+        "workshops": [
+            {
+                "title": "LaTeX ile Tez (in Turkish)",
+                "by": "Abdullah Uyu",
+                "text": (
+                    "Saturday 28 November, 10:00–13:00, online. From template to "
+                    "submission in three hours. 600 TL, or 450 TL until 20 November."
+                ),
+                "link": "Details and registration (Turkish)",
+                "page": "workshop",
+            },
+            {
+                "title": "Spoon carving",
+                "by": "Durmuş Uyu",
+                "text": (
+                    "For beginners: we bring the tools and the wood, you take your "
+                    "spoon home. Group workshops for schools, companies and "
+                    "associations; dates of open workshops to be announced."
+                ),
+                "link": "Details",
+                "page": "woodwork",
+                "anchor": "workshops",
+            },
+        ],
         "team_title": "Team",
         "faq_title": "Questions",
         "faq": [
@@ -332,8 +419,9 @@ PAGES = {
         ],
         "contact_title": "Contact",
         "contact_text": (
-            "Tell us briefly which course or job it is about and your level; we reply "
-            "within one working day."
+            "Tell us briefly what it is about: a course and your level, a "
+            "typesetting or automation job, or woodwork. We reply within one working "
+            "day."
         ),
         "contact_note": "We prefer messages; calls from unknown numbers are silenced.",
         "footer": "© 2026 YUXA Consultancy · Istanbul · Set in the Go typefaces.",
@@ -341,11 +429,13 @@ PAGES = {
     "fr": {
         "path": "fr/",
         "locale": "fr_FR",
-        "title": "YUXA Consultancy · Mathématiques, informatique et composition LaTeX · Istanbul",
+        "title": "YUXA Consultancy · Mathématiques, informatique, LaTeX et travail du "
+                 "bois · Istanbul",
         "description": (
             "Cours de mathématiques en français, du collège à la terminale, bac et "
             "IB ; mathématiques universitaires et programmation ; composition de "
-            "thèses en LaTeX. À Istanbul ou en ligne."
+            "thèses en LaTeX ; objets en bois sculptés à la main et ateliers. À "
+            "Istanbul ou en ligne."
         ),
         "skip": "Aller au contenu",
         "ids": {"services": "services", "how": "methode", "prices": "tarifs",
@@ -355,25 +445,28 @@ PAGES = {
         "nav": [
             ("services", "Services"),
             ("prices", "Tarifs"),
-            ("workshops", "Atelier"),
+            ("woodwork", "Bois"),
+            ("workshops", "Ateliers"),
             ("team", "Équipe"),
             ("contact", "Contact"),
         ],
-        "hero_title": "Mathématiques, informatique et mise en page.",
+        "hero_title": "Mathématiques, informatique, mise en page et bois.",
         "hero_lead": (
             "Cours particuliers en français, en turc ou en anglais ; thèses et "
-            "documents composés en LaTeX ; automatisation pour les petites équipes. "
-            "En ligne, ou à Istanbul : Beşiktaş, Kadıköy, Üsküdar, Pendik–Tuzla."
+            "documents composés en LaTeX ; automatisation pour les petites équipes ; "
+            "objets en bois sculptés à la main et ateliers de sculpture. Cours en "
+            "ligne, ou à Istanbul : Beşiktaş, Kadıköy, Üsküdar, Pendik–Tuzla."
         ),
         "cta_whatsapp": "Écrire sur WhatsApp",
         "cta_book": "Réserver un appel gratuit",
         "cta_email": "Envoyer un e-mail",
-        "mail_subject": "Demande de cours",
+        "mail_subject": "Demande de renseignements",
         "book_subject": "Appel découverte",
         "services_title": "Services",
         "services": [
             {
                 "title": "Cours particuliers",
+                "by": "Abdullah Uyu",
                 "body": (
                     "Mathématiques du collège à la terminale : programme français, "
                     "lycées francophones, bac et IB ; mathématiques universitaires et "
@@ -389,6 +482,7 @@ PAGES = {
             },
             {
                 "title": "Composition LaTeX",
+                "by": "Abdullah Uyu",
                 "body": "Thèses, articles et présentations conformes aux règles et "
                         "agréables à lire.",
                 "items": [
@@ -400,6 +494,7 @@ PAGES = {
             },
             {
                 "title": "Automatisation et IA",
+                "by": "Abdullah Uyu",
                 "body": (
                     "Flux n8n et agents d’IA pour les tâches répétitives ; "
                     "accompagnement individuel à l’usage de l’IA au quotidien."
@@ -409,6 +504,23 @@ PAGES = {
                     "Flux construits et documentés",
                     "Accompagnement IA",
                 ],
+            },
+            {
+                "title": "Travail du bois",
+                "by": "Durmuş Uyu",
+                "body": (
+                    "Cuillères, doseurs, kuksas, bols et boîtes sculptés à la main ; "
+                    "ateliers de sculpture et de travail du bois."
+                ),
+                "items": [
+                    "Sur commande, chaque pièce faite à la main",
+                    "Pour la cuisine, la table ou à offrir",
+                    "Sculpture de cuillère pour débutants",
+                    "Ateliers de groupe pour écoles, entreprises et associations",
+                ],
+                "photo": "three-kuksas",
+                "page": "woodwork",
+                "link": "Réalisations et ateliers",
             },
         ],
         "notes_line": (
@@ -452,14 +564,33 @@ PAGES = {
         ],
         "prices_note": (
             "Tarifs de novembre 2026. Séances en présentiel à Beşiktaş, Kadıköy, "
-            "Üsküdar et Pendik–Tuzla."
+            "Üsküdar et Pendik–Tuzla. Pour le bois, pièces et ateliers sur devis."
         ),
-        "workshop_title": "Atelier : LaTeX ile Tez (en turc)",
-        "workshop_text": (
-            "Samedi 28 novembre, de 10 h à 13 h, en ligne. Du gabarit au dépôt en "
-            "trois heures. 600 TL, ou 450 TL jusqu’au 20 novembre."
-        ),
-        "workshop_link": "Détails et inscription (en turc)",
+        "workshops_title": "Ateliers",
+        "workshops": [
+            {
+                "title": "LaTeX ile Tez (en turc)",
+                "by": "Abdullah Uyu",
+                "text": (
+                    "Samedi 28 novembre, de 10 h à 13 h, en ligne. Du gabarit au dépôt "
+                    "en trois heures. 600 TL, ou 450 TL jusqu’au 20 novembre."
+                ),
+                "link": "Détails et inscription (en turc)",
+                "page": "workshop",
+            },
+            {
+                "title": "Sculpture de cuillère",
+                "by": "Durmuş Uyu",
+                "text": (
+                    "Pour débutants : nous apportons les outils et le bois, vous "
+                    "repartez avec votre cuillère. Ateliers de groupe pour écoles, "
+                    "entreprises et associations ; dates des ateliers ouverts à venir."
+                ),
+                "link": "Détails",
+                "page": "woodwork",
+                "anchor": "ateliers",
+            },
+        ],
         "team_title": "L’équipe",
         "faq_title": "Questions fréquentes",
         "faq": [
@@ -487,8 +618,9 @@ PAGES = {
         ],
         "contact_title": "Contact",
         "contact_text": (
-            "Indiquez-nous en quelques mots la matière, le niveau et l’objectif ; nous "
-            "répondons sous un jour ouvré."
+            "Dites-nous en quelques mots ce qui vous amène : la matière et le niveau, "
+            "un travail de composition ou d’automatisation, ou le bois. Nous répondons "
+            "sous un jour ouvré."
         ),
         "contact_note": (
             "Nous préférons les messages ; les appels de numéros inconnus sont mis en "
@@ -572,8 +704,292 @@ TEAM = [
                 "et anime des ateliers de sculpture et de travail du bois.",
             ],
         },
+        "page": "woodwork",
+        "link": {
+            "tr": "İşleri ve atölyeleri",
+            "en": "His work and workshops",
+            "fr": "Ses réalisations et ses ateliers",
+        },
     },
 ]
+
+# Photographs of Durmuş's work in gallery order: the file name in
+# assets/woodwork/ (made by `make photos` in the private repository, which
+# keeps the originals), then the caption in Turkish, English and French.
+WOODWORK_PHOTOS = [
+    ("three-kuksas", "Kuksalar", "Kuksas", "Kuksas"),
+    ("kuksa-single-hole", "Kuksa", "Kuksa", "Kuksa"),
+    ("kuksa-two-hole", "İki delikli kuksa", "Kuksa with a two-hole handle",
+     "Kuksa à anse à deux trous"),
+    ("painted-box-closed", "Boyalı kutu", "Painted box", "Boîte peinte"),
+    ("painted-box-open", "Boyalı kutu, açık", "Painted box, open",
+     "Boîte peinte, ouverte"),
+    ("painted-box-top", "Boyalı kutu, kapak", "Painted box, the lid",
+     "Boîte peinte, le couvercle"),
+    ("three-spoons", "Üç kaşık", "Three spoons", "Trois cuillères"),
+    ("spoon-bowl-closeup", "Kaşık, ayrıntı", "Spoon, detail", "Cuillère, détail"),
+    ("spoon-on-rug", "Kaşık", "Spoon", "Cuillère"),
+    ("notched-spoon-horizontal", "Çentikli saplı kaşık", "Spoon with a notched handle",
+     "Cuillère au manche cranté"),
+    ("notched-spoon-vertical", "Çentikli saplı kaşık, üstten",
+     "Spoon with a notched handle, from above",
+     "Cuillère au manche cranté, vue de dessus"),
+    ("leaf-tip-handle", "Yaprak uçlu sap", "Handle ending in a leaf",
+     "Manche terminé en feuille"),
+    ("double-ended-scoop", "Çift başlı ölçek", "Double-ended scoop",
+     "Doseur à deux têtes"),
+    ("faceted-handle-scoop", "Köşeli saplı ölçek", "Scoop with a faceted handle",
+     "Doseur au manche à facettes"),
+    ("wooden-scoop", "Küçük ölçek", "Small scoop", "Petit doseur"),
+    ("lidded-bowl-closed", "Kapaklı kase", "Lidded bowl", "Bol à couvercle"),
+    ("lidded-bowl-open", "Kapaklı kase, açık", "Lidded bowl, open",
+     "Bol à couvercle, ouvert"),
+    ("asymmetric-bowl-bottom", "Asimetrik kase, alttan", "Asymmetric bowl, from below",
+     "Bol asymétrique, vu de dessous"),
+    ("wooden-ashtray", "Küllük", "Ashtray", "Cendrier"),
+    ("footed-tray-side", "Ayaklı tepsi", "Footed tray", "Plateau sur pieds"),
+    ("footed-tray-bottom", "Ayaklı tepsi, alttan", "Footed tray, from below",
+     "Plateau sur pieds, vu de dessous"),
+]
+
+# The woodwork pages: Durmuş's pieces and workshops, one page per language.
+WOODWORK = {
+    "person": "Durmuş Uyu",
+    "photos": WOODWORK_PHOTOS,
+    "photo_dir": "assets/woodwork/",
+    "image": "assets/og-woodwork.jpg",  # social preview, made in the private repo
+    "pages": {
+        "tr": {
+            "path": "ahsap/",
+            "title": "El yapımı ahşap kaşık, kuksa ve oyma atölyeleri · "
+                     "YUXA Consultancy",
+            "description": (
+                "Durmuş Uyu’nun elde oyduğu kaşık, ölçek, kuksa, kase ve kutular; "
+                "sipariş üzerine yapım. Yeni başlayanlar için kaşık oyma, gruplar için "
+                "ahşap işçiliği atölyeleri; İstanbul."
+            ),
+            "ids": {"gallery": "isler", "offers": "siparis-ve-atolyeler",
+                    "contact": "iletisim"},
+            "kicker": "Ahşap · Durmuş Uyu",
+            "heading": "Elde oyulmuş ahşap.",
+            "lead": (
+                "Kaşık, ölçek, kuksa, kase ve kutu: her parça tek tek, elde yapılır. "
+                "Sipariş üzerine yapım; yeni başlayanlar ve gruplar için oyma ve ahşap "
+                "işçiliği atölyeleri."
+            ),
+            "mail_subject": "Ahşap",
+            "gallery_title": "İşler",
+            "gallery_note": (
+                "Gördüğünüz parçalar satılmış olabilir; benzerlerini sipariş üzerine "
+                "yapıyoruz. Elde yapıldıkları için hiçbiri ötekinin tıpkısı olmaz."
+            ),
+            "offers_title": "Sipariş ve atölyeler",
+            "offers": [
+                {
+                    "id": "siparis",
+                    "title": "Sipariş",
+                    "body": (
+                        "Mutfak, sofra ya da hediye için: ne istediğinizi yazın, ölçüyü "
+                        "ve biçimi birlikte belirleyelim."
+                    ),
+                    "items": [
+                        "Kaşık ve ölçek",
+                        "Kuksa (İskandinav usulü oyma bardak) ve kase",
+                        "Kapaklı ve boyalı kutu",
+                        "Tepsi ve tek parça işler",
+                    ],
+                },
+                {
+                    "id": "atolyeler",
+                    "title": "Atölyeler",
+                    "body": (
+                        "El aletleriyle, adım adım oymaya ve ahşap işçiliğine giriş."
+                    ),
+                    "items": [
+                        "Kaşık oyma: yeni başlayanlar için; kendi kaşığınızı oyup "
+                        "götürürsünüz",
+                        "Ahşap işçiliği: el aletleriyle temel teknikler",
+                        "Okul, şirket ve dernekler için grup atölyeleri",
+                        "Aletler ve ahşap bizden",
+                    ],
+                },
+            ],
+            "offers_note": (
+                "Fiyat parçaya ve ölçüye, atölyelerde kişi sayısına ve süreye göre "
+                "değişir; yazın, birlikte belirleyelim. Açık atölyelerin tarihleri bu "
+                "sayfada duyurulacak."
+            ),
+            "care_title": "Bakım",
+            "care": (
+                "Ahşap mutfak eşyalarını elde, ılık suyla yıkayın; suda bekletmeyin, "
+                "bulaşık makinesine koymayın. Kuruduktan sonra arada bir gıdaya uygun "
+                "bir yağla silin."
+            ),
+            "contact_title": "Sipariş ve iletişim",
+            "contact_text": (
+                "Ne istediğinizi kısaca yazın: parça ve ölçü, ya da atölye için kişi "
+                "sayısı ve tarih. En geç bir iş günü içinde döneriz."
+            ),
+            "back": "Ana sayfa",
+        },
+        "en": {
+            "path": "en/woodwork/",
+            "title": "Hand-carved wooden spoons, kuksas and carving workshops · "
+                     "YUXA Consultancy",
+            "description": (
+                "Spoons, scoops, kuksas, bowls and boxes carved by hand by Durmuş Uyu, "
+                "made to order. Spoon carving for beginners and woodworking workshops "
+                "for groups in Istanbul."
+            ),
+            "ids": {"gallery": "work", "offers": "commissions-and-workshops",
+                    "contact": "contact"},
+            "kicker": "Woodwork · Durmuş Uyu",
+            "heading": "Carved by hand.",
+            "lead": (
+                "Spoons, scoops, kuksas, bowls and boxes, each made one at a time, by "
+                "hand. Made to order; carving and woodworking workshops for beginners "
+                "and for groups."
+            ),
+            "mail_subject": "Woodwork",
+            "gallery_title": "Work",
+            "gallery_note": (
+                "The pieces shown may already be sold; we make similar ones to order. "
+                "Being handmade, no two are ever quite alike."
+            ),
+            "offers_title": "Commissions and workshops",
+            "offers": [
+                {
+                    "id": "commissions",
+                    "title": "Commissions",
+                    "body": (
+                        "For the kitchen, the table or as a gift: tell us what you have "
+                        "in mind and we will settle the size and the shape together."
+                    ),
+                    "items": [
+                        "Spoons and scoops",
+                        "Kuksas (Nordic carved cups) and bowls",
+                        "Lidded and painted boxes",
+                        "Trays and one-off pieces",
+                    ],
+                },
+                {
+                    "id": "workshops",
+                    "title": "Workshops",
+                    "body": (
+                        "A step-by-step introduction to carving and woodworking with "
+                        "hand tools."
+                    ),
+                    "items": [
+                        "Spoon carving for beginners: you carve your own spoon and take "
+                        "it home",
+                        "Woodworking: the basics with hand tools",
+                        "Group workshops for schools, companies and associations",
+                        "Tools and wood provided",
+                    ],
+                },
+            ],
+            "offers_note": (
+                "Prices depend on the piece and its size, and for workshops on the "
+                "group and the length; write to us and we will agree on one. Dates of "
+                "open workshops will be announced on this page. Workshops are in "
+                "Turkish; ask us about English."
+            ),
+            "care_title": "Care",
+            "care": (
+                "Wash wooden kitchenware by hand in warm water; do not soak it or put "
+                "it in the dishwasher. Once dry, wipe it now and then with a food-safe "
+                "oil."
+            ),
+            "contact_title": "Orders and contact",
+            "contact_text": (
+                "Tell us briefly what you would like: the piece and its size, or for a "
+                "workshop the number of people and a date. We reply within one working "
+                "day."
+            ),
+            "back": "Home",
+        },
+        "fr": {
+            "path": "fr/bois/",
+            "title": "Cuillères, kuksas et ateliers de sculpture sur bois · "
+                     "YUXA Consultancy",
+            "description": (
+                "Cuillères, doseurs, kuksas, bols et boîtes sculptés à la main par "
+                "Durmuş Uyu, sur commande. Ateliers de sculpture de cuillère pour "
+                "débutants et de travail du bois pour les groupes, à Istanbul."
+            ),
+            "ids": {"gallery": "realisations", "offers": "commandes-et-ateliers",
+                    "contact": "contact"},
+            "kicker": "Bois · Durmuş Uyu",
+            "heading": "Sculpté à la main.",
+            "lead": (
+                "Cuillères, doseurs, kuksas, bols et boîtes, chaque pièce faite à la "
+                "main, une à une. Sur commande ; ateliers de sculpture et de travail du "
+                "bois pour débutants et pour groupes."
+            ),
+            "mail_subject": "Travail du bois",
+            "gallery_title": "Réalisations",
+            "gallery_note": (
+                "Les pièces présentées sont peut-être déjà vendues ; nous en faisons de "
+                "semblables sur commande. Faites à la main, elles ne sont jamais tout à "
+                "fait identiques."
+            ),
+            "offers_title": "Commandes et ateliers",
+            "offers": [
+                {
+                    "id": "commandes",
+                    "title": "Sur commande",
+                    "body": (
+                        "Pour la cuisine, la table ou pour offrir : dites-nous ce que "
+                        "vous souhaitez, nous fixerons ensemble la taille et la forme."
+                    ),
+                    "items": [
+                        "Cuillères et doseurs",
+                        "Kuksas (tasses sculptées nordiques) et bols",
+                        "Boîtes à couvercle et boîtes peintes",
+                        "Plateaux et pièces uniques",
+                    ],
+                },
+                {
+                    "id": "ateliers",
+                    "title": "Ateliers",
+                    "body": (
+                        "Une initiation pas à pas à la sculpture et au travail du bois "
+                        "avec des outils à main."
+                    ),
+                    "items": [
+                        "Sculpture de cuillère pour débutants : vous repartez avec la "
+                        "vôtre",
+                        "Travail du bois : les bases avec des outils à main",
+                        "Ateliers de groupe pour écoles, entreprises et associations",
+                        "Outils et bois fournis",
+                    ],
+                },
+            ],
+            "offers_note": (
+                "Le prix dépend de la pièce et de sa taille ; pour les ateliers, du "
+                "groupe et de la durée. Écrivez-nous, nous le fixerons ensemble. Les "
+                "dates des ateliers ouverts seront annoncées sur cette page. Ateliers "
+                "en turc ; pour l’anglais, demandez-nous."
+            ),
+            "care_title": "Entretien",
+            "care": (
+                "Lavez les ustensiles en bois à la main, à l’eau tiède ; ne les laissez "
+                "pas tremper et évitez le lave-vaisselle. Une fois secs, passez-y de "
+                "temps en temps une huile alimentaire."
+            ),
+            "contact_title": "Commandes et contact",
+            "contact_text": (
+                "Dites-nous en quelques mots ce que vous souhaitez : la pièce et sa "
+                "taille, ou, pour un atelier, le nombre de personnes et une date. Nous "
+                "répondons sous un jour ouvré."
+            ),
+            "back": "Accueil",
+        },
+    },
+}
+
+# Pages showing one person's work, by the key the navigation and TEAM use.
+WORK_PAGES = {"woodwork": WOODWORK}
 
 # The workshop page, in Turkish only: /atolye/
 WORKSHOP = {
