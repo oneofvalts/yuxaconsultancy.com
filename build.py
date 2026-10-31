@@ -19,8 +19,6 @@ import content as C
 ROOT = Path(__file__).resolve().parent
 NBSP, NNBSP = " ", " "
 
-HOW_ID = {"tr": "nasil", "en": "how", "fr": "methode"}
-FAQ_ID = {"tr": "sss", "en": "faq", "fr": "questions"}
 LANG_NAMES = {"tr": "Türkçe", "en": "English", "fr": "Français"}
 
 
@@ -91,8 +89,8 @@ def document(*, lang, prefix, title, description, canonical, locale, body,
 def header(*, page, prefix, current_lang, on_home):
     """Wordmark, section links and the language switch."""
     base = "" if on_home else f"{prefix}{page['path']}"
-    sections = "".join(f'<a href="{base}#{anchor}">{label}</a>'
-                       for anchor, label in page["nav"])
+    sections = "".join(f'<a href="{base}#{page["ids"][key]}">{label}</a>'
+                       for key, label in page["nav"])
     langs = []
     for code in C.LANGS:
         target = f"{prefix}{C.PAGES[code]['path']}" or "./"
@@ -140,6 +138,7 @@ def organisation():
         "areaServed": ["Beşiktaş", "Kadıköy", "Üsküdar", "Pendik", "Tuzla"],
         "knowsLanguage": ["tr", "fr", "en"],
         "founder": {"@type": "Person", "name": "Abdullah Uyu"},
+        "member": [{"@type": "Person", "name": m["name"]} for m in C.TEAM],
     }
 
 
@@ -147,8 +146,7 @@ def home_page(lang):
     page = C.PAGES[lang]
     t = lambda s: typo(lang, s)  # noqa: E731
     prefix = "../" if page["path"] else ""
-    anchors = dict(zip(("services", "prices", "workshop", "about", "contact"),
-                       (a for a, _ in page["nav"])))
+    ids = page["ids"]
 
     cards = []
     for service in page["services"]:
@@ -162,7 +160,12 @@ def home_page(lang):
                        for item, price in rows)
         price_groups.append(f'<div><h3>{t(name)}</h3>'
                             f'<table class="price"><tbody>{body}</tbody></table></div>')
-    about = "".join(f"<p>{t(p)}</p>" for p in page["about"])
+    team = "".join(
+        f'<article class="person"><h3>{m["name"]}</h3>'
+        f'<p class="role">{t(m["role"][lang])}</p>'
+        + "".join(f"<p>{t(p)}</p>" for p in m["bio"][lang])
+        + "</article>"
+        for m in C.TEAM)
     faq = "".join(f"<details><summary>{t(q)}</summary><p>{t(a)}</p></details>"
                   for q, a in page["faq"])
     note = (f'<p class="note">{t(page["contact_note"])}</p>'
@@ -176,36 +179,36 @@ def home_page(lang):
         f'<p class="lead">{t(page["hero_lead"])}</p>',
         contact_buttons(page, email_label=page["cta_email"]),
         "</div></div>",
-        f'<section id="{anchors["services"]}"><div class="wrap">',
+        f'<section id="{ids["services"]}"><div class="wrap">',
         f'<h2>{t(page["services_title"])}</h2>',
         f'<div class="cards">{"".join(cards)}</div>',
         f'<p class="note notes-line">{t(page["notes_line"])}</p>',
         "</div></section>",
-        f'<section id="{HOW_ID[lang]}"><div class="wrap">',
+        f'<section id="{ids["how"]}"><div class="wrap">',
         f'<h2>{t(page["how_title"])}</h2>',
         f'<ol class="steps">{steps}</ol>',
         "</div></section>",
-        f'<section id="{anchors["prices"]}"><div class="wrap">',
+        f'<section id="{ids["prices"]}"><div class="wrap">',
         f'<h2>{t(page["prices_title"])}</h2>',
         f'<div class="prices">{"".join(price_groups)}</div>',
         f'<p class="note">{t(page["prices_note"])}</p>',
         "</div></section>",
-        f'<section id="{anchors["workshop"]}"><div class="wrap">',
+        f'<section id="{ids["workshops"]}"><div class="wrap">',
         '<div class="teaser">',
         f'<h2>{t(page["workshop_title"])}</h2>',
         f'<p>{t(page["workshop_text"])}</p>',
         f'<p><a href="{prefix}{C.WORKSHOP["path"]}">{t(page["workshop_link"])} →</a></p>',
         "</div>",
         "</div></section>",
-        f'<section id="{anchors["about"]}" class="about"><div class="wrap">',
-        f'<h2>{t(page["about_title"])}</h2>',
-        about,
+        f'<section id="{ids["team"]}"><div class="wrap">',
+        f'<h2>{t(page["team_title"])}</h2>',
+        f'<div class="team">{team}</div>',
         "</div></section>",
-        f'<section id="{FAQ_ID[lang]}"><div class="wrap">',
+        f'<section id="{ids["faq"]}"><div class="wrap">',
         f'<h2>{t(page["faq_title"])}</h2>',
         faq,
         "</div></section>",
-        f'<section id="{anchors["contact"]}"><div class="wrap">',
+        f'<section id="{ids["contact"]}"><div class="wrap">',
         f'<h2>{t(page["contact_title"])}</h2>',
         f'<p>{t(page["contact_text"])}</p>',
         contact_buttons(page, email_label=C.EMAIL),

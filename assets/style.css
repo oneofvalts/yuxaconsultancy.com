@@ -352,8 +352,29 @@ table.price td + td {
   background: var(--panel);
 }
 
-.about p {
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 2.5rem 3rem;
+}
+
+.person {
+  padding-top: 1.1rem;
+  border-top: 3px solid var(--accent);
+}
+
+.person h3 {
+  margin-bottom: 0.1rem;
+}
+
+.person p {
   max-width: var(--measure);
+  margin: 0 0 0.8rem;
+}
+
+.person .role {
+  margin-bottom: 1rem;
+  color: var(--muted);
 }
 
 details {

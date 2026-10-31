@@ -1,5 +1,8 @@
 """Words and settings for yuxaconsultancy.com; build.py turns them into HTML.
 
+PAGES holds the home page in each language, TEAM the people of YUXA (adding
+a person means adding an entry there), WORKSHOP the workshop page.
+
 Strings may contain inline HTML. French strings are written with ordinary
 spaces; build.py adds the unbreakable spaces French typography wants before
 : ; ! ? and inside numbers.
@@ -33,13 +36,16 @@ PAGES = {
             "Fransızca, İngilizce; online ya da İstanbul’da yüz yüze."
         ),
         "skip": "İçeriğe geç",
+        "ids": {"services": "hizmetler", "how": "nasil", "prices": "ucretler",
+                "workshops": "atolye", "team": "ekip", "faq": "sss",
+                "contact": "iletisim"},
         "nav_label": "Bölümler",
         "nav": [
-            ("hizmetler", "Hizmetler"),
-            ("ucretler", "Ücretler"),
-            ("atolye", "Atölye"),
-            ("hakkimda", "Hakkımda"),
-            ("iletisim", "İletişim"),
+            ("services", "Hizmetler"),
+            ("prices", "Ücretler"),
+            ("workshops", "Atölye"),
+            ("team", "Ekip"),
+            ("contact", "İletişim"),
         ],
         "hero_title": "Matematik, bilgisayar ve dizgi.",
         "hero_lead": (
@@ -141,24 +147,12 @@ PAGES = {
             "600 TL; 20 Kasım’a kadar 450 TL."
         ),
         "workshop_link": "Ayrıntılar ve kayıt",
-        "about_title": "Hakkımda",
-        "about": [
-            "Ben Abdullah Uyu. Galatasaray Üniversitesi Matematik Bölümü’nü 2025’te "
-            "bitirdim; aynı üniversitede yüksek lisans yapıyorum. Eğitimimi Fransızca "
-            "aldım, İngilizceyi de akıcı konuşuyorum.",
-            "2015’ten beri programlama yapıyorum (Python, C, C++, Scheme). Lisans "
-            "bitirme projemde Desargues teoremini Lean ile biçimselleştirdim. Bir siber "
-            "güvenlik araştırma şirketinde matematikçi danışman, Ziraat Teknoloji’de "
-            "yapay zekâ uygulamaları alanında yazılım danışmanı olarak çalıştım; n8n "
-            "ile ajan tabanlı iş akışları geliştirdim.",
-            "Onlarca belgeyi LaTeX ile dizdim. Bu sitede ve basılı her şeyde Go yazı "
-            "tipini kullanıyorum; matematik için Go Math’i hazırladım.",
-        ],
+        "team_title": "Ekip",
         "faq_title": "Sık sorulanlar",
         "faq": [
             ("Ödevimi ya da sınavımı yapar mısınız?",
-             "Hayır. Notlu ödev, proje ya da sınav çözmüyorum; konuyu öğretiyor, "
-             "benzer sorularla hazırlıyorum."),
+             "Hayır. Notlu ödev, proje ya da sınav çözmüyoruz; konuyu öğretiyor, "
+             "benzer sorularla hazırlıyoruz."),
             ("Ödeme nasıl?",
              "Dersten önce banka havalesiyle (IBAN/FAST) ya da yüz yüze derste nakit. "
              "Kamp ve atölyelerde yer, ödemeyle kesinleşir."),
@@ -167,24 +161,25 @@ PAGES = {
              "iptallerde ders ücreti alınır."),
             ("Dersler nerede?",
              "Online (Google Meet) ya da yüz yüze: Beşiktaş, Kadıköy, Üsküdar ve "
-             "Pendik–Tuzla. Yüz yüze derslerde 90 dakikalık blok öneririm."),
+             "Pendik–Tuzla. Yüz yüze derslerde 90 dakikalık blok öneririz."),
             ("Hangi dilde?",
              "Türkçe, Fransızca ya da İngilizce. GSÜ derslerinde terimler Fransızca, "
              "açıklama istediğiniz dilde."),
             ("18 yaşından küçük öğrenciler?",
-             "Her şeyi veliyle konuşurum; yüz yüze dersler evde bir veli varken ya da "
+             "Her şeyi veliyle konuşuruz; yüz yüze dersler evde bir veli varken ya da "
              "online yapılır."),
             ("Kişisel verilerim?",
-             "İletişim bilgilerinizi yalnızca dersleri planlamak için kullanırım ve "
-             "kimseyle paylaşmam."),
+             "İletişim bilgilerinizi yalnızca sizinle çalışmak için kullanırız ve "
+             "kimseyle paylaşmayız."),
         ],
         "contact_title": "İletişim",
         "contact_text": (
             "Hangi ders ya da iş için yazdığınızı ve seviyenizi kısaca yazın; en geç "
-            "bir iş günü içinde dönerim."
+            "bir iş günü içinde döneriz."
         ),
         "contact_note": (
-            "Mesajı tercih ederim; bilinmeyen numaralardan gelen aramalar sessizdedir."
+            "Mesajı tercih ediyoruz; bilinmeyen numaralardan gelen aramalar "
+            "sessizdedir."
         ),
         "footer": "© 2026 YUXA Consultancy · İstanbul · Go yazı tipleriyle dizildi.",
     },
@@ -198,12 +193,15 @@ PAGES = {
             "English; online or in person in Istanbul."
         ),
         "skip": "Skip to content",
+        "ids": {"services": "services", "how": "how", "prices": "prices",
+                "workshops": "workshop", "team": "team", "faq": "faq",
+                "contact": "contact"},
         "nav_label": "Sections",
         "nav": [
             ("services", "Services"),
             ("prices", "Prices"),
-            ("workshop", "Workshop"),
-            ("about", "About"),
+            ("workshops", "Workshop"),
+            ("team", "Team"),
             ("contact", "Contact"),
         ],
         "hero_title": "Mathematics, computing and typesetting.",
@@ -307,23 +305,11 @@ PAGES = {
             "in three hours. 600 TL, or 450 TL until 20 November."
         ),
         "workshop_link": "Details and registration (Turkish)",
-        "about_title": "About me",
-        "about": [
-            "I’m Abdullah Uyu. I graduated in mathematics from Galatasaray University "
-            "in 2025, where teaching is in French, and I’m now a master’s student "
-            "there. I speak Turkish, French and English.",
-            "I’ve been programming since 2015 (Python, C, C++, Scheme). For my "
-            "graduation project I formalized Desargues’s theorem in Lean. I’ve worked "
-            "as a mathematician consultant at a cyber-security research company and as "
-            "a programmer consultant on AI applications at Ziraat Teknoloji, building "
-            "agentic workflows in n8n.",
-            "I’ve typeset dozens of documents in LaTeX. This site and everything I "
-            "print are set in Go; for mathematics I made Go Math.",
-        ],
+        "team_title": "Team",
         "faq_title": "Questions",
         "faq": [
             ("Will you do my homework or exam?",
-             "No. I don’t do graded homework, projects or exams; I teach the subject "
+             "No. We don’t do graded homework, projects or exams; we teach the subject "
              "and prepare you with similar problems."),
             ("How do I pay?",
              "By bank transfer (IBAN/FAST) before the lesson, or in cash at an "
@@ -333,23 +319,23 @@ PAGES = {
              "cancellations are charged."),
             ("Where do lessons happen?",
              "Online (Google Meet), or in person in Beşiktaş, Kadıköy, Üsküdar and "
-             "Pendik–Tuzla. For in-person lessons I recommend 90-minute blocks."),
+             "Pendik–Tuzla. For in-person lessons we recommend 90-minute blocks."),
             ("In which language?",
              "Turkish, French or English. For Galatasaray courses the terms stay in "
              "French and the explanations come in the language you prefer."),
             ("Pupils under 18?",
-             "I agree everything with a parent; in-person lessons happen at home with "
+             "We agree everything with a parent; in-person lessons happen at home with "
              "a parent around, or online."),
             ("My personal data?",
-             "I use your contact details only to arrange lessons and never share "
+             "We use your contact details only to work with you and never share "
              "them."),
         ],
         "contact_title": "Contact",
         "contact_text": (
-            "Tell me briefly which course or job it is about and your level; I reply "
+            "Tell us briefly which course or job it is about and your level; we reply "
             "within one working day."
         ),
-        "contact_note": "I prefer messages; calls from unknown numbers are silenced.",
+        "contact_note": "We prefer messages; calls from unknown numbers are silenced.",
         "footer": "© 2026 YUXA Consultancy · Istanbul · Set in the Go typefaces.",
     },
     "fr": {
@@ -362,12 +348,15 @@ PAGES = {
             "thèses en LaTeX. À Istanbul ou en ligne."
         ),
         "skip": "Aller au contenu",
+        "ids": {"services": "services", "how": "methode", "prices": "tarifs",
+                "workshops": "atelier", "team": "equipe", "faq": "questions",
+                "contact": "contact"},
         "nav_label": "Rubriques",
         "nav": [
             ("services", "Services"),
-            ("tarifs", "Tarifs"),
-            ("atelier", "Atelier"),
-            ("a-propos", "À propos"),
+            ("prices", "Tarifs"),
+            ("workshops", "Atelier"),
+            ("team", "Équipe"),
             ("contact", "Contact"),
         ],
         "hero_title": "Mathématiques, informatique et mise en page.",
@@ -471,25 +460,13 @@ PAGES = {
             "trois heures. 600 TL, ou 450 TL jusqu’au 20 novembre."
         ),
         "workshop_link": "Détails et inscription (en turc)",
-        "about_title": "À propos",
-        "about": [
-            "Je m’appelle Abdullah Uyu. Diplômé en mathématiques de l’Université "
-            "Galatasaray en 2025, où l’enseignement est en français, j’y prépare "
-            "aujourd’hui un master. Je parle français, turc et anglais.",
-            "Je programme depuis 2015 (Python, C, C++, Scheme). Pour mon projet de fin "
-            "d’études, j’ai formalisé le théorème de Desargues en Lean. J’ai été "
-            "mathématicien consultant dans une entreprise de recherche en "
-            "cybersécurité, puis consultant en programmation au département des "
-            "applications d’IA de Ziraat Teknoloji, où je construisais des flux "
-            "agentiques avec n8n.",
-            "J’ai composé des dizaines de documents en LaTeX. Ce site et tous mes "
-            "imprimés sont composés en Go ; pour les mathématiques, j’ai créé Go Math.",
-        ],
+        "team_title": "L’équipe",
         "faq_title": "Questions fréquentes",
         "faq": [
             ("Faites-vous les devoirs ou les examens à la place de l’élève ?",
-             "Non. Je ne fais ni devoirs notés, ni projets, ni examens ; j’enseigne la "
-             "matière et j’entraîne l’élève sur des exercices semblables."),
+             "Non. Nous ne faisons ni devoirs notés, ni projets, ni examens ; nous "
+             "enseignons la matière et entraînons l’élève sur des exercices "
+             "semblables."),
             ("Comment payer ?",
              "Par virement (IBAN) avant la séance, ou en espèces lors d’une séance en "
              "présentiel. Les places en stage et en atelier sont confirmées au "
@@ -499,26 +476,104 @@ PAGES = {
              "est due."),
             ("Où se déroulent les séances ?",
              "En ligne (Google Meet) ou à domicile à Beşiktaş, Kadıköy, Üsküdar et "
-             "Pendik–Tuzla. En présentiel, je recommande des séances de 90 minutes."),
+             "Pendik–Tuzla. En présentiel, nous recommandons des séances de 90 "
+             "minutes."),
             ("Et pour les élèves mineurs ?",
              "Tout se décide avec un parent ; les séances ont lieu à domicile en "
              "présence d’un parent, ou en ligne."),
             ("Mes données personnelles ?",
-             "Vos coordonnées servent uniquement à organiser les séances et ne sont "
+             "Vos coordonnées servent uniquement à travailler avec vous et ne sont "
              "jamais partagées."),
         ],
         "contact_title": "Contact",
         "contact_text": (
-            "Indiquez-moi en quelques mots la matière, le niveau et l’objectif ; je "
-            "réponds sous un jour ouvré."
+            "Indiquez-nous en quelques mots la matière, le niveau et l’objectif ; nous "
+            "répondons sous un jour ouvré."
         ),
         "contact_note": (
-            "Je préfère les messages ; les appels de numéros inconnus sont mis en "
+            "Nous préférons les messages ; les appels de numéros inconnus sont mis en "
             "silencieux."
         ),
         "footer": "© 2026 YUXA Consultancy · Istanbul · Composé en Go.",
     },
 }
+
+# The people of YUXA, in the order the team section lists them.
+TEAM = [
+    {
+        "name": "Abdullah Uyu",
+        "role": {
+            "tr": "Matematik ve bilgisayar dersleri, LaTeX dizgi, otomasyon",
+            "en": "Mathematics and computing lessons, LaTeX typesetting, automation",
+            "fr": "Cours de mathématiques et d’informatique, composition LaTeX, "
+                  "automatisation",
+        },
+        "bio": {
+            "tr": [
+                "Galatasaray Üniversitesi Matematik Bölümü’nü 2025’te bitirdi; aynı "
+                "üniversitede yüksek lisans yapıyor. Eğitimini Fransızca aldı, "
+                "İngilizceyi de akıcı konuşuyor.",
+                "2015’ten beri programlama yapıyor (Python, C, C++, Scheme). Lisans "
+                "bitirme projesinde Desargues teoremini Lean ile biçimselleştirdi. Bir "
+                "siber güvenlik araştırma şirketinde matematikçi danışman, Ziraat "
+                "Teknoloji’de yapay zekâ uygulamaları alanında yazılım danışmanı olarak "
+                "çalıştı; n8n ile ajan tabanlı iş akışları geliştirdi.",
+                "Onlarca belgeyi LaTeX ile dizdi. Bu site ve YUXA’nın bütün basılı "
+                "işleri Go yazı tipiyle dizili; matematik için Go Math’i o hazırladı.",
+            ],
+            "en": [
+                "Abdullah graduated in mathematics from Galatasaray University in 2025, "
+                "where teaching is in French, and is now a master’s student there. He "
+                "speaks Turkish, French and English.",
+                "He has been programming since 2015 (Python, C, C++, Scheme); for his "
+                "graduation project he formalized Desargues’s theorem in Lean. He has "
+                "worked as a mathematician consultant at a cyber-security research "
+                "company and as a programmer consultant on AI applications at Ziraat "
+                "Teknoloji, building agentic workflows in n8n.",
+                "He has typeset dozens of documents in LaTeX. This site and everything "
+                "YUXA prints are set in Go; for mathematics he made Go Math.",
+            ],
+            "fr": [
+                "Diplômé en mathématiques de l’Université Galatasaray en 2025, où "
+                "l’enseignement est en français, Abdullah y prépare aujourd’hui un "
+                "master. Il parle français, turc et anglais.",
+                "Il programme depuis 2015 (Python, C, C++, Scheme) ; pour son projet de "
+                "fin d’études, il a formalisé le théorème de Desargues en Lean. Il a été "
+                "mathématicien consultant dans une entreprise de recherche en "
+                "cybersécurité, puis consultant en programmation au département des "
+                "applications d’IA de Ziraat Teknoloji, où il construisait des flux "
+                "agentiques avec n8n.",
+                "Il a composé des dizaines de documents en LaTeX. Ce site et tous les "
+                "imprimés de YUXA sont composés en Go ; pour les mathématiques, il a "
+                "créé Go Math.",
+            ],
+        },
+    },
+    {
+        "name": "Durmuş Uyu",
+        "role": {
+            "tr": "Ahşap oyma ve ahşap işçiliği",
+            "en": "Woodcarving and woodworking",
+            "fr": "Sculpture et travail du bois",
+        },
+        "bio": {
+            "tr": [
+                "Boğaziçi Üniversitesi’nde matematik öğretmenliği okuyor. Kaşık, ölçek, "
+                "kuksa, kase ve kutu oyuyor; oyma ve ahşap işçiliği atölyeleri veriyor.",
+            ],
+            "en": [
+                "Durmuş studies mathematics education at Boğaziçi University. He carves "
+                "spoons, scoops, kuksas, bowls and boxes, and gives carving and "
+                "woodworking workshops.",
+            ],
+            "fr": [
+                "Étudiant en enseignement des mathématiques à l’Université du Bosphore "
+                "(Boğaziçi), Durmuş sculpte cuillères, doseurs, kuksas, bols et boîtes, "
+                "et anime des ateliers de sculpture et de travail du bois.",
+            ],
+        },
+    },
+]
 
 # The workshop page, in Turkish only: /atolye/
 WORKSHOP = {
@@ -560,7 +615,7 @@ WORKSHOP = {
     ],
     "register_title": "Kayıt",
     "register_text": (
-        "Kaydolduktan sonra ödeme bilgilerini iletiyorum; yeriniz ödemeyle "
+        "Kaydolduktan sonra ödeme bilgilerini iletiyoruz; yeriniz ödemeyle "
         "kesinleşir."
     ),
     "register_form": "Kayıt formu",
