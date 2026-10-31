@@ -749,7 +749,7 @@ WOODWORK = {
             "ids": {"gallery": "isler", "offers": "siparis-ve-atolyeler",
                     "prices": "fiyatlar", "contact": "iletisim"},
             "panel": {
-                "title": "Elde oyulmuş ahşap",
+                "title": "Oyma",
                 "text": (
                     "Sipariş üzerine kaşık, ölçek, kuksa, kase ve kutu oyuyor; her "
                     "parçayı tek tek, elde yapıyor. Yeni başlayanlara ve gruplara oyma "
@@ -765,7 +765,7 @@ WOODWORK = {
                 "link": "İşler, sipariş ve atölyeler",
             },
             "kicker": "Ahşap · Durmuş Uyu",
-            "heading": "Elde oyulmuş ahşap",
+            "heading": "Oyma",
             "lead": (
                 "Durmuş sipariş üzerine kaşık, ölçek, kuksa, kase ve kutu oyuyor; her "
                 "parçayı tek tek, elde yapıyor. Yeni başlayanlara ve gruplara oyma ve "
@@ -850,7 +850,7 @@ WOODWORK = {
             "ids": {"gallery": "work", "offers": "commissions-and-workshops",
                     "prices": "prices", "contact": "contact"},
             "panel": {
-                "title": "Hand-carved woodwork",
+                "title": "Woodcarving",
                 "text": (
                     "He carves spoons, scoops, kuksas, bowls and boxes to order, by hand "
                     "and one at a time. He also runs carving workshops for beginners and "
@@ -865,7 +865,7 @@ WOODWORK = {
                 "link": "Work, commissions and workshops",
             },
             "kicker": "Woodwork · Durmuş Uyu",
-            "heading": "Hand-carved woodwork",
+            "heading": "Woodcarving",
             "lead": (
                 "Durmuş carves spoons, scoops, kuksas, bowls and boxes to order, by "
                 "hand and one at a time. He also runs carving and woodworking workshops "
@@ -954,7 +954,7 @@ WOODWORK = {
             "ids": {"gallery": "realisations", "offers": "commandes-et-ateliers",
                     "prices": "tarifs", "contact": "contact"},
             "panel": {
-                "title": "Bois sculpté à la main",
+                "title": "Sculpture sur bois",
                 "text": (
                     "Il sculpte sur commande cuillères, doseurs, kuksas, bols et boîtes, "
                     "à la main et une à une. Il anime aussi des ateliers de sculpture "
@@ -969,7 +969,7 @@ WOODWORK = {
                 "link": "Réalisations, commandes et ateliers",
             },
             "kicker": "Bois · Durmuş Uyu",
-            "heading": "Bois sculpté à la main",
+            "heading": "Sculpture sur bois",
             "lead": (
                 "Durmuş sculpte sur commande cuillères, doseurs, kuksas, bols et "
                 "boîtes, à la main et une à une. Il anime aussi des ateliers de "
