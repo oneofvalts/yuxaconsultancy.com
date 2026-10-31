@@ -199,7 +199,7 @@ def header(*, lang, prefix, current):
         '<header class="site"><div class="wrap">\n'
         f'<a class="wordmark" href="{home}">YUXA</a>\n'
         f'<nav class="sections" aria-label="{page["nav_label"]}">{"".join(sections)}</nav>\n'
-        f'<nav class="langs" aria-label="Dil · Language · Langue">{"".join(langs)}</nav>\n'
+        f'<nav class="langs" aria-label="Dil, Language, Langue">{"".join(langs)}</nav>\n'
         "</div></header>"
     )
 
@@ -309,12 +309,12 @@ def home_page(lang):
             f'<p class="kicker">{person["name"]}</p>'
             f'<h2><a href="{target}">{t(panel["title"])}</a></h2>'
             f'<p>{t(panel["text"])}</p>{price_table(panel["rows"], t)}'
-            f'<p><a class="btn" href="{target}">{t(panel["link"])} →</a></p>'
+            f'<p><a class="btn" href="{target}">{t(panel["link"])}</a></p>'
             "</article>")
     upcoming = "".join(
         f'<p><span class="label">{t(page["upcoming_label"])}</span> '
         f'<strong>{t(event["title"])}</strong> {t(event["text"])} '
-        f'<a href="{prefix}{page_path(event["page"], lang)}">{t(event["link"])} →</a></p>'
+        f'<a href="{prefix}{page_path(event["page"], lang)}">{t(event["link"])}</a></p>'
         for event in page["upcoming"])
 
     body = "\n".join([
@@ -393,7 +393,7 @@ def work_page(key, lang):
             target = f"{prefix}{page_path(event['page'], lang)}"
             teasers.append(f'<div class="teaser"><h3>{t(event["title"])}</h3>'
                            f'<p>{t(event["text"])}</p>'
-                           f'<p><a href="{target}">{t(event["link"])} →</a></p></div>')
+                           f'<p><a href="{target}">{t(event["link"])}</a></p></div>')
         sections.append(section(ids["events"], t(w["events_title"]),
                                 f'<div class="teasers">{"".join(teasers)}</div>'))
     bio = "".join(f"<p>{t(p)}</p>" for p in person["bio"][lang])
@@ -405,7 +405,7 @@ def work_page(key, lang):
     sections.append(section(
         ids["contact"], t(w["contact_title"]), f'<p>{t(w["contact_text"])}</p>',
         contact_buttons(page, email_label=C.EMAIL, **buttons),
-        f'<p><a href="{prefix}{page["path"]}">← {t(page["home"])}</a></p>'))
+        f'<p><a href="{prefix}{page["path"]}">{t(page["back"])}</a></p>'))
 
     body = "\n".join([
         header(lang=lang, prefix=prefix, current=key),
@@ -486,7 +486,7 @@ def workshop_page():
         f'<p>{t(w["register_text"])}</p>',
         '<div class="buttons">' + "".join(buttons) + "</div>",
         f'<p class="note">{t(w["who"])}</p>',
-        f'<p><a href="{prefix}">← {t(page["home"])}</a></p>',
+        f'<p><a href="{prefix}">{t(page["back"])}</a></p>',
         "</div></section>",
         "</main>",
         footer(t(page["footer"])),
@@ -503,13 +503,14 @@ def not_found_page():
         header(lang="tr", prefix="/", current=None),
         '<main id="main"><div class="hero"><div class="wrap">',
         "<h1>Sayfa bulunamadı.</h1>",
-        '<p class="lead">Page not found · Page introuvable</p>',
+        '<p class="lead"><span lang="en">Page not found.</span> '
+        '<span lang="fr">Page introuvable.</span></p>',
         '<div class="buttons"><a class="btn primary" href="/">Ana sayfa</a>'
         '<a class="btn" href="/en/">Home</a><a class="btn" href="/fr/">Accueil</a></div>',
         "</div></div></main>",
         footer(typo("tr", page["footer"])),
     ])
-    return document(lang="tr", prefix="/", title="Sayfa bulunamadı · YUXA Consultancy",
+    return document(lang="tr", prefix="/", title="Sayfa bulunamadı – YUXA Consultancy",
                     description=page["description"], canonical=None,
                     locale="tr_TR", body=body, index=False)
 
