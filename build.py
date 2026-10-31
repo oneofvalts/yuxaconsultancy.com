@@ -353,7 +353,7 @@ def gallery(spec, lang, prefix):
 def work_page(key, lang):
     """One person's work, in the sections content.py lists before MATHS:
     photographs if any, what they offer and for how much, dated events, who
-    they are, questions, and how to reach them."""
+    they are, and how to reach them."""
     spec, page = C.WORK_PAGES[key], C.PAGES[lang]
     w = spec["pages"][lang]
     t = lambda s: typo(lang, s)  # noqa: E731
@@ -402,10 +402,6 @@ def work_page(key, lang):
     if "aside" in w:
         about += f'<div><h2>{t(w["aside_title"])}</h2><p>{t(w["aside"])}</p></div>'
     sections.append(f'<section class="about"><div class="wrap two">{about}</div></section>')
-    if "faq" in w:
-        faq = "".join(f"<details><summary>{t(q)}</summary><p>{t(a)}</p></details>"
-                      for q, a in w["faq"])
-        sections.append(section(ids["faq"], t(w["faq_title"]), faq))
     sections.append(section(
         ids["contact"], t(w["contact_title"]), f'<p>{t(w["contact_text"])}</p>',
         contact_buttons(page, email_label=C.EMAIL, **buttons),

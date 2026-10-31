@@ -501,21 +501,6 @@ table.price td + td {
   line-height: 1.35;
 }
 
-details {
-  max-width: 46rem;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-summary {
-  cursor: pointer;
-  font-weight: 500;
-}
-
-details p {
-  margin: 0.6rem 0 0.2rem;
-}
-
 /* Workshop page */
 
 .facts {

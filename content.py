@@ -252,7 +252,6 @@ TEAM = [
 #   prices     price groups, then prices_note
 #   events*    dated events, each leading to its page
 #   about      the person's bio from TEAM, and aside_title and aside* next to it
-#   faq*       questions and answers
 #   contact    a few words, the buttons and the way back home
 # ids holds the anchors of the sections present. panel is what the home page
 # shows: a title, a few words, a few prices and the link here, under the
@@ -274,7 +273,7 @@ MATHS = {
                 "da İstanbul’da yüz yüze."
             ),
             "ids": {"offers": "hizmetler", "how": "nasil", "prices": "ucretler",
-                    "events": "atolye", "faq": "sss", "contact": "iletisim"},
+                    "events": "atolye", "contact": "iletisim"},
             "panel": {
                 "title": "Matematik, programlama ve LaTeX",
                 "text": (
@@ -352,8 +351,7 @@ MATHS = {
             "how": [
                 "15 dakikalık ücretsiz bir görüşmede ihtiyacınızı, seviyenizi ve "
                 "hedefinizi konuşuruz.",
-                "Dersler online (Google Meet) ya da yüz yüze olur; ödemeyi dersten önce "
-                "banka havalesiyle yaparsınız.",
+                "Dersler online (Google Meet) ya da yüz yüze olur.",
                 "Her dersten sonra dizilmiş özet notlar, her işin sonunda da derlenmiş "
                 "kaynak dosyalar sizde kalır.",
             ],
@@ -398,27 +396,6 @@ MATHS = {
                     "page": "workshop",
                 },
             ],
-            "faq_title": "Sık sorulanlar",
-            "faq": [
-                ("Ödevimi ya da sınavımı yapar mısınız?",
-                 "Hayır. Notlu ödev, proje ya da sınav çözmüyoruz; konuyu öğretiyor, "
-                 "benzer sorularla hazırlıyoruz."),
-                ("Ödeme nasıl?",
-                 "Dersten önce banka havalesiyle (IBAN/FAST) ya da yüz yüze derste "
-                 "nakit. Kamp ve atölyelerde yer, ödemeyle kesinleşir."),
-                ("İptal edebilir miyim?",
-                 "24 saat öncesine kadar ücretsiz iptal ya da erteleme; daha geç "
-                 "iptallerde ders ücreti alınır."),
-                ("Dersler nerede?",
-                 "Online (Google Meet) ya da yüz yüze: Beşiktaş, Kadıköy, Üsküdar ve "
-                 "Pendik–Tuzla. Yüz yüze derslerde 90 dakikalık blok öneririz."),
-                ("Hangi dilde?",
-                 "Türkçe, Fransızca ya da İngilizce. GSÜ derslerinde terimler "
-                 "Fransızca, açıklama istediğiniz dilde."),
-                ("Kişisel verilerim?",
-                 "İletişim bilgilerinizi yalnızca sizinle çalışmak için kullanırız ve "
-                 "kimseyle paylaşmayız."),
-            ],
             "contact_title": "İletişim",
             "contact_text": (
                 "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, ya da bir "
@@ -434,7 +411,7 @@ MATHS = {
                 "person in Istanbul."
             ),
             "ids": {"offers": "services", "how": "how", "prices": "prices",
-                    "events": "workshop", "faq": "faq", "contact": "contact"},
+                    "events": "workshop", "contact": "contact"},
             "panel": {
                 "title": "Mathematics, programming and LaTeX",
                 "text": (
@@ -514,8 +491,7 @@ MATHS = {
             "how": [
                 "We start with a free 15-minute call about what you need, your level "
                 "and your goal.",
-                "Lessons are online (Google Meet) or in person; you pay by bank "
-                "transfer before the lesson.",
+                "Lessons are online (Google Meet) or in person.",
                 "You keep typeset notes from every lesson, and the compiled source "
                 "files at the end of every job.",
             ],
@@ -561,28 +537,6 @@ MATHS = {
                     "page": "workshop",
                 },
             ],
-            "faq_title": "Questions",
-            "faq": [
-                ("Will you do my homework or exam?",
-                 "No. We don’t do graded homework, projects or exams; we teach the "
-                 "subject and prepare you with similar problems."),
-                ("How do I pay?",
-                 "By bank transfer (IBAN/FAST) before the lesson, or in cash at an "
-                 "in-person lesson. Clinic and workshop seats are confirmed on "
-                 "payment."),
-                ("Can I cancel?",
-                 "Free cancellation or rescheduling up to 24 hours before; later "
-                 "cancellations are charged."),
-                ("Where do lessons happen?",
-                 "Online (Google Meet), or in person in Beşiktaş, Kadıköy, Üsküdar and "
-                 "Pendik–Tuzla. For in-person lessons we recommend 90-minute blocks."),
-                ("In which language?",
-                 "Turkish, French or English. For Galatasaray courses the terms stay in "
-                 "French and the explanations come in the language you prefer."),
-                ("My personal data?",
-                 "We use your contact details only to work with you and never share "
-                 "them."),
-            ],
             "contact_title": "Contact",
             "contact_text": (
                 "Tell us briefly what it is about: a course and your level, or a "
@@ -598,7 +552,7 @@ MATHS = {
                 "Istanbul ou en ligne."
             ),
             "ids": {"offers": "services", "how": "methode", "prices": "tarifs",
-                    "events": "atelier", "faq": "questions", "contact": "contact"},
+                    "events": "atelier", "contact": "contact"},
             "panel": {
                 "title": "Mathématiques, informatique et LaTeX",
                 "text": (
@@ -679,8 +633,7 @@ MATHS = {
             "how": [
                 "Nous commençons par un appel gratuit de 15 minutes pour cerner votre "
                 "besoin, votre niveau et votre objectif.",
-                "Les séances ont lieu en ligne (Google Meet) ou en présentiel ; vous "
-                "payez par virement avant la séance.",
+                "Les séances ont lieu en ligne (Google Meet) ou en présentiel.",
                 "Vous gardez une fiche composée de chaque séance, et les fichiers "
                 "sources compilés à la fin de chaque travail.",
             ],
@@ -726,27 +679,6 @@ MATHS = {
                     "link": "Détails et inscription (en turc)",
                     "page": "workshop",
                 },
-            ],
-            "faq_title": "Questions fréquentes",
-            "faq": [
-                ("Faites-vous les devoirs ou les examens à la place de l’élève ?",
-                 "Non. Nous ne faisons ni devoirs notés, ni projets, ni examens ; nous "
-                 "enseignons la matière et entraînons l’élève sur des exercices "
-                 "semblables."),
-                ("Comment payer ?",
-                 "Par virement (IBAN) avant la séance, ou en espèces lors d’une séance "
-                 "en présentiel. Les places en stage et en atelier sont confirmées au "
-                 "paiement."),
-                ("Puis-je annuler ?",
-                 "Annulation ou report gratuits jusqu’à 24 h avant ; au-delà, la séance "
-                 "est due."),
-                ("Où se déroulent les séances ?",
-                 "En ligne (Google Meet) ou à domicile à Beşiktaş, Kadıköy, Üsküdar et "
-                 "Pendik–Tuzla. En présentiel, nous recommandons des séances de 90 "
-                 "minutes."),
-                ("Mes données personnelles ?",
-                 "Vos coordonnées servent uniquement à travailler avec vous et ne sont "
-                 "jamais partagées."),
             ],
             "contact_title": "Contact",
             "contact_text": (
