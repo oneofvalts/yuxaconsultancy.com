@@ -433,9 +433,6 @@ MATHS = {
                 ("Hangi dilde?",
                  "Türkçe, Fransızca ya da İngilizce. GSÜ derslerinde terimler "
                  "Fransızca, açıklama istediğiniz dilde."),
-                ("18 yaşından küçük öğrenciler?",
-                 "Her şeyi veliyle konuşuruz; yüz yüze dersler evde bir veli varken ya "
-                 "da online yapılır."),
                 ("Kişisel verilerim?",
                  "İletişim bilgilerinizi yalnızca sizinle çalışmak için kullanırız ve "
                  "kimseyle paylaşmayız."),
@@ -599,9 +596,6 @@ MATHS = {
                 ("In which language?",
                  "Turkish, French or English. For Galatasaray courses the terms stay in "
                  "French and the explanations come in the language you prefer."),
-                ("Pupils under 18?",
-                 "We agree everything with a parent; in-person lessons happen at home "
-                 "with a parent around, or online."),
                 ("My personal data?",
                  "We use your contact details only to work with you and never share "
                  "them."),
@@ -767,9 +761,6 @@ MATHS = {
                  "En ligne (Google Meet) ou à domicile à Beşiktaş, Kadıköy, Üsküdar et "
                  "Pendik–Tuzla. En présentiel, nous recommandons des séances de 90 "
                  "minutes."),
-                ("Et pour les élèves mineurs ?",
-                 "Tout se décide avec un parent ; les séances ont lieu à domicile en "
-                 "présence d’un parent, ou en ligne."),
                 ("Mes données personnelles ?",
                  "Vos coordonnées servent uniquement à travailler avec vous et ne sont "
                  "jamais partagées."),
