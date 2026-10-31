@@ -377,9 +377,7 @@ MATHS = {
             "prices_title": "Ücretler",
             "prices": [
                 ("Özel ders", [
-                    ("Online, birebir, 60 dk", "1.500 TL"),
-                    ("Yüz yüze, birebir, 60 dk", "1.800 TL"),
-                    ("Yüz yüze, birebir, 90 dk", "2.600 TL"),
+                    ("Birebir, online ya da yüz yüze, 60 dk", "1.500 TL"),
                     ("IB, A-level ve Fransız müfredatı, 60 dk",
                      "2.000 TL online<br>2.300 TL yüz yüze"),
                     ("Vize/Final Kampı: 3–6 kişi, 120 dk", "kişi başı 800 TL"),
@@ -538,9 +536,7 @@ MATHS = {
             "prices_title": "Prices",
             "prices": [
                 ("Lessons", [
-                    ("Online, one-to-one, 60 min", "1,500 TL"),
-                    ("In person, one-to-one, 60 min", "1,800 TL"),
-                    ("In person, one-to-one, 90 min", "2,600 TL"),
+                    ("One-to-one, online or in person, 60 min", "1,500 TL"),
                     ("IB, A-level and French curricula, 60 min",
                      "2,000 TL online<br>2,300 TL in person"),
                     ("Exam clinic: 3–6 students, 120 min", "800 TL per student"),
@@ -706,9 +702,7 @@ MATHS = {
                 ("Cours", [
                     ("Collège, lycée, bac et IB, 60 min",
                      "2 000 TL en ligne<br>2 300 TL à domicile"),
-                    ("Université, en ligne, 60 min", "1 500 TL"),
-                    ("Université, en présentiel, 60 min", "1 800 TL"),
-                    ("Université, en présentiel, 90 min", "2 600 TL"),
+                    ("Université, en ligne ou en présentiel, 60 min", "1 500 TL"),
                     ("Stage de révision : 3 à 6 élèves, 120 min", "800 TL par élève"),
                     ("Forfait de cinq séances", "−10 %"),
                     ("Premier appel, 15 min", "offert"),
