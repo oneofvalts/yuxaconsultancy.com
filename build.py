@@ -4,9 +4,10 @@
     python3 build.py
 
 Reads content.py and writes, next to this file, the home page in each
-language (index.html, en/, fr/), the work pages in each language (ahsap/,
-en/woodwork/, fr/bois/), atolye/, 404.html, sitemap.xml and robots.txt.
-Standard library only; the output is committed and served by GitHub Pages.
+language (index.html, en/, fr/), each person's work page in each language
+(matematik/, en/maths/, fr/maths/; ahsap/, en/woodwork/, fr/bois/), atolye/,
+404.html, sitemap.xml and robots.txt. Standard library only; the output is
+committed and served by GitHub Pages.
 """
 
 import html
@@ -19,13 +20,16 @@ import content as C
 
 ROOT = Path(__file__).resolve().parent
 NBSP, NNBSP = "\u00a0", "\u202f"  # no-break space, narrow no-break space
+JOINER = "\u2060"  # word joiner: no line break on either side
 
 LANG_NAMES = {"tr": "Türkçe", "en": "English", "fr": "Français"}
 
 
 def typo(lang: str, text: str) -> str:
-    """Unbreakable spaces between numbers and units; French spacing rules."""
+    """Unbreakable spaces between numbers and units, unbreakable ranges of
+    numbers; French spacing rules."""
     text = re.sub(r"(\d) (TL|dk|min|h)\b", r"\1" + NBSP + r"\2", text)
+    text = re.sub(r"(\d)–(\d)", r"\1" + JOINER + "–" + JOINER + r"\2", text)
     if lang == "fr":
         text = re.sub(r"(\d) (\d{3})\b", r"\1" + NNBSP + r"\2", text)
         text = re.sub(r"(\d) %", r"\1" + NNBSP + "%", text)
@@ -77,6 +81,19 @@ def caption(spec, stem: str, lang: str) -> str:
         if name == stem:
             return dict(zip(C.LANGS, captions))[lang]
     raise KeyError(stem)
+
+
+def cover(spec, alt: str, prefix: str) -> str:
+    """The <img> of a work page's cover: its picture on the home page."""
+    path = spec["cover"]
+    if path.endswith(".svg"):
+        size = re.search(r'<svg[^>]* width="(\d+)" height="(\d+)"',
+                         (ROOT / path).read_text())
+        width, height = map(int, size.groups())
+    else:
+        width, height = jpeg_size(ROOT / path)
+    return (f'<img src="{prefix}{path}" width="{width}" height="{height}" '
+            f'alt="{esc(alt)}" decoding="async">')
 
 
 def image(spec, stem: str, alt: str, prefix: str):
@@ -135,20 +152,28 @@ def document(*, lang, prefix, title, description, canonical, locale, body,
 
 
 def header(*, lang, prefix, current):
-    """Wordmark, section links and the language switch.
+    """Wordmark, the links to the work pages and to the contact section, and
+    the language switch.
 
     current is "home", the key of a work page, or None for the pages in
-    Turkish only. The home and work pages switch language in place; the
-    others link to the home page of each language.
+    Turkish only. The home and work pages switch language in place and have a
+    contact section of their own; the others link to the home page of each
+    language and to its contact section.
     """
     page = C.PAGES[lang]
     home = f"{prefix}{page['path']}" or "./"
+    if current == "home":
+        ids, base = page["ids"], ""
+    elif current in C.WORK_PAGES:
+        ids, base = C.WORK_PAGES[current]["pages"][lang]["ids"], ""
+    else:
+        ids, base = page["ids"], home
     sections = []
     for key, label in page["nav"]:
-        if key in page["ids"]:
-            href = f"{'' if current == 'home' else home}#{page['ids'][key]}"
-        else:
+        if key in C.WORK_PAGES:
             href = f"{prefix}{page_path(key, lang)}"
+        else:
+            href = f"{base}#{ids[key]}"
         mark = ' aria-current="page"' if key == current else ""
         sections.append(f'<a href="{href}"{mark}>{label}</a>')
     translated = current == "home" or current in C.WORK_PAGES
@@ -185,15 +210,18 @@ def contact_buttons(page, *, email_label, subject=None, booking=True):
             + "</div>")
 
 
-def byline(name):
-    return f'<p class="by">{name}</p>'
-
-
 def price_table(rows, t):
     """Items and their prices; t applies the page language's typography."""
     body = "".join(f"<tr><td>{t(item)}</td><td>{t(price)}</td></tr>"
                    for item, price in rows)
     return f'<table class="price"><tbody>{body}</tbody></table>'
+
+
+def section(anchor, title, *parts):
+    """A section of a page: its anchor (None for none), heading and content."""
+    opening = f'<section id="{anchor}">' if anchor else "<section>"
+    return "\n".join([f'{opening}<div class="wrap">', f"<h2>{title}</h2>", *parts,
+                      "</div></section>"])
 
 
 def footer(text):
@@ -218,54 +246,31 @@ def organisation():
 
 
 def home_page(lang):
+    """Who we are, then a panel for each person: what they do, a few prices
+    and the way to their page; what is coming up; how to reach us."""
     page = C.PAGES[lang]
     t = lambda s: typo(lang, s)  # noqa: E731
     prefix = prefix_of(page["path"])
-    ids = page["ids"]
 
-    # Services are cards; one that shows a photograph links to its work page.
-    cards, features = [], []
-    for service in page["services"]:
-        items = "".join(f"<li>{t(i)}</li>" for i in service["items"])
-        text = (f'<h3>{t(service["title"])}</h3>{byline(service["by"])}'
-                f'<p>{t(service["body"])}</p><ul>{items}</ul>')
-        if "photo" not in service:
-            cards.append(f'<article class="card">{text}</article>')
-            continue
-        spec = C.WORK_PAGES[service["page"]]
-        target = f"{prefix}{page_path(service['page'], lang)}"
-        img, _ = image(spec, service["photo"], caption(spec, service["photo"], lang),
-                       prefix)
-        features.append(
-            f'<article class="card feature">'
-            f'<a class="photo" href="{target}" tabindex="-1" aria-hidden="true">{img}</a>'
-            f'<div>{text}<p><a href="{target}">{t(service["link"])} →</a></p></div>'
+    panels = []
+    for person in C.TEAM:
+        spec = C.WORK_PAGES[person["page"]]
+        panel = spec["pages"][lang]["panel"]
+        target = f"{prefix}{page_path(person['page'], lang)}"
+        panels.append(
+            '<article class="panel">'
+            f'<a class="cover" href="{target}" tabindex="-1" aria-hidden="true">'
+            f'{cover(spec, panel["alt"], prefix)}</a>'
+            f'<p class="kicker">{person["name"]}</p>'
+            f'<h2><a href="{target}">{t(panel["title"])}</a></h2>'
+            f'<p>{t(panel["text"])}</p>{price_table(panel["rows"], t)}'
+            f'<p><a class="btn" href="{target}">{t(panel["link"])} →</a></p>'
             "</article>")
-    steps = "".join(f"<li><strong>{t(a)}</strong> {t(b)}</li>" for a, b in page["how"])
-    # The price list ends with the price group of each work page that has one.
-    groups = page["prices"] + [spec["pages"][lang]["prices"]
-                               for spec in C.WORK_PAGES.values()
-                               if "prices" in spec["pages"][lang]]
-    price_groups = [f"<div><h3>{t(name)}</h3>{price_table(rows, t)}</div>"
-                    for name, rows in groups]
-    teasers = []
-    for w in page["workshops"]:
-        target = f"{prefix}{page_path(w['page'], lang)}"
-        if "anchor" in w:
-            target += f"#{w['anchor']}"
-        teasers.append(f'<div class="teaser"><h3>{t(w["title"])}</h3>{byline(w["by"])}'
-                       f'<p>{t(w["text"])}</p>'
-                       f'<p><a href="{target}">{t(w["link"])} →</a></p></div>')
-    team = []
-    for m in C.TEAM:
-        link = (f'<p><a href="{prefix}{page_path(m["page"], lang)}">'
-                f'{t(m["link"][lang])} →</a></p>' if "page" in m else "")
-        team.append(f'<article class="person"><h3>{m["name"]}</h3>'
-                    f'<p class="role">{t(m["role"][lang])}</p>'
-                    + "".join(f"<p>{t(p)}</p>" for p in m["bio"][lang])
-                    + link + "</article>")
-    faq = "".join(f"<details><summary>{t(q)}</summary><p>{t(a)}</p></details>"
-                  for q, a in page["faq"])
+    upcoming = "".join(
+        f'<p><span class="label">{t(page["upcoming_label"])}</span> '
+        f'<strong>{t(event["title"])}</strong> {t(event["text"])} '
+        f'<a href="{prefix}{page_path(event["page"], lang)}">{t(event["link"])} →</a></p>'
+        for event in page["upcoming"])
 
     body = "\n".join([
         header(lang=lang, prefix=prefix, current="home"),
@@ -273,40 +278,12 @@ def home_page(lang):
         '<div class="hero"><div class="wrap">',
         f'<h1>{t(page["hero_title"])}</h1>',
         f'<p class="lead">{t(page["hero_lead"])}</p>',
-        contact_buttons(page, email_label=page["cta_email"]),
         "</div></div>",
-        f'<section id="{ids["services"]}"><div class="wrap">',
-        f'<h2>{t(page["services_title"])}</h2>',
-        f'<div class="cards">{"".join(cards)}</div>',
-        f'<p class="note notes-line">{t(page["notes_line"])}</p>',
-        *features,
-        "</div></section>",
-        f'<section id="{ids["how"]}"><div class="wrap">',
-        f'<h2>{t(page["how_title"])}</h2>',
-        f'<ol class="steps">{steps}</ol>',
-        "</div></section>",
-        f'<section id="{ids["prices"]}"><div class="wrap">',
-        f'<h2>{t(page["prices_title"])}</h2>',
-        f'<div class="prices">{"".join(price_groups)}</div>',
-        f'<p class="note">{t(page["prices_note"])}</p>',
-        "</div></section>",
-        f'<section id="{ids["workshops"]}"><div class="wrap">',
-        f'<h2>{t(page["workshops_title"])}</h2>',
-        f'<div class="teasers">{"".join(teasers)}</div>',
-        "</div></section>",
-        f'<section id="{ids["team"]}"><div class="wrap">',
-        f'<h2>{t(page["team_title"])}</h2>',
-        f'<div class="team">{"".join(team)}</div>',
-        "</div></section>",
-        f'<section id="{ids["faq"]}"><div class="wrap">',
-        f'<h2>{t(page["faq_title"])}</h2>',
-        faq,
-        "</div></section>",
-        f'<section id="{ids["contact"]}"><div class="wrap">',
-        f'<h2>{t(page["contact_title"])}</h2>',
-        f'<p>{t(page["contact_text"])}</p>',
-        contact_buttons(page, email_label=C.EMAIL),
-        "</div></section>",
+        f'<div class="wrap panels">{"".join(panels)}</div>',
+        f'<div class="upcoming"><div class="wrap">{upcoming}</div></div>' if upcoming else "",
+        section(page["ids"]["contact"], t(page["contact_title"]),
+                f'<p>{t(page["contact_text"])}</p>',
+                contact_buttons(page, email_label=C.EMAIL, booking=False)),
         "</main>",
         footer(t(page["footer"])),
     ])
@@ -331,23 +308,65 @@ def gallery(spec, lang, prefix):
 
 
 def work_page(key, lang):
-    """One person's work: photographs, what they offer, who they are."""
+    """One person's work, in the sections content.py lists before MATHS:
+    photographs if any, what they offer and for how much, dated events, who
+    they are, questions, and how to reach them."""
     spec, page = C.WORK_PAGES[key], C.PAGES[lang]
     w = spec["pages"][lang]
     t = lambda s: typo(lang, s)  # noqa: E731
     prefix = prefix_of(w["path"])
+    ids = w["ids"]
     person = next(m for m in C.TEAM if m["name"] == spec["person"])
+    buttons = dict(subject=w["mail_subject"], booking=spec["booking"])
 
+    sections = []
+    if "photos" in spec:
+        sections.append(section(ids["gallery"], t(w["gallery_title"]),
+                                gallery(spec, lang, prefix),
+                                f'<p class="note">{t(w["gallery_note"])}</p>'))
     offers = []
     for offer in w["offers"]:
+        anchor = f' id="{offer["id"]}"' if "id" in offer else ""
         items = "".join(f"<li>{t(i)}</li>" for i in offer["items"])
-        offers.append(f'<article class="card" id="{offer["id"]}">'
+        offers.append(f'<article class="card"{anchor}>'
                       f'<h3>{t(offer["title"])}</h3><p>{t(offer["body"])}</p>'
                       f"<ul>{items}</ul></article>")
-    prices = (f'<div class="price-group"><h3>{t(w["prices_title"])}</h3>'
-              f'{price_table(w["prices"][1], t)}</div>' if "prices" in w else "")
+    sections.append(section(
+        ids["offers"], t(w["offers_title"]), f'<div class="cards">{"".join(offers)}</div>',
+        f'<p class="note notes-line">{t(w["offers_note"])}</p>' if "offers_note" in w
+        else ""))
+    if "how" in w:
+        steps = "".join(f"<li><strong>{t(a)}</strong> {t(b)}</li>" for a, b in w["how"])
+        sections.append(section(ids["how"], t(w["how_title"]),
+                                f'<ol class="steps">{steps}</ol>'))
+    groups = "".join(f"<div><h3>{t(name)}</h3>{price_table(rows, t)}</div>"
+                     for name, rows in w["prices"])
+    sections.append(section(ids["prices"], t(w["prices_title"]),
+                            f'<div class="prices">{groups}</div>',
+                            f'<p class="note">{t(w["prices_note"])}</p>'))
+    if "events" in w:
+        teasers = []
+        for event in w["events"]:
+            target = f"{prefix}{page_path(event['page'], lang)}"
+            teasers.append(f'<div class="teaser"><h3>{t(event["title"])}</h3>'
+                           f'<p>{t(event["text"])}</p>'
+                           f'<p><a href="{target}">{t(event["link"])} →</a></p></div>')
+        sections.append(section(ids["events"], t(w["events_title"]),
+                                f'<div class="teasers">{"".join(teasers)}</div>'))
     bio = "".join(f"<p>{t(p)}</p>" for p in person["bio"][lang])
-    buttons = dict(subject=w["mail_subject"], booking=False)
+    about = (f'<div><h2>{person["name"]}</h2>'
+             f'<p class="role">{t(person["role"][lang])}</p>{bio}</div>')
+    if "aside" in w:
+        about += f'<div><h2>{t(w["aside_title"])}</h2><p>{t(w["aside"])}</p></div>'
+    sections.append(f'<section class="about"><div class="wrap two">{about}</div></section>')
+    if "faq" in w:
+        faq = "".join(f"<details><summary>{t(q)}</summary><p>{t(a)}</p></details>"
+                      for q, a in w["faq"])
+        sections.append(section(ids["faq"], t(w["faq_title"]), faq))
+    sections.append(section(
+        ids["contact"], t(w["contact_title"]), f'<p>{t(w["contact_text"])}</p>',
+        contact_buttons(page, email_label=C.EMAIL, **buttons),
+        f'<p><a href="{prefix}{page["path"]}">← {t(page["home"])}</a></p>'))
 
     body = "\n".join([
         header(lang=lang, prefix=prefix, current=key),
@@ -358,28 +377,7 @@ def work_page(key, lang):
         f'<p class="lead">{t(w["lead"])}</p>',
         contact_buttons(page, email_label=page["cta_email"], **buttons),
         "</div></div>",
-        f'<section id="{w["ids"]["gallery"]}"><div class="wrap">',
-        f'<h2>{t(w["gallery_title"])}</h2>',
-        gallery(spec, lang, prefix),
-        f'<p class="note">{t(w["gallery_note"])}</p>',
-        "</div></section>",
-        f'<section id="{w["ids"]["offers"]}"><div class="wrap">',
-        f'<h2>{t(w["offers_title"])}</h2>',
-        f'<div class="cards">{"".join(offers)}</div>',
-        prices,
-        f'<p class="note notes-line">{t(w["offers_note"])}</p>',
-        "</div></section>",
-        '<section><div class="wrap two">',
-        f'<div><h2>{person["name"]}</h2>'
-        f'<p class="role">{t(person["role"][lang])}</p>{bio}</div>',
-        f'<div><h2>{t(w["care_title"])}</h2><p>{t(w["care"])}</p></div>',
-        "</div></section>",
-        f'<section id="{w["ids"]["contact"]}"><div class="wrap">',
-        f'<h2>{t(w["contact_title"])}</h2>',
-        f'<p>{t(w["contact_text"])}</p>',
-        contact_buttons(page, email_label=C.EMAIL, **buttons),
-        f'<p><a href="{prefix}{page["path"]}">← {t(w["back"])}</a></p>',
-        "</div></section>",
+        *sections,
         "</main>",
         footer(t(page["footer"])),
     ])
@@ -452,7 +450,7 @@ def workshop_page():
         f'<p>{t(w["register_text"])}</p>',
         '<div class="buttons">' + "".join(buttons) + "</div>",
         f'<p class="note">{t(w["who"])}</p>',
-        f'<p><a href="{prefix}">← {t(w["back"])}</a></p>',
+        f'<p><a href="{prefix}">← {t(page["home"])}</a></p>',
         "</div></section>",
         "</main>",
         footer(t(page["footer"])),
