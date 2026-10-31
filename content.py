@@ -48,8 +48,6 @@ PAGES = {
             ("woodwork", "Ahşap"),
             ("contact", "İletişim"),
         ],
-        "hero_title": "Abdullah matematik öğretiyor, Durmuş da ahşap oyuyor.",
-        "hero_lead": "YUXA, İstanbul’da küçük bir ekip.",
         # Dated events under the panels; remove each once it is over.
         "upcoming_label": "Yaklaşan",
         "upcoming": [
@@ -91,8 +89,6 @@ PAGES = {
             ("woodwork", "Woodwork"),
             ("contact", "Contact"),
         ],
-        "hero_title": "Abdullah teaches maths and Durmuş carves wood.",
-        "hero_lead": "YUXA is a small team in Istanbul.",
         "upcoming_label": "Coming up",
         "upcoming": [
             {
@@ -134,8 +130,6 @@ PAGES = {
             ("woodwork", "Bois"),
             ("contact", "Contact"),
         ],
-        "hero_title": "Abdullah enseigne les maths, Durmuş sculpte le bois.",
-        "hero_lead": "YUXA est une petite équipe à Istanbul.",
         "upcoming_label": "À venir",
         "upcoming": [
             {

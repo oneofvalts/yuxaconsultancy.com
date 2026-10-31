@@ -290,8 +290,9 @@ def breadcrumbs(lang, name, path):
 
 
 def home_page(lang):
-    """Who we are, then a panel for each person: what they do, a few prices
-    and the way to their page; what is coming up; how to reach us."""
+    """A panel for each person: what they do, a few prices and the way to
+    their page; what is coming up; how to reach us. The page has no headline:
+    its h1, the site's name, is for screen readers and search engines."""
     page = C.PAGES[lang]
     t = lambda s: typo(lang, s)  # noqa: E731
     prefix = prefix_of(page["path"])
@@ -319,10 +320,7 @@ def home_page(lang):
     body = "\n".join([
         header(lang=lang, prefix=prefix, current="home"),
         '<main id="main">',
-        '<div class="hero"><div class="wrap">',
-        f'<h1>{t(page["hero_title"])}</h1>',
-        f'<p class="lead">{t(page["hero_lead"])}</p>',
-        "</div></div>",
+        '<h1 class="visually-hidden">YUXA Consultancy</h1>',
         f'<div class="wrap panels">{"".join(panels)}</div>',
         f'<div class="upcoming"><div class="wrap">{upcoming}</div></div>' if upcoming else "",
         section(page["ids"]["contact"], t(page["contact_title"]),
