@@ -65,6 +65,9 @@ only as copies stripped of their metadata (camera data, GPS positions).
 
 - `assets/desargues.svg`: the cover of Abdullah's panel, Desargues's theorem
   in the house colours, light and dark; `python3 tools/make_desargues.py`.
+- `assets/cardioid.svg` and `assets/rings.svg`: the line drawings behind the
+  headings of the maths and woodwork pages, a cardioid drawn by its chords
+  and the growth rings of an end-grain cut; `python3 tools/make_ornaments.py`.
 - `assets/favicon.svg`: `python3 tools/make_favicon.py`; the touch icon is
   `rsvg-convert -w 180 -h 180 assets/favicon.svg -o assets/apple-touch-icon.png`.
 - `assets/og.png` and `assets/og-woodwork.jpg`: the social previews of the site
@@ -72,7 +75,8 @@ only as copies stripped of their metadata (camera data, GPS positions).
   repository and rendered at 1200 × 630.
 - `assets/woodwork/`: photographs of Durmuş Uyu's work, `<name>-1000.jpg` for
   the page and `<name>-2000.jpg` for the full view, made by `make photos` in
-  the private repository, which keeps the originals.
+  the private repository, which keeps the originals and crops a copy where
+  the Makefile says so (`CROP_<name>`).
 - `assets/viewer.js`: the photo viewer of the work pages and the site's only
   script, standard JavaScript with no library. It shows each photograph's
   2000 px copy in a dialog with its caption; buttons, arrow keys and swipes

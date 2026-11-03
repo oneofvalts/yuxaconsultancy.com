@@ -71,7 +71,7 @@ PAGES = {
         "contact_title": "İletişim",
         "contact_text": (
             "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, bir dizgi ya da "
-            "otomasyon işi, ya da ahşap. En geç bir iş günü içinde döneriz."
+            "otomasyon işi, ya da ahşap. En geç bir iş günü içinde dönerim."
         ),
         "footer": "© 2026 YUXA Consultancy, İstanbul",
     },
@@ -112,8 +112,8 @@ PAGES = {
         "book_subject": "Free call",
         "contact_title": "Contact",
         "contact_text": (
-            "Tell us briefly what it is about: a course and your level, a "
-            "typesetting or automation job, or woodwork. We reply within one working "
+            "Tell me briefly what it is about: a course and your level, a "
+            "typesetting or automation job, or woodwork. I reply within one working "
             "day."
         ),
         "footer": "© 2026 YUXA Consultancy, Istanbul",
@@ -156,8 +156,8 @@ PAGES = {
         "book_subject": "Appel découverte",
         "contact_title": "Contact",
         "contact_text": (
-            "Dites-nous en quelques mots ce qui vous amène : la matière et le niveau, "
-            "un travail de composition ou d’automatisation, ou le bois. Nous répondons "
+            "Dites-moi en quelques mots ce qui vous amène : la matière et le niveau, "
+            "un travail de composition ou d’automatisation, ou le bois. Je réponds "
             "sous un jour ouvré."
         ),
         "footer": "© 2026 YUXA Consultancy, Istanbul",
@@ -253,9 +253,9 @@ TEAM = [
     },
 ]
 
-# A work page has, in each language, a hero (kicker, heading, lead) and these
+# A work page has, in each language, a hero (kicker, heading, lead*) and these
 # sections, in this order; those marked * are optional:
-#   gallery*   photographs, when the spec lists photos
+#   gallery*   photographs, when the spec lists photos, then gallery_note*
 #   offers     cards of what the person offers, then offers_note*
 #   how*       steps of how working together goes, one sentence each
 #   prices     price groups, then prices_note
@@ -265,26 +265,29 @@ TEAM = [
 # ids holds the anchors of the sections present. panel is what the home page
 # shows: a title, a few words, a few prices and the link here, under the
 # spec's cover picture (600 x 400, or a photograph in 3:2), described by alt.
+# The spec's ornament names the drawing behind the heading, made by
+# tools/make_ornaments.py.
 
 # Abdullah's lessons, typesetting and automation, one page per language.
 MATHS = {
     "person": "Abdullah Uyu",
     "cover": "assets/desargues.svg",  # made by tools/make_desargues.py
+    "ornament": "cardioid",  # behind the heading: assets/cardioid.svg
     "image": "assets/og.png",  # social preview, made in the private repo
     "booking": True,  # the free 15-minute call is for lessons and jobs
     "pages": {
         "tr": {
             "path": "matematik/",
-            "title": "Matematik özel ders ve LaTeX tez dizgisi, İstanbul – YUXA",
+            "title": "Matematik özel ders, LaTeX tez dizgisi ve yapay zekâ, İstanbul – YUXA",
             "description": (
                 "Üniversite matematiği, programlama, IB ve Fransız müfredatı, GSÜ "
-                "hazırlık için özel ders; LaTeX ile tez dizgisi; otomasyon. Online ya "
-                "da İstanbul’da yüz yüze."
+                "hazırlık için özel ders; LaTeX ile tez dizgisi; yapay zekâ ve "
+                "otomasyon. Online ya da İstanbul’da yüz yüze."
             ),
             "ids": {"offers": "hizmetler", "how": "nasil", "prices": "ucretler",
                     "events": "atolye", "contact": "iletisim"},
             "panel": {
-                "title": "Matematik, programlama ve LaTeX",
+                "title": "Matematik, programlama, LaTeX ve yapay zekâ",
                 "text": (
                     "Türkçe, Fransızca ya da İngilizce özel ders veriyor: üniversite "
                     "matematiği ve programlama, IB ve Fransız müfredatı, GSÜ Fransızca "
@@ -297,20 +300,14 @@ MATHS = {
                 ),
                 # Starting prices; keep them in step with the price list below.
                 "rows": [
-                    ("Özel ders, 60 dk", "1.500 TL’den"),
-                    ("LaTeX dizgi", "1.500 TL’den"),
-                    ("Otomasyon ve yapay zekâ", "2.000 TL’den"),
+                    ("Özel ders, 60 dk", "1.500 TL"),
+                    ("LaTeX dizgi", "1.500 TL"),
+                    ("Otomasyon ve yapay zekâ", "2.000 TL"),
                 ],
                 "link": "Dersler, dizgi ve ücretler",
             },
             "kicker": "Abdullah Uyu",
-            "heading": "Matematik, programlama ve LaTeX",
-            "lead": (
-                "Abdullah Türkçe, Fransızca ya da İngilizce özel ders veriyor, LaTeX ile "
-                "tez ve belge diziyor, küçük ekipler için otomasyon kuruyor. Dersler "
-                "online ya da İstanbul’da yüz yüze: Beşiktaş, Kadıköy, Üsküdar, "
-                "Pendik–Tuzla."
-            ),
+            "heading": "Matematik, programlama, LaTeX ve yapay zekâ",
             "mail_subject": "Bilgi talebi",
             "offers_title": "Hizmetler",
             "offers": [
@@ -354,7 +351,7 @@ MATHS = {
             ],
             "offers_note": (
                 "Her dersten sonra, işlediğimiz konuları ve çözdüğümüz soruları "
-                "özetleyen, dizilmiş kısa bir PDF gönderiyoruz."
+                "özetleyen, dizilmiş kısa bir PDF gönderiyorum."
             ),
             "how_title": "Nasıl çalışır",
             "how": [
@@ -370,27 +367,26 @@ MATHS = {
                     ("Birebir, online ya da yüz yüze, 60 dk", "1.500 TL"),
                     ("IB, A-level ve Fransız müfredatı, online ya da yüz yüze, 60 dk",
                      "2.000 TL"),
-                    ("Vize/Final Kampı: 3–6 kişi, 120 dk", "kişi başı 800 TL"),
-                    ("Beş derslik paket", "%10 indirim"),
-                    ("Ön görüşme, 15 dk", "ücretsiz"),
+                    ("Vize/Final Kampı: 3–6 kişi, 120 dk, kişi başı", "800 TL"),
                 ]),
                 ("LaTeX dizgi", [
                     ("Hızlı düzeltme, 60 dakikaya kadar", "1.500 TL"),
                     ("Enstitü kurallarına uygun tez şablonu", "5.000 TL"),
-                    ("Word’den LaTeX’e dönüşüm", "sayfa başı 150 TL<br>en az 3.000 TL"),
+                    ("Word’den LaTeX’e dönüşüm, sayfa başı, en az 3.000 TL", "150 TL"),
                     ("Teslim öncesi biçim denetimi", "3.000 TL"),
                     ("Beamer sunum, 20 slayda kadar", "3.500 TL"),
                     ("TikZ şekil", "750–1.500 TL"),
                 ]),
                 ("Otomasyon ve yapay zekâ", [
                     ("Değerlendirme: 90 dk görüşme ve yazılı plan", "3.500 TL"),
-                    ("Tek iş akışı, kurulmuş ve belgelenmiş", "12.000 TL’den"),
+                    ("Tek iş akışı, kurulmuş ve belgelenmiş", "12.000 TL"),
                     ("Yapay zekâ koçluğu, 60 dk", "2.000 TL"),
                 ]),
             ],
             "prices_note": (
-                "Kasım 2026 ücretleridir. Yüz yüze dersler Beşiktaş, Kadıköy, Üsküdar "
-                "ve Pendik–Tuzla’da."
+                "Kasım 2026 ücretleridir. Beş derslik pakette %10 indirim var; 15 "
+                "dakikalık ön görüşme ücretsiz. Yüz yüze dersler Beşiktaş, Kadıköy, "
+                "Üsküdar ve Pendik–Tuzla’da."
             ),
             "events_title": "Atölye",
             "events": [
@@ -408,21 +404,21 @@ MATHS = {
             "contact_title": "İletişim",
             "contact_text": (
                 "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, ya da bir "
-                "dizgi veya otomasyon işi. En geç bir iş günü içinde döneriz."
+                "dizgi veya otomasyon işi. En geç bir iş günü içinde dönerim."
             ),
         },
         "en": {
             "path": "en/maths/",
-            "title": "Maths tutoring and LaTeX thesis typesetting, Istanbul – YUXA",
+            "title": "Maths tutoring, LaTeX thesis typesetting and AI, Istanbul – YUXA",
             "description": (
                 "Lessons in university maths and programming, IB and French-curriculum "
-                "maths; theses typeset in LaTeX; automation with n8n. Online, or in "
+                "maths; theses typeset in LaTeX; AI and automation with n8n. Online, or in "
                 "person in Istanbul."
             ),
             "ids": {"offers": "services", "how": "how", "prices": "prices",
                     "events": "workshop", "contact": "contact"},
             "panel": {
-                "title": "Mathematics, programming and LaTeX",
+                "title": "Mathematics, programming, LaTeX and AI",
                 "text": (
                     "He gives private lessons in Turkish, French or English: university "
                     "mathematics and programming, IB and French-curriculum maths, and "
@@ -435,20 +431,14 @@ MATHS = {
                     "point, their corresponding sides meet in three points on one line."
                 ),
                 "rows": [
-                    ("Lessons, 60 min", "from 1,500 TL"),
-                    ("LaTeX typesetting", "from 1,500 TL"),
-                    ("Automation and AI", "from 2,000 TL"),
+                    ("Lessons, 60 min", "1,500 TL"),
+                    ("LaTeX typesetting", "1,500 TL"),
+                    ("Automation and AI", "2,000 TL"),
                 ],
                 "link": "Lessons, typesetting and prices",
             },
             "kicker": "Abdullah Uyu",
-            "heading": "Mathematics, programming and LaTeX",
-            "lead": (
-                "Abdullah gives private lessons in Turkish, French or English, typesets "
-                "theses and documents in LaTeX and builds automations for small teams. "
-                "Lessons are online, or in person in Istanbul: Beşiktaş, Kadıköy, "
-                "Üsküdar, Pendik–Tuzla."
-            ),
+            "heading": "Mathematics, programming, LaTeX and AI",
             "mail_subject": "Enquiry",
             "offers_title": "Services",
             "offers": [
@@ -498,7 +488,7 @@ MATHS = {
             ),
             "how_title": "How it works",
             "how": [
-                "We start with a free 15-minute call about what you need, your level "
+                "It starts with a free 15-minute call about what you need, your level "
                 "and your goal.",
                 "Lessons are online (Google Meet) or in person.",
                 "You keep typeset notes from every lesson, and the compiled source "
@@ -510,26 +500,25 @@ MATHS = {
                     ("One-to-one, online or in person, 60 min", "1,500 TL"),
                     ("IB, A-level and French curricula, online or in person, 60 min",
                      "2,000 TL"),
-                    ("Exam clinic: 3–6 students, 120 min", "800 TL per student"),
-                    ("Five-lesson pack", "10% off"),
-                    ("First call, 15 min", "free"),
+                    ("Exam clinic: 3–6 students, 120 min, per student", "800 TL"),
                 ]),
                 ("LaTeX typesetting", [
                     ("Quick fix, up to 60 min", "1,500 TL"),
                     ("Thesis template to your graduate school’s rules", "5,000 TL"),
-                    ("Word to LaTeX conversion", "150 TL a page<br>minimum 3,000 TL"),
+                    ("Word to LaTeX conversion, per page, minimum 3,000 TL", "150 TL"),
                     ("Format check before submission", "3,000 TL"),
                     ("Beamer slides, up to 20", "3,500 TL"),
                     ("TikZ figure", "750–1,500 TL"),
                 ]),
                 ("Automation and AI", [
                     ("Audit: 90-min call and a written plan", "3,500 TL"),
-                    ("One workflow, built and documented", "from 12,000 TL"),
+                    ("One workflow, built and documented", "12,000 TL"),
                     ("AI coaching, 60 min", "2,000 TL"),
                 ]),
             ],
             "prices_note": (
-                "Prices as of November 2026. In-person lessons in Beşiktaş, Kadıköy, "
+                "Prices as of November 2026. A five-lesson pack is 10% off, and the "
+                "first 15-minute call is free. In-person lessons in Beşiktaş, Kadıköy, "
                 "Üsküdar and Pendik–Tuzla."
             ),
             "events_title": "Workshop",
@@ -548,22 +537,22 @@ MATHS = {
             ],
             "contact_title": "Contact",
             "contact_text": (
-                "Tell us briefly what it is about: a course and your level, or a "
-                "typesetting or automation job. We reply within one working day."
+                "Tell me briefly what it is about: a course and your level, or a "
+                "typesetting or automation job. I reply within one working day."
             ),
         },
         "fr": {
             "path": "fr/maths/",
-            "title": "Cours de maths et composition LaTeX à Istanbul – YUXA",
+            "title": "Cours de maths, composition LaTeX et IA à Istanbul – YUXA",
             "description": (
                 "Cours de maths en français, du collège à l’université, bac et IB ; "
-                "programmation ; composition de thèses en LaTeX ; automatisation. À "
+                "programmation ; composition de thèses en LaTeX ; IA et automatisation. À "
                 "Istanbul ou en ligne."
             ),
             "ids": {"offers": "services", "how": "methode", "prices": "tarifs",
                     "events": "atelier", "contact": "contact"},
             "panel": {
-                "title": "Mathématiques, informatique et LaTeX",
+                "title": "Mathématiques, informatique, LaTeX et IA",
                 "text": (
                     "Il donne des cours particuliers en français, en turc ou en anglais : "
                     "mathématiques du collège à l’université, programme français, bac et "
@@ -577,20 +566,14 @@ MATHS = {
                     "points alignés."
                 ),
                 "rows": [
-                    ("Cours, 60 min", "à partir de 1 500 TL"),
-                    ("Composition LaTeX", "à partir de 1 500 TL"),
-                    ("Automatisation et IA", "à partir de 2 000 TL"),
+                    ("Cours, 60 min", "1 500 TL"),
+                    ("Composition LaTeX", "1 500 TL"),
+                    ("Automatisation et IA", "2 000 TL"),
                 ],
                 "link": "Cours, composition et tarifs",
             },
             "kicker": "Abdullah Uyu",
-            "heading": "Mathématiques, informatique et LaTeX",
-            "lead": (
-                "Abdullah donne des cours particuliers en français, en turc ou en "
-                "anglais, compose thèses et documents en LaTeX et automatise des tâches "
-                "pour les petites équipes. Les cours ont lieu en ligne, ou à Istanbul : "
-                "Beşiktaş, Kadıköy, Üsküdar, Pendik–Tuzla."
-            ),
+            "heading": "Mathématiques, informatique, LaTeX et IA",
             "mail_subject": "Demande de renseignements",
             "offers_title": "Services",
             "offers": [
@@ -640,7 +623,7 @@ MATHS = {
             ),
             "how_title": "Comment ça marche",
             "how": [
-                "Nous commençons par un appel gratuit de 15 minutes pour cerner votre "
+                "Tout commence par un appel gratuit de 15 minutes pour cerner votre "
                 "besoin, votre niveau et votre objectif.",
                 "Les séances ont lieu en ligne (Google Meet) ou en présentiel.",
                 "Vous gardez une fiche composée de chaque séance, et les fichiers "
@@ -652,28 +635,27 @@ MATHS = {
                     ("Collège, lycée, bac et IB, en ligne ou à domicile, 60 min",
                      "2 000 TL"),
                     ("Université, en ligne ou en présentiel, 60 min", "1 500 TL"),
-                    ("Stage de révision : 3 à 6 élèves, 120 min", "800 TL par élève"),
-                    ("Forfait de cinq séances", "10 % de remise"),
-                    ("Premier appel, 15 min", "offert"),
+                    ("Stage de révision : 3 à 6 élèves, 120 min, par élève", "800 TL"),
                 ]),
                 ("Composition LaTeX", [
                     ("Correction rapide, jusqu’à 60 min", "1 500 TL"),
                     ("Gabarit de thèse selon les règles de l’institut", "5 000 TL"),
-                    ("Conversion de Word vers LaTeX",
-                     "150 TL la page<br>minimum 3 000 TL"),
+                    ("Conversion de Word vers LaTeX, la page, minimum 3 000 TL",
+                     "150 TL"),
                     ("Vérification avant dépôt", "3 000 TL"),
                     ("Présentation Beamer, jusqu’à 20 diapositives", "3 500 TL"),
                     ("Figure TikZ", "750–1 500 TL"),
                 ]),
                 ("Automatisation et IA", [
                     ("Diagnostic : appel de 90 min et plan écrit", "3 500 TL"),
-                    ("Un flux construit et documenté", "à partir de 12 000 TL"),
+                    ("Un flux construit et documenté", "12 000 TL"),
                     ("Accompagnement IA, 60 min", "2 000 TL"),
                 ]),
             ],
             "prices_note": (
-                "Tarifs de novembre 2026. Séances en présentiel à Beşiktaş, Kadıköy, "
-                "Üsküdar et Pendik–Tuzla."
+                "Tarifs de novembre 2026. Le forfait de cinq séances bénéficie de 10 % "
+                "de remise, et le premier appel de 15 minutes est offert. Séances en "
+                "présentiel à Beşiktaş, Kadıköy, Üsküdar et Pendik–Tuzla."
             ),
             "events_title": "Atelier",
             "events": [
@@ -691,9 +673,9 @@ MATHS = {
             ],
             "contact_title": "Contact",
             "contact_text": (
-                "Dites-nous en quelques mots ce qui vous amène : la matière et le "
-                "niveau, ou un travail de composition ou d’automatisation. Nous "
-                "répondons sous un jour ouvré."
+                "Dites-moi en quelques mots ce qui vous amène : la matière et le "
+                "niveau, ou un travail de composition ou d’automatisation. Je "
+                "réponds sous un jour ouvré."
             ),
         },
     },
@@ -730,9 +712,9 @@ WOODWORK_PHOTOS = [
     ("lidded-bowl-closed", "Kapaklı kase", "Lidded bowl", "Bol à couvercle"),
     ("lidded-bowl-open", "Kapaklı kase, açık", "Lidded bowl, open",
      "Bol à couvercle, ouvert"),
-    ("asymmetric-bowl-bottom", "Asimetrik kase, alttan", "Asymmetric bowl, from below",
-     "Bol asymétrique, vu de dessous"),
     ("wooden-ashtray", "Küllük", "Ashtray", "Cendrier"),
+    ("wooden-ashtray-bottom", "Küllük, alttan", "Ashtray, from below",
+     "Cendrier, vu de dessous"),
     ("footed-tray-side", "Ayaklı tepsi", "Footed tray", "Plateau sur pieds"),
     ("footed-tray-bottom", "Ayaklı tepsi, alttan", "Footed tray, from below",
      "Plateau sur pieds, vu de dessous"),
@@ -744,6 +726,7 @@ WOODWORK = {
     "photos": WOODWORK_PHOTOS,
     "photo_dir": "assets/woodwork/",
     "cover": "assets/woodwork/three-kuksas-1000.jpg",
+    "ornament": "rings",  # behind the heading: assets/rings.svg
     "image": "assets/og-woodwork.jpg",  # social preview, made in the private repo
     "booking": False,
     "pages": {
@@ -767,25 +750,16 @@ WOODWORK = {
                 "alt": "Durmuş Uyu’nun oyduğu üç kuksa",
                 # Starting prices; keep them in step with the price list below.
                 "rows": [
-                    ("Kaşık ve ölçek", "750 TL’den"),
-                    ("Kuksa, kase ve kutu", "2.000 TL’den"),
-                    ("Kaşık oyma atölyesi, 3–4 saat", "kişi başı 1.250 TL"),
+                    ("Kaşık ve ölçek", "750 TL"),
+                    ("Kuksa, kase ve kutu", "2.000 TL"),
+                    ("Kaşık oyma atölyesi, 3–4 saat, kişi başı", "1.250 TL"),
                 ],
                 "link": "İşler, sipariş ve atölyeler",
             },
             "kicker": "Durmuş Uyu",
             "heading": "Oyma",
-            "lead": (
-                "Durmuş sipariş üzerine kaşık, ölçek, kuksa, kase ve kutu oyuyor; her "
-                "parçayı tek tek, elde yapıyor. Yeni başlayanlara ve gruplara oyma ve "
-                "ahşap işçiliği atölyeleri veriyor."
-            ),
             "mail_subject": "Ahşap",
             "gallery_title": "İşler",
-            "gallery_note": (
-                "Gördüğünüz parçalar satılmış olabilir; benzerlerini sipariş üzerine "
-                "yapıyoruz. Elde yapıldıkları için hiçbiri ötekinin tıpkısı olmaz."
-            ),
             "offers_title": "Sipariş ve atölyeler",
             "offers": [
                 {
@@ -813,22 +787,22 @@ WOODWORK = {
                         "götürürsünüz",
                         "Ahşap işçiliği: el aletleriyle temel teknikler",
                         "Okul, şirket ve dernekler için grup atölyeleri",
-                        "Aletler ve ahşap bizden",
+                        "Aletler ve ahşap benden",
                     ],
                 },
             ],
             "prices_title": "Fiyatlar",
             "prices": [
                 ("Parçalar", [
-                    ("Kaşık ve ölçek", "750 TL’den"),
-                    ("Kuksa", "2.000 TL’den"),
-                    ("Kase ve kutu", "2.500 TL’den"),
+                    ("Kaşık ve ölçek", "750 TL"),
+                    ("Kuksa", "2.000 TL"),
+                    ("Kase ve kutu", "2.500 TL"),
                 ]),
                 ("Atölyeler", [
-                    ("Kaşık oyma atölyesi: 3–4 saat, 4–8 kişi; ahşap ve aletler dahil",
-                     "kişi başı 1.250 TL"),
-                    ("Okul, şirket ya da dernek için grup atölyesi, en az 6 kişi",
-                     "kişi başı 1.250 TL"),
+                    ("Kaşık oyma atölyesi: 3–4 saat, 4–8 kişi; ahşap ve aletler dahil, "
+                     "kişi başı", "1.250 TL"),
+                    ("Okul, şirket ya da dernek için grup atölyesi, en az 6 kişi, kişi "
+                     "başı", "1.250 TL"),
                 ]),
             ],
             "prices_note": (
@@ -836,16 +810,10 @@ WOODWORK = {
                 "parça işler ile ahşap işçiliği atölyelerinin fiyatı için yazın. Açık "
                 "atölyelerin tarihleri bu sayfada duyurulacak."
             ),
-            "aside_title": "Bakım",
-            "aside": (
-                "Ahşap mutfak eşyalarını elde, ılık suyla yıkayın; suda bekletmeyin, "
-                "bulaşık makinesine koymayın. Kuruduktan sonra arada bir gıdaya uygun "
-                "bir yağla silin."
-            ),
             "contact_title": "Sipariş ve iletişim",
             "contact_text": (
                 "Ne istediğinizi kısaca yazın: parça ve ölçü, ya da atölye için kişi "
-                "sayısı ve tarih. En geç bir iş günü içinde döneriz."
+                "sayısı ve tarih. En geç bir iş günü içinde dönerim."
             ),
         },
         "en": {
@@ -867,32 +835,23 @@ WOODWORK = {
                 ),
                 "alt": "Three kuksas carved by Durmuş Uyu",
                 "rows": [
-                    ("Spoons and scoops", "from 750 TL"),
-                    ("Kuksas, bowls and boxes", "from 2,000 TL"),
-                    ("Spoon carving workshop, 3–4 h", "1,250 TL per person"),
+                    ("Spoons and scoops", "750 TL"),
+                    ("Kuksas, bowls and boxes", "2,000 TL"),
+                    ("Spoon carving workshop, 3–4 h, per person", "1,250 TL"),
                 ],
                 "link": "Work, commissions and workshops",
             },
             "kicker": "Durmuş Uyu",
             "heading": "Woodcarving",
-            "lead": (
-                "Durmuş carves spoons, scoops, kuksas, bowls and boxes to order, by "
-                "hand and one at a time. He also runs carving and woodworking workshops "
-                "for beginners and for groups."
-            ),
             "mail_subject": "Woodwork",
             "gallery_title": "Work",
-            "gallery_note": (
-                "The pieces shown may already be sold; we make similar ones to order. "
-                "Each is made by hand, so no two are exactly the same."
-            ),
             "offers_title": "Commissions and workshops",
             "offers": [
                 {
                     "id": "commissions",
                     "title": "Commissions",
                     "body": (
-                        "For the kitchen, the table or as a gift: tell us what you have "
+                        "For the kitchen, the table or as a gift: tell me what you have "
                         "in mind and we will settle the size and the shape together."
                     ),
                     "items": [
@@ -921,33 +880,27 @@ WOODWORK = {
             "prices_title": "Prices",
             "prices": [
                 ("Pieces", [
-                    ("Spoons and scoops", "from 750 TL"),
-                    ("Kuksas", "from 2,000 TL"),
-                    ("Bowls and boxes", "from 2,500 TL"),
+                    ("Spoons and scoops", "750 TL"),
+                    ("Kuksas", "2,000 TL"),
+                    ("Bowls and boxes", "2,500 TL"),
                 ]),
                 ("Workshops", [
-                    ("Spoon carving: 3–4 h, 4–8 people, wood and tools included",
-                     "1,250 TL per person"),
+                    ("Spoon carving: 3–4 h, 4–8 people, wood and tools included, per "
+                     "person", "1,250 TL"),
                     ("Group workshop for a school, company or association, 6 people or "
-                     "more", "1,250 TL per person"),
+                     "more, per person", "1,250 TL"),
                 ]),
             ],
             "prices_note": (
                 "For pieces, the final price depends on the size and the work. For "
-                "trays, one-off pieces and woodworking workshops, ask us for a price. "
+                "trays, one-off pieces and woodworking workshops, ask me for a price. "
                 "Dates of open workshops will be announced on this page. Workshops are "
-                "in Turkish; ask us about English."
-            ),
-            "aside_title": "Care",
-            "aside": (
-                "Wash wooden kitchenware by hand in warm water; do not soak it or put "
-                "it in the dishwasher. Once dry, wipe it now and then with a food-safe "
-                "oil."
+                "in Turkish; ask me about English."
             ),
             "contact_title": "Orders and contact",
             "contact_text": (
-                "Tell us briefly what you would like: the piece and its size, or for a "
-                "workshop the number of people and a date. We reply within one working "
+                "Tell me briefly what you would like: the piece and its size, or for a "
+                "workshop the number of people and a date. I reply within one working "
                 "day."
             ),
         },
@@ -971,33 +924,23 @@ WOODWORK = {
                 ),
                 "alt": "Trois kuksas de Durmuş Uyu",
                 "rows": [
-                    ("Cuillères et doseurs", "à partir de 750 TL"),
-                    ("Kuksas, bols et boîtes", "à partir de 2 000 TL"),
-                    ("Sculpture de cuillère, 3 à 4 h", "1 250 TL par personne"),
+                    ("Cuillères et doseurs", "750 TL"),
+                    ("Kuksas, bols et boîtes", "2 000 TL"),
+                    ("Sculpture de cuillère, 3 à 4 h, par personne", "1 250 TL"),
                 ],
                 "link": "Réalisations, commandes et ateliers",
             },
             "kicker": "Durmuş Uyu",
             "heading": "Sculpture sur bois",
-            "lead": (
-                "Durmuş sculpte sur commande cuillères, doseurs, kuksas, bols et "
-                "boîtes, à la main et une à une. Il anime aussi des ateliers de "
-                "sculpture et de travail du bois pour débutants et pour groupes."
-            ),
             "mail_subject": "Travail du bois",
             "gallery_title": "Réalisations",
-            "gallery_note": (
-                "Les pièces présentées sont peut-être déjà vendues ; nous en faisons de "
-                "semblables sur commande. Faites à la main, elles ne sont jamais tout à "
-                "fait identiques."
-            ),
             "offers_title": "Commandes et ateliers",
             "offers": [
                 {
                     "id": "commandes",
                     "title": "Sur commande",
                     "body": (
-                        "Pour la cuisine, la table ou pour offrir : dites-nous ce que "
+                        "Pour la cuisine, la table ou pour offrir : dites-moi ce que "
                         "vous souhaitez, nous fixerons ensemble la taille et la forme."
                     ),
                     "items": [
@@ -1026,35 +969,29 @@ WOODWORK = {
             "prices_title": "Tarifs",
             "prices": [
                 ("Pièces", [
-                    ("Cuillères et doseurs", "à partir de 750 TL"),
-                    ("Kuksas", "à partir de 2 000 TL"),
-                    ("Bols et boîtes", "à partir de 2 500 TL"),
+                    ("Cuillères et doseurs", "750 TL"),
+                    ("Kuksas", "2 000 TL"),
+                    ("Bols et boîtes", "2 500 TL"),
                 ]),
                 ("Ateliers", [
                     ("Sculpture de cuillère : 3 à 4 h, 4 à 8 personnes, bois et outils "
-                     "fournis", "1 250 TL par personne"),
+                     "fournis, par personne", "1 250 TL"),
                     ("Atelier de groupe pour une école, une entreprise ou une "
-                     "association, 6 personnes au moins", "1 250 TL par personne"),
+                     "association, 6 personnes au moins, par personne", "1 250 TL"),
                 ]),
             ],
             "prices_note": (
                 "Pour les pièces, le prix final dépend de la taille et du travail. Pour "
                 "les plateaux, les pièces uniques et les ateliers de travail du bois, "
-                "demandez-nous un devis. Les dates des ateliers ouverts seront "
+                "demandez-moi un devis. Les dates des ateliers ouverts seront "
                 "annoncées sur cette page. Ateliers en turc ; pour l’anglais, "
-                "demandez-nous."
-            ),
-            "aside_title": "Entretien",
-            "aside": (
-                "Lavez les ustensiles en bois à la main, à l’eau tiède ; ne les laissez "
-                "pas tremper et évitez le lave-vaisselle. Une fois secs, passez-y de "
-                "temps en temps une huile alimentaire."
+                "demandez-moi."
             ),
             "contact_title": "Commandes et contact",
             "contact_text": (
-                "Dites-nous en quelques mots ce que vous souhaitez : la pièce et sa "
-                "taille, ou, pour un atelier, le nombre de personnes et une date. Nous "
-                "répondons sous un jour ouvré."
+                "Dites-moi en quelques mots ce que vous souhaitez : la pièce et sa "
+                "taille, ou, pour un atelier, le nombre de personnes et une date. Je "
+                "réponds sous un jour ouvré."
             ),
         },
     },
@@ -1112,7 +1049,7 @@ WORKSHOP = {
     ],
     "register_title": "Kayıt",
     "register_text": (
-        "Kaydolduktan sonra ödeme bilgilerini iletiyoruz; yeriniz ödemeyle "
+        "Kaydolduktan sonra ödeme bilgilerini iletiyorum; yeriniz ödemeyle "
         "kesinleşir."
     ),
     "register_form": "Kayıt formu",

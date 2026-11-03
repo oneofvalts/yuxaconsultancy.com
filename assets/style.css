@@ -138,21 +138,11 @@ header.site .wrap {
 }
 
 .wordmark {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 0.35rem;
   color: var(--ink);
   font-size: 1.15rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-decoration: none;
-}
-
-.wordmark::before {
-  content: "";
-  width: 1.6rem;
-  height: 3px;
-  background: var(--accent);
 }
 
 nav.sections {
@@ -190,10 +180,43 @@ nav.langs a[aria-current] {
   font-weight: 500;
 }
 
-/* Hero */
+/* Hero. On the work pages a line drawing sits behind it on the right, a
+   cardioid for mathematics and growth rings for wood (tools/make_ornaments.py),
+   used as a mask so that it takes the accent colour of either scheme. */
 
 .hero {
+  position: relative;
+  overflow: hidden;
   padding: 4.5rem 0 3.5rem;
+}
+
+.hero > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.hero.cardioid::after,
+.hero.rings::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: max(-5rem, calc((100% - var(--wide)) / 2 - 4rem));
+  width: clamp(15rem, 40vw, 29rem);
+  aspect-ratio: 1;
+  background: var(--accent);
+  opacity: 0.2;
+  transform: translateY(-50%);
+  mask: center / contain no-repeat;
+  pointer-events: none;
+}
+
+.hero.cardioid::after {
+  mask-image: url("cardioid.svg");
+  transform: translateY(-50%) rotate(-14deg);
+}
+
+.hero.rings::after {
+  mask-image: url("rings.svg");
 }
 
 .hero h1 {
@@ -215,7 +238,10 @@ nav.langs a[aria-current] {
 .kicker {
   margin: 0 0 0.75rem;
   color: var(--muted);
-  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .buttons {
@@ -406,6 +432,14 @@ table.price td + td {
   row-gap: 0;
 }
 
+/* The cover is mounted like a print: a margin of paper and a hairline. */
+.cover {
+  display: block;
+  padding: 0.6rem;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
 .cover img {
   display: block;
   width: 100%;
@@ -492,10 +526,18 @@ table.price td + td {
   width: 100%;
   height: auto;
   background: var(--panel);
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .gallery a {
+  display: block;
+  overflow: hidden;
   cursor: zoom-in;
+}
+
+.gallery a:hover img {
+  transform: scale(1.03);
+  filter: saturate(1.08);
 }
 
 .gallery figcaption {
@@ -626,6 +668,10 @@ dialog.viewer[open] {
   dialog.viewer[open] {
     animation: none;
   }
+
+  .gallery img {
+    transition: none;
+  }
 }
 
 /* Workshop page */
@@ -679,6 +725,12 @@ footer.site {
 
   .hero {
     padding: 3rem 0 2.5rem;
+  }
+
+  .hero.cardioid::after,
+  .hero.rings::after {
+    right: -6rem;
+    opacity: 0.14;
   }
 
   .panels {

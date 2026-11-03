@@ -391,7 +391,8 @@ def work_page(key, lang):
     if "photos" in spec:
         sections.append(section(ids["gallery"], t(w["gallery_title"]),
                                 gallery(spec, lang, prefix),
-                                f'<p class="note">{t(w["gallery_note"])}</p>',
+                                f'<p class="note">{t(w["gallery_note"])}</p>'
+                                if "gallery_note" in w else "",
                                 viewer(lang, w["gallery_title"])))
         scripts.append("assets/viewer.js")
     offers = []
@@ -437,10 +438,10 @@ def work_page(key, lang):
     body = "\n".join([
         header(lang=lang, prefix=prefix, current=key),
         '<main id="main">',
-        '<div class="hero"><div class="wrap">',
+        f'<div class="hero {spec["ornament"]}"><div class="wrap">',
         f'<p class="kicker">{t(w["kicker"])}</p>',
         f'<h1>{t(w["heading"])}</h1>',
-        f'<p class="lead">{t(w["lead"])}</p>',
+        f'<p class="lead">{t(w["lead"])}</p>' if "lead" in w else "",
         contact_buttons(page, email_label=page["cta_email"], **buttons),
         "</div></div>",
         *sections,
@@ -498,7 +499,7 @@ def workshop_page():
     body = "\n".join([
         header(lang="tr", prefix=prefix, current=None),
         '<main id="main">',
-        '<div class="hero"><div class="wrap">',
+        f'<div class="hero {C.MATHS["ornament"]}"><div class="wrap">',
         f'<p class="kicker">{t(w["kicker"])}</p>',
         f'<h1>{t(w["heading"])}</h1>',
         f'<p class="lead">{t(w["lead"])}</p>',
