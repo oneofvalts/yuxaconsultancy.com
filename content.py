@@ -193,8 +193,7 @@ TEAM = [
                 "siber güvenlik araştırma şirketinde matematikçi danışman, Ziraat "
                 "Teknoloji’de yapay zekâ uygulamaları alanında yazılım danışmanı olarak "
                 "çalıştı; n8n ile ajan tabanlı iş akışları geliştirdi.",
-                "Onlarca belgeyi LaTeX ile dizdi; Go Math adlı matematik yazı tipini "
-                "hazırladı.",
+                "Onlarca belgeyi LaTeX ile dizdi.",
             ],
             "en": [
                 "Abdullah graduated in mathematics from Galatasaray University in 2025, "
@@ -205,8 +204,7 @@ TEAM = [
                 "worked as a mathematician consultant at a cyber-security research "
                 "company and as a programmer consultant on AI applications at Ziraat "
                 "Teknoloji, building agentic workflows in n8n.",
-                "He has typeset dozens of documents in LaTeX and made a mathematics "
-                "typeface, Go Math.",
+                "He has typeset dozens of documents in LaTeX.",
             ],
             "fr": [
                 "Diplômé en mathématiques de l’Université Galatasaray en 2025, où "
@@ -218,8 +216,7 @@ TEAM = [
                 "cybersécurité, puis consultant en programmation au département des "
                 "applications d’IA de Ziraat Teknoloji, où il construisait des flux "
                 "agentiques avec n8n.",
-                "Il a composé des dizaines de documents en LaTeX et créé une fonte "
-                "mathématique, Go Math.",
+                "Il a composé des dizaines de documents en LaTeX.",
             ],
         },
     },
