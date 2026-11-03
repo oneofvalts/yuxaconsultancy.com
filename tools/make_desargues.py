@@ -17,8 +17,8 @@ from pathlib import Path
 
 WIDTH, HEIGHT = 600, 400
 # Panel, muted, ink and accent of style.css: light, then dark.
-LIGHT = {"bg": "#f3efe8", "muted": "#5d6470", "ink": "#16212e", "accent": "#b5432b"}
-DARK = {"bg": "#18212c", "muted": "#a2a9b4", "ink": "#e8e5df", "accent": "#e3714f"}
+LIGHT = {"bg": "#e3e9d6", "muted": "#676470", "ink": "#221321", "accent": "#00601f"}
+DARK = {"bg": "#303332", "muted": "#969faf", "ink": "#eaf2ef", "accent": "#7fca5a"}
 
 # The centre, the first triangle and how far out along each ray the second
 # triangle's vertices lie; chosen so that every point falls well inside.

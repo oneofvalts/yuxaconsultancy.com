@@ -145,7 +145,7 @@ def document(*, lang, prefix, title, description, canonical, locale, body,
              for h, _ in alternates if h in C.PAGES and C.PAGES[h]["locale"] != locale]
     head += [
         '<meta name="twitter:card" content="summary_large_image">',
-        '<meta name="theme-color" content="#16212e">',
+        '<meta name="theme-color" content="#221321">',
         f'<link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">',
         f'<link rel="apple-touch-icon" href="{prefix}assets/apple-touch-icon.png">',
     ]

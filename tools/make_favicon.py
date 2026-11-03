@@ -15,7 +15,7 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 
 GO_MEDIUM = "/usr/share/texmf-dist/fonts/truetype/bh/gofonts/Go-Medium.ttf"
-ACCENT = "#B5432B"
+ACCENT = "#00601F"
 SIZE = 64          # viewBox side
 GLYPH_HEIGHT = 40  # cap height of the drawn letter, in viewBox units
 

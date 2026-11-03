@@ -1,4 +1,7 @@
-/* yuxaconsultancy.com: one stylesheet, the house colours of yuxa.sty. */
+/* yuxaconsultancy.com: one stylesheet. The colours are those of the
+   ef-elea-light and ef-elea-dark Emacs themes by Protesilaos Stavrou
+   (github.com/protesilaos/ef-themes): background, its dim and alt shades
+   for panels and rules, the main and dim foregrounds, links' green. */
 
 @font-face {
   font-family: "Go";
@@ -30,12 +33,12 @@
 }
 
 :root {
-  --ink: #16212e;
-  --accent: #b5432b;
-  --muted: #5d6470;
-  --bg: #fbfaf7;
-  --panel: #f3efe8;
-  --line: #e2ddd4;
+  --ink: #221321;
+  --accent: #00601f;
+  --muted: #676470;
+  --bg: #edf5e2;
+  --panel: #e3e9d6;
+  --line: #d0d7ca;
   --on-accent: #ffffff;
   --wide: 64rem;
   --measure: 42rem;
@@ -43,13 +46,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink: #e8e5df;
-    --accent: #e3714f;
-    --muted: #a2a9b4;
-    --bg: #111821;
-    --panel: #18212c;
-    --line: #283341;
-    --on-accent: #111821;
+    --ink: #eaf2ef;
+    --accent: #7fca5a;
+    --muted: #969faf;
+    --bg: #222524;
+    --panel: #303332;
+    --line: #3e4140;
+    --on-accent: #222524;
   }
 }
 
@@ -561,9 +564,9 @@ html:has(dialog.viewer[open]) {
 }
 
 dialog.viewer {
-  --ink: #e8e5df;
-  --muted: #a2a9b4;
-  --accent: #e3714f;
+  --ink: #eaf2ef;
+  --muted: #969faf;
+  --accent: #7fca5a;
   width: 100%;
   height: 100%;
   max-width: none;
@@ -571,7 +574,7 @@ dialog.viewer {
   margin: 0;
   padding: 0 0 0.75rem;
   border: 0;
-  background: #111821;
+  background: #222524;
   color: var(--ink);
   touch-action: pan-y pinch-zoom;
 }
