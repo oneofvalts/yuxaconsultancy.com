@@ -2,7 +2,7 @@
 
 PAGES holds, in each language, the home page and the words every page
 shares; TEAM the people of YUXA; WORK_PAGES one page per person, showing
-their work; WORKSHOP the workshop page. Adding a person means an entry in
+their work. Adding a person means an entry in
 TEAM and one in WORK_PAGES: the home page gives each person a panel of their
 own, in TEAM order, which leads to their page.
 
@@ -23,8 +23,6 @@ WHATSAPP_LINK = "https://wa.me/message/E5OQUKF24TRFM1"
 # Google Calendar appointment schedule for the free 15-minute call.
 # Empty: the booking buttons open an e-mail instead.
 BOOKING_LINK = "https://calendar.app.google/b4TrMwy2mpcnn3G67"
-# Google Form for the workshop. Empty: registration by e-mail.
-WORKSHOP_FORM = ""
 # YUXA's accounts, linked in every page's footer in this order and named in
 # the structured data (schema.org sameAs). Empty: no links.
 SOCIAL = [
@@ -64,15 +62,7 @@ PAGES = {
         ],
         # Dated events under the panels; remove each once it is over.
         "upcoming_label": "Yaklaşan",
-        "upcoming": [
-            {
-                "title": "LaTeX ile Tez atölyesi:",
-                "text": "28 Kasım Cumartesi, 10.00–13.00, online. 20 Kasım’a kadar "
-                        "450 TL, sonra 600 TL.",
-                "link": "Ayrıntılar ve kayıt",
-                "page": "workshop",
-            },
-        ],
+        "upcoming": [],
         "cta_whatsapp": "WhatsApp’tan yazın",
         "cta_book": "Ücretsiz ön görüşme",
         "cta_email": "E-posta gönderin",
@@ -105,15 +95,7 @@ PAGES = {
             ("contact", "Contact"),
         ],
         "upcoming_label": "Coming up",
-        "upcoming": [
-            {
-                "title": "LaTeX ile Tez, a workshop in Turkish:",
-                "text": "Saturday 28 November, 10:00–13:00, online. 450 TL until "
-                        "20 November, then 600 TL.",
-                "link": "Details and registration (Turkish)",
-                "page": "workshop",
-            },
-        ],
+        "upcoming": [],
         "cta_whatsapp": "Message on WhatsApp",
         "cta_book": "Book a free call",
         "cta_email": "Send an e-mail",
@@ -148,15 +130,7 @@ PAGES = {
             ("contact", "Contact"),
         ],
         "upcoming_label": "À venir",
-        "upcoming": [
-            {
-                "title": "LaTeX ile Tez, un atelier en turc :",
-                "text": "samedi 28 novembre, de 10 h à 13 h, en ligne. 450 TL "
-                        "jusqu’au 20 novembre, puis 600 TL.",
-                "link": "Détails et inscription (en turc)",
-                "page": "workshop",
-            },
-        ],
+        "upcoming": [],
         "cta_whatsapp": "Écrire sur WhatsApp",
         "cta_book": "Réserver un appel gratuit",
         "cta_email": "Envoyer un e-mail",
@@ -289,8 +263,7 @@ MATHS = {
                 "hazırlık için özel ders; LaTeX ile tez dizgisi; yapay zekâ ve "
                 "otomasyon. Online ya da yüz yüze."
             ),
-            "ids": {"offers": "hizmetler", "how": "nasil", "prices": "ucretler",
-                    "events": "atolye", "contact": "iletisim"},
+            "ids": {"offers": "hizmetler", "how": "nasil", "prices": "ucretler", "contact": "iletisim"},
             "panel": {
                 "title": "Matematik, programlama, LaTeX ve yapay zekâ",
                 "text": (
@@ -392,19 +365,6 @@ MATHS = {
                 "Kasım 2026 ücretleridir. Beş derslik pakette %10 indirim var; 15 "
                 "dakikalık ön görüşme ücretsiz."
             ),
-            "events_title": "Atölye",
-            "events": [
-                {
-                    "title": "LaTeX ile Tez",
-                    "text": (
-                        "28 Kasım Cumartesi, 10.00–13.00, online. Tez yazanlar için üç "
-                        "saatlik bir LaTeX atölyesi: enstitü şablonu, kaynakça, şekiller "
-                        "ve teslim öncesi kontrol. 600 TL; 20 Kasım’a kadar 450 TL."
-                    ),
-                    "link": "Ayrıntılar ve kayıt",
-                    "page": "workshop",
-                },
-            ],
             "contact_title": "İletişim",
             "contact_text": (
                 "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, ya da bir "
@@ -419,8 +379,7 @@ MATHS = {
                 "maths; theses typeset in LaTeX; AI and automation with n8n. Online or in "
                 "person."
             ),
-            "ids": {"offers": "services", "how": "how", "prices": "prices",
-                    "events": "workshop", "contact": "contact"},
+            "ids": {"offers": "services", "how": "how", "prices": "prices", "contact": "contact"},
             "panel": {
                 "title": "Mathematics, programming, LaTeX and AI",
                 "text": (
@@ -524,20 +483,6 @@ MATHS = {
                 "Prices as of November 2026. A five-lesson pack is 10% off, and the "
                 "first 15-minute call is free."
             ),
-            "events_title": "Workshop",
-            "events": [
-                {
-                    "title": "LaTeX ile Tez (in Turkish)",
-                    "text": (
-                        "Saturday 28 November, 10:00–13:00, online. Three hours of LaTeX "
-                        "for anyone writing a thesis: the template, the bibliography, "
-                        "figures and the check before submission. 600 TL, or 450 TL "
-                        "until 20 November."
-                    ),
-                    "link": "Details and registration (Turkish)",
-                    "page": "workshop",
-                },
-            ],
             "contact_title": "Contact",
             "contact_text": (
                 "Tell me briefly what it is about: a course and your level, or a "
@@ -552,8 +497,7 @@ MATHS = {
                 "programmation ; composition de thèses en LaTeX ; IA et automatisation. En "
                 "ligne ou en personne."
             ),
-            "ids": {"offers": "services", "how": "methode", "prices": "tarifs",
-                    "events": "atelier", "contact": "contact"},
+            "ids": {"offers": "services", "how": "methode", "prices": "tarifs", "contact": "contact"},
             "panel": {
                 "title": "Mathématiques, informatique, LaTeX et IA",
                 "text": (
@@ -659,20 +603,6 @@ MATHS = {
                 "Tarifs de novembre 2026. Le forfait de cinq séances bénéficie de 10 % "
                 "de remise, et le premier appel de 15 minutes est offert."
             ),
-            "events_title": "Atelier",
-            "events": [
-                {
-                    "title": "LaTeX ile Tez (en turc)",
-                    "text": (
-                        "Samedi 28 novembre, de 10 h à 13 h, en ligne. Trois heures de "
-                        "LaTeX pour qui rédige une thèse : le gabarit, la bibliographie, "
-                        "les figures et la vérification avant dépôt. 600 TL, ou 450 TL "
-                        "jusqu’au 20 novembre."
-                    ),
-                    "link": "Détails et inscription (en turc)",
-                    "page": "workshop",
-                },
-            ],
             "contact_title": "Contact",
             "contact_text": (
                 "Dites-moi en quelques mots ce qui vous amène : la matière et le "
@@ -1003,65 +933,3 @@ WOODWORK = {
 
 # One page per person, by the key TEAM and the navigation use.
 WORK_PAGES = {"maths": MATHS, "woodwork": WOODWORK}
-
-# The workshop page, in Turkish only: /atolye/
-WORKSHOP = {
-    "path": "atolye/",
-    "title": "LaTeX ile Tez atölyesi, 28 Kasım 2026, online – YUXA",
-    "description": (
-        "Tez yazan yüksek lisans ve doktora öğrencileri için üç saatlik çevrim içi "
-        "LaTeX atölyesi: 28 Kasım 2026 Cumartesi, 10.00–13.00. 600 TL; 20 Kasım’a "
-        "kadar 450 TL."
-    ),
-    "kicker": "Atölye, 28 Kasım 2026",
-    "heading": "LaTeX ile Tez",
-    "lead": (
-        "Tez yazan yüksek lisans ve doktora öğrencileri için üç saatlik, çevrim içi "
-        "bir LaTeX atölyesi."
-    ),
-    "facts": [
-        ("Tarih", "28 Kasım 2026 Cumartesi, 10.00–13.00 (10 dakika ara)"),
-        ("Yer", "Online, Google Meet"),
-        ("Ücret", "600 TL; 20 Kasım’a kadar 450 TL"),
-        ("Kontenjan", "20 kişi"),
-        ("Önkoşul", "Yok. LaTeX bilgisi gerekmez; bir dizüstü bilgisayar ve ücretsiz "
-                    "bir Overleaf hesabı yeterli."),
-    ],
-    "programme_title": "Program",
-    "programme": [
-        "On dakikada LaTeX; Overleaf ile çalışmak",
-        "Enstitü şablonu: kapak, ön sayfalar, bölümler, numaralandırma",
-        "Kaynakça: BibLaTeX ve Zotero",
-        "Şekiller, tablolar ve matematik",
-        "Teslim öncesi kontrol listesi; sorular",
-    ],
-    "takeaways_title": "Yanınızda kalanlar",
-    "takeaways": [
-        "Kendi enstitünüzün kurallarına göre derlenen bir tez iskeleti",
-        "Kaynakça, şekil ve tablolar için hazır kalıplar",
-        "Teslim öncesi kontrol listesi (PDF)",
-        "31 Aralık’a kadar tez şablonu kurulumunda %15 indirim",
-    ],
-    # The same facts for search engines: Turkish time, prices in TL with the
-    # moments each is on sale from and until.
-    "start": "2026-11-28T10:00:00+03:00",
-    "end": "2026-11-28T13:00:00+03:00",
-    "capacity": 20,
-    "offers": [
-        ("450", "2026-10-29T00:00:00+03:00", "2026-11-20T23:59:59+03:00"),
-        ("600", "2026-11-21T00:00:00+03:00", "2026-11-28T10:00:00+03:00"),
-    ],
-    "register_title": "Kayıt",
-    "register_text": (
-        "Kaydolduktan sonra ödeme bilgilerini iletiyorum; yeriniz ödemeyle "
-        "kesinleşir."
-    ),
-    "register_form": "Kayıt formu",
-    "register_email": "E-postayla kaydolun",
-    "register_subject": "Atölye kaydı: LaTeX ile Tez",
-    "who": (
-        "Atölyeyi Abdullah Uyu veriyor. Galatasaray Üniversitesi Matematik "
-        "Bölümü’nü bitirdi, aynı üniversitede yüksek lisans yapıyor ve onlarca "
-        "belgeyi LaTeX ile dizdi."
-    ),
-}

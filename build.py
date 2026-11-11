@@ -5,7 +5,7 @@
 
 Reads content.py and writes, next to this file, the home page in each
 language (index.html, en/, fr/), each person's work page in each language
-(matematik/, en/maths/, fr/maths/; ahsap/, en/woodwork/, fr/bois/), atolye/,
+(matematik/, en/maths/, fr/maths/; ahsap/, en/woodwork/, fr/bois/),
 404.html, sitemap.xml and robots.txt. Standard library only; the output is
 committed and served by GitHub Pages.
 """
@@ -57,9 +57,7 @@ def prefix_of(path: str) -> str:
 
 
 def page_path(key: str, lang: str) -> str:
-    """Path of a page content.py refers to by key: the workshop or a work page."""
-    if key == "workshop":
-        return C.WORKSHOP["path"]
+    """Path of the work page content.py refers to by key."""
     return C.WORK_PAGES[key]["pages"][lang]["path"]
 
 
@@ -180,7 +178,7 @@ def header(*, lang, prefix, current):
     """Wordmark, the links to the work pages and to the contact section, and
     the language switch.
 
-    current is "home", the key of a work page, or None for the pages in
+    current is "home", the key of a work page, or None for the page in
     Turkish only. The home and work pages switch language in place and have a
     contact section of their own; the others link to the home page of each
     language and to its contact section.
@@ -511,73 +509,6 @@ def work_page(key, lang):
                     about=person_id(person))
 
 
-def workshop_page():
-    w, page = C.WORKSHOP, C.PAGES["tr"]
-    t = lambda s: typo("tr", s)  # noqa: E731
-    prefix = prefix_of(w["path"])
-    facts = "".join(f"<dt>{t(k)}</dt><dd>{t(v)}</dd>" for k, v in w["facts"])
-    programme = "".join(f"<li>{t(i)}</li>" for i in w["programme"])
-    takeaways = "".join(f"<li>{t(i)}</li>" for i in w["takeaways"])
-    buttons = []
-    if C.WORKSHOP_FORM:
-        buttons.append(f'<a class="btn primary" {link(C.WORKSHOP_FORM)}>'
-                       f'{w["register_form"]}</a>')
-    kind = "btn" if C.WORKSHOP_FORM else "btn primary"
-    buttons.append(f'<a class="{kind}" href="{mailto(w["register_subject"])}">'
-                   f'{w["register_email"]}</a>')
-    if C.WHATSAPP_LINK:
-        buttons.append(f'<a class="btn" {link(C.WHATSAPP_LINK)}>'
-                       f'{page["cta_whatsapp"]}</a>')
-    teacher = next(m for m in C.TEAM if m["page"] == "maths")
-    event = {
-        "@type": "EducationEvent",
-        "name": w["heading"],
-        "description": w["description"],
-        "startDate": w["start"],
-        "endDate": w["end"],
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "inLanguage": "tr",
-        "location": {"@type": "VirtualLocation", "url": url(w["path"])},
-        "maximumAttendeeCapacity": w["capacity"],
-        "organizer": organisation(full=False),
-        "performer": {"@type": "Person", "@id": person_id(teacher),
-                      "name": teacher["name"]},
-        "offers": [{"@type": "Offer", "price": price, "priceCurrency": "TRY",
-                    "validFrom": start, "validThrough": until, "url": url(w["path"]),
-                    "availability": "https://schema.org/InStock"}
-                   for price, start, until in w["offers"]],
-        "image": url("assets/og.png"),
-    }
-    body = "\n".join([
-        header(lang="tr", prefix=prefix, current=None),
-        '<main id="main">',
-        f'<div class="hero {C.MATHS["ornament"]}"><div class="wrap">',
-        f'<p class="kicker">{t(w["kicker"])}</p>',
-        f'<h1>{t(w["heading"])}</h1>',
-        f'<p class="lead">{t(w["lead"])}</p>',
-        f'<dl class="facts">{facts}</dl>',
-        "</div></div>",
-        '<section><div class="wrap two">',
-        f'<div><h2>{t(w["programme_title"])}</h2><ol class="plain">{programme}</ol></div>',
-        f'<div><h2>{t(w["takeaways_title"])}</h2><ul class="plain">{takeaways}</ul></div>',
-        "</div></section>",
-        '<section id="kayit"><div class="wrap">',
-        f'<h2>{t(w["register_title"])}</h2>',
-        f'<p>{t(w["register_text"])}</p>',
-        '<div class="buttons">' + "".join(buttons) + "</div>",
-        f'<p class="note">{t(w["who"])}</p>',
-        f'<p><a href="{prefix}">{t(page["back"])}</a></p>',
-        "</div></section>",
-        "</main>",
-        footer(t(page["footer"])),
-    ])
-    return document(lang="tr", prefix=prefix, title=w["title"],
-                    description=w["description"], canonical=url(w["path"]),
-                    locale="tr_TR", body=body,
-                    jsonld=[event, breadcrumbs("tr", w["heading"], w["path"])])
-
-
 def not_found_page():
     page = C.PAGES["tr"]
     body = "\n".join([
@@ -642,7 +573,6 @@ def main() -> None:
              for lang in C.LANGS}
     pages.update({page_path(key, lang): lambda key=key, lang=lang: work_page(key, lang)
                   for key in C.WORK_PAGES for lang in C.LANGS})
-    pages[C.WORKSHOP["path"]] = workshop_page
     # A page keeps the date of its last change in the sitemap until it changes.
     old = ROOT / "sitemap.xml"
     known = dict(re.findall(r"<loc>([^<]+)</loc><lastmod>([^<]+)</lastmod>",

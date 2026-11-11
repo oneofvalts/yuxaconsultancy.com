@@ -6,7 +6,7 @@
 Writes two line drawings, used by style.css as masks, so that they take the
 accent colour of either colour scheme:
 
-- assets/cardioid.svg, for the maths pages and the workshop: N points on a
+- assets/cardioid.svg, for the maths pages: N points on a
   circle, each joined to the point at twice its angle. The chords envelop a
   cardioid, the curve traced by a point of a circle rolling on another.
 - assets/rings.svg, for the woodwork pages: growth rings as an end-grain cut

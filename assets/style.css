@@ -677,39 +677,12 @@ dialog.viewer[open] {
   }
 }
 
-/* Workshop page */
-
-.facts {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 0.45rem 1.5rem;
-  max-width: var(--measure);
-  margin: 0;
-}
-
-.facts dt {
-  color: var(--muted);
-}
-
-.facts dd {
-  margin: 0;
-}
+/* Two columns: the person and what stands next to them */
 
 .two {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: 2rem 3rem;
-}
-
-ol.plain,
-ul.plain {
-  margin: 0;
-  padding-left: 1.2rem;
-}
-
-ol.plain li,
-ul.plain li {
-  margin: 0.4rem 0;
 }
 
 /* Footer */
@@ -789,14 +762,5 @@ footer.site .social a:focus-visible {
   table.price td + td {
     min-width: 8.5rem;
     white-space: normal;
-  }
-
-  .facts {
-    grid-template-columns: 1fr;
-    gap: 0.1rem;
-  }
-
-  .facts dd {
-    margin-bottom: 0.6rem;
   }
 }
