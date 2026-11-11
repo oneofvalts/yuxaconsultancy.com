@@ -84,8 +84,9 @@ def caption(spec, stem: str, lang: str) -> str:
     raise KeyError(stem)
 
 
-def cover(spec, alt: str, prefix: str) -> str:
-    """The <img> of a work page's cover: its picture on the home page."""
+def cover(spec, alt: str, prefix: str, first: bool = False) -> str:
+    """The <img> of a work page's cover: its picture on the home page. The
+    first cover is the largest thing on the page, so browsers fetch it early."""
     path = spec["cover"]
     if path.endswith(".svg"):
         size = re.search(r'<svg[^>]* width="(\d+)" height="(\d+)"',
@@ -94,11 +95,14 @@ def cover(spec, alt: str, prefix: str) -> str:
     else:
         width, height = jpeg_size(ROOT / path)
     return (f'<img src="{prefix}{path}" width="{width}" height="{height}" '
-            f'alt="{esc(alt)}" decoding="async">')
+            f'alt="{esc(alt)}" decoding="async"'
+            + (' fetchpriority="high"' if first else "") + ">")
 
 
-def image(spec, stem: str, alt: str, prefix: str):
-    """The <img> of a photograph's 1000 px copy, and the copy's aspect ratio."""
+def image(spec, stem: str, alt: str, prefix: str, eager: bool = False):
+    """The <img> of a photograph's 1000 px copy, and the copy's aspect ratio.
+    Photographs load as the reader reaches them, except the eager ones, which
+    are in view when the page opens."""
     path = f"{spec['photo_dir']}{stem}"
     for size in (1000, 2000):
         if not (ROOT / f"{path}-{size}.jpg").exists():
@@ -106,19 +110,21 @@ def image(spec, stem: str, alt: str, prefix: str):
                              "the private repository")
     width, height = jpeg_size(ROOT / f"{path}-1000.jpg")
     tag = (f'<img src="{prefix}{path}-1000.jpg" width="{width}" height="{height}" '
-           f'alt="{esc(alt)}" loading="lazy" decoding="async">')
+           f'alt="{esc(alt)}" decoding="async"'
+           + ("" if eager else ' loading="lazy"') + ">")
     return tag, width / height
 
 
 def document(*, lang, prefix, title, description, canonical, locale, body,
              image="assets/og.png", jsonld=(), alternates=(), scripts=(), index=True,
-             tab_title=None):
+             tab_title=None, about=None):
     """A complete HTML page. prefix leads from the page to the site root;
     tab_title, when given, is the browser tab's title, and title then names
     the page only in its social preview;
     image is the social preview, 1200 x 630; jsonld the schema.org nodes
-    describing the page; alternates the same page in each language; scripts
-    the paths of the scripts the page runs once it is parsed."""
+    describing the page, to which the page itself is added as being about
+    the node with the @id about; alternates the same page in each language;
+    scripts the paths of the scripts the page runs once it is parsed."""
     head = [
         '<meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -157,7 +163,12 @@ def document(*, lang, prefix, title, description, canonical, locale, body,
     head.append(f'<link rel="stylesheet" href="{prefix}assets/style.css">')
     head += [f'<script src="{prefix}{path}" defer></script>' for path in scripts]
     if jsonld:
-        graph = {"@context": "https://schema.org", "@graph": list(jsonld)}
+        webpage = {"@type": "WebPage", "@id": canonical, "url": canonical,
+                   "name": title, "description": description, "inLanguage": lang,
+                   "isPartOf": {"@id": WEBSITE}, "primaryImageOfPage": url(image)}
+        if about:
+            webpage["about"] = {"@id": about}
+        graph = {"@context": "https://schema.org", "@graph": [webpage, *jsonld]}
         head.append('<script type="application/ld+json">'
                     + json.dumps(graph, ensure_ascii=False) + "</script>")
     head_html = "\n".join(head)
@@ -305,6 +316,18 @@ def breadcrumbs(lang, name, path):
     ]}
 
 
+def home_alternates():
+    """The home page in each language; Turkish for everyone else."""
+    return [*((code, url(C.PAGES[code]["path"])) for code in C.LANGS),
+            ("x-default", url(""))]
+
+
+def work_alternates(key):
+    """A work page in each language; Turkish for everyone else."""
+    return [*((code, url(page_path(key, code))) for code in C.LANGS),
+            ("x-default", url(page_path(key, "tr")))]
+
+
 def home_page(lang):
     """A panel for each person: what they do, a few prices and the way to
     their page; what is coming up; how to reach us. The page has no headline:
@@ -321,7 +344,7 @@ def home_page(lang):
         panels.append(
             '<article class="panel">'
             f'<a class="cover" href="{target}" tabindex="-1" aria-hidden="true">'
-            f'{cover(spec, panel["alt"], prefix)}</a>'
+            f'{cover(spec, panel["alt"], prefix, person is C.TEAM[0])}</a>'
             f'<p class="kicker">{person["name"]}</p>'
             f'<h2><a href="{target}">{t(panel["title"])}</a></h2>'
             f'<p>{t(panel["text"])}</p>{price_table(panel["rows"], t)}'
@@ -345,22 +368,37 @@ def home_page(lang):
         "</main>",
         footer(t(page["footer"])),
     ])
-    alternates = [(code, url(C.PAGES[code]["path"])) for code in C.LANGS]
-    alternates.append(("x-default", url("")))
     jsonld = [website(), organisation(), *(person_node(m, lang) for m in C.TEAM)]
     return document(lang=lang, prefix=prefix, title=page["title"],
                     tab_title=C.HOME_TAB_TITLE, description=page["description"],
                     canonical=url(page["path"]), locale=page["locale"],
-                    body=body, jsonld=jsonld, alternates=alternates)
+                    body=body, jsonld=jsonld, alternates=home_alternates(),
+                    about=ORGANISATION)
+
+
+EAGER_PHOTOS = 3  # the photographs of the gallery's first row
+
+
+def photo_nodes(spec, lang):
+    """The gallery's photographs for image search: what each shows and whose
+    it is."""
+    return [{"@type": "ImageObject",
+             "contentUrl": url(f"{spec['photo_dir']}{stem}-2000.jpg"),
+             "name": spec["photo_alt"][lang].format(caption(spec, stem, lang)),
+             "creditText": "YUXA Consultancy",
+             "copyrightNotice": "YUXA Consultancy",
+             "creator": {"@id": ORGANISATION}}
+            for stem, *_ in spec["photos"]]
 
 
 def gallery(spec, lang, prefix):
     """Photographs in justified rows; each links to its 2000 px copy, which
     assets/viewer.js shows in the viewer instead."""
     figures = []
-    for stem, *_ in spec["photos"]:
+    for n, (stem, *_) in enumerate(spec["photos"]):
         text = caption(spec, stem, lang)
-        img, ratio = image(spec, stem, text, prefix)
+        alt = typo(lang, spec["photo_alt"][lang].format(text))
+        img, ratio = image(spec, stem, alt, prefix, eager=n < EAGER_PHOTOS)
         figures.append(f'<figure style="--r:{ratio:.3f}">'
                        f'<a href="{prefix}{spec["photo_dir"]}{stem}-2000.jpg">{img}</a>'
                        f"<figcaption>{esc(text)}</figcaption></figure>")
@@ -464,12 +502,13 @@ def work_page(key, lang):
     ])
     jsonld = [person_node(person, lang), organisation(full=False),
               breadcrumbs(lang, dict(page["nav"])[key], w["path"])]
-    alternates = [(code, url(page_path(key, code))) for code in C.LANGS]
-    alternates.append(("x-default", url(page_path(key, "tr"))))
+    if "photos" in spec:
+        jsonld += photo_nodes(spec, lang)
     return document(lang=lang, prefix=prefix, title=w["title"],
                     description=w["description"], canonical=url(w["path"]),
                     locale=page["locale"], body=body, image=spec["image"],
-                    jsonld=jsonld, alternates=alternates, scripts=scripts)
+                    jsonld=jsonld, alternates=work_alternates(key), scripts=scripts,
+                    about=person_id(person))
 
 
 def workshop_page():
@@ -557,13 +596,35 @@ def not_found_page():
                     locale="tr_TR", body=body, index=False)
 
 
-def sitemap(lastmod):
-    """Every page with the day it last changed: lastmod maps paths to dates."""
-    urls = "".join(f"<url><loc>{url(p)}</loc><lastmod>{day}</lastmod></url>\n"
-                   for p, day in lastmod.items())
+def sitemap(lastmod, extras):
+    """Every page with the day it last changed: lastmod maps paths to dates,
+    extras to the page's other languages and its photographs."""
+    urls = "".join(f"<url><loc>{url(p)}</loc><lastmod>{day}</lastmod>"
+                   f"{extras.get(p, '')}</url>\n" for p, day in lastmod.items())
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
-            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+            'xmlns:xhtml="http://www.w3.org/1999/xhtml" '
+            'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
             f"{urls}</urlset>\n")
+
+
+def sitemap_extras():
+    """For each translated page, its versions in every language; for a work
+    page with photographs, their large copies."""
+    def links(alternates):
+        return "".join(f'<xhtml:link rel="alternate" hreflang="{h}" href="{u}"/>'
+                       for h, u in alternates)
+    extras = {C.PAGES[lang]["path"]: links(home_alternates()) for lang in C.LANGS}
+    for key, spec in C.WORK_PAGES.items():
+        photos = "".join(
+            f"<image:image><image:loc>{url(spec['photo_dir'])}{stem}-2000.jpg"
+            "</image:loc></image:image>" for stem, *_ in spec.get("photos", ()))
+        for lang in C.LANGS:
+            extras[page_path(key, lang)] = links(work_alternates(key)) + photos
+    return extras
+
+
+NOT_PAGES = ("README.md", "build.py", "content.py", "tools/")
 
 
 def write(path: str, text: str) -> bool:
@@ -592,8 +653,11 @@ def main() -> None:
         changed = write(f"{path}index.html", make())
         lastmod[path] = today if changed or url(path) not in known else known[url(path)]
     write("404.html", not_found_page())
-    write("sitemap.xml", sitemap(lastmod))
-    write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {url('sitemap.xml')}\n")
+    write("sitemap.xml", sitemap(lastmod, sitemap_extras()))
+    # The generator's own files are served next to the pages; they are not pages.
+    private = "".join(f"Disallow: /{name}\n" for name in NOT_PAGES)
+    write("robots.txt", f"User-agent: *\nAllow: /\n{private}\n"
+                        f"Sitemap: {url('sitemap.xml')}\n")
 
 
 if __name__ == "__main__":

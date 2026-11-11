@@ -727,6 +727,10 @@ WOODWORK = {
     "person": "Durmuş Uyu",
     "photos": WOODWORK_PHOTOS,
     "photo_dir": "assets/woodwork/",
+    # What a photograph's alt text and search engines say of it, around its
+    # caption.
+    "photo_alt": {"tr": "Elde oyma ahşap: {}", "en": "Hand-carved wood: {}",
+                  "fr": "Bois sculpté à la main : {}"},
     "cover": "assets/woodwork/three-kuksas-1000.jpg",
     "ornament": "rings",  # behind the heading: assets/rings.svg
     "image": "assets/og-woodwork.jpg",  # social preview, made in the private repo
