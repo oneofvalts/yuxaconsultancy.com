@@ -721,6 +721,35 @@ footer.site {
   font-size: 0.9rem;
 }
 
+footer.site .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+footer.site p {
+  margin: 0;
+}
+
+footer.site .social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer.site .social a {
+  color: inherit;
+}
+
+footer.site .social a:hover,
+footer.site .social a:focus-visible {
+  color: var(--accent);
+}
+
 @media (max-width: 40rem) {
   body {
     font-size: 1rem;

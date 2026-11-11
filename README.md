@@ -43,6 +43,11 @@ Every person has a panel on the home page and a work page of their own.
 | `WHATSAPP_LINK` | No WhatsApp button anywhere        |
 | `BOOKING_LINK`  | Booking buttons open an e-mail     |
 | `WORKSHOP_FORM` | Workshop registration by e-mail    |
+| `SOCIAL`        | No account links in the footer     |
+
+`SOCIAL` lists YUXA's accounts (YouTube, Instagram, TikTok) as pairs of a
+name and a link; every page's footer links them in that order, and the home
+pages name them as the organisation's `sameAs` in the structured data.
 
 `WHATSAPP_LINK` must be a WhatsApp Business short link
 (`https://wa.me/message/...`), which does not reveal the phone number.

@@ -25,6 +25,13 @@ WHATSAPP_LINK = "https://wa.me/message/E5OQUKF24TRFM1"
 BOOKING_LINK = "https://calendar.app.google/b4TrMwy2mpcnn3G67"
 # Google Form for the workshop. Empty: registration by e-mail.
 WORKSHOP_FORM = ""
+# YUXA's accounts, linked in every page's footer in this order and named in
+# the structured data (schema.org sameAs). Empty: no links.
+SOCIAL = [
+    ("YouTube", "https://www.youtube.com/@yuxaconsultancy"),
+    ("Instagram", "https://www.instagram.com/yuxaconsultancy/"),
+    ("TikTok", "https://www.tiktok.com/@yuxa.consultancy"),
+]
 
 LANGS = ["tr", "en", "fr"]
 

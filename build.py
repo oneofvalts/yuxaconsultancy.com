@@ -239,7 +239,11 @@ def section(anchor, title, *parts):
 
 
 def footer(text):
-    return f'<footer class="site"><div class="wrap"><p>{text}</p></div></footer>'
+    """The copyright line, then YUXA's accounts elsewhere."""
+    social = "".join(f'<li><a href="{link}" rel="noopener me">{name}</a></li>'
+                     for name, link in C.SOCIAL)
+    social = f'<ul class="social">{social}</ul>' if social else ""
+    return f'<footer class="site"><div class="wrap"><p>{text}</p>{social}</div></footer>'
 
 
 # Structured data: one node per thing, linked by @id across the pages.
@@ -258,6 +262,7 @@ def organisation(full=True):
             "email": C.EMAIL,
             "address": {"@type": "PostalAddress", "addressCountry": "TR"},
             "knowsLanguage": C.LANGS,
+            **({"sameAs": [link for _, link in C.SOCIAL]} if C.SOCIAL else {}),
             "founder": {"@id": person_id(C.TEAM[0])},
             "member": [{"@id": person_id(m)} for m in C.TEAM],
         })
