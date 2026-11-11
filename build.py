@@ -209,14 +209,22 @@ def header(*, lang, prefix, current):
     )
 
 
+def link(href, rel=""):
+    """The attributes of a link: one to another site opens in a new tab."""
+    if href.startswith(("http://", "https://")):
+        rel = " ".join(["noopener", *rel.split()]) if "noopener" not in rel else rel
+        return f'href="{href}" target="_blank" rel="{rel}"'
+    return f'href="{href}"' + (f' rel="{rel}"' if rel else "")
+
+
 def contact_buttons(page, *, email_label, subject=None, booking=True):
     """WhatsApp, the free call and e-mail; the first button is the primary one."""
     links = []
     if C.WHATSAPP_LINK:
-        links.append(f'href="{C.WHATSAPP_LINK}" rel="noopener">{page["cta_whatsapp"]}')
+        links.append(f'{link(C.WHATSAPP_LINK)}>{page["cta_whatsapp"]}')
     if booking:
         target = C.BOOKING_LINK or mailto(page["book_subject"])
-        links.append(f'href="{target}">{page["cta_book"]}')
+        links.append(f'{link(target)}>{page["cta_book"]}')
     links.append(f'href="{mailto(subject or page["mail_subject"])}">{email_label}')
     return ('<div class="buttons">'
             + "".join(f'<a class="btn{" primary" if i == 0 else ""}" {link}</a>'
@@ -240,8 +248,8 @@ def section(anchor, title, *parts):
 
 def footer(text):
     """The copyright line, then YUXA's accounts elsewhere."""
-    social = "".join(f'<li><a href="{link}" rel="noopener me">{name}</a></li>'
-                     for name, link in C.SOCIAL)
+    social = "".join(f'<li><a {link(href, "noopener me")}>{name}</a></li>'
+                     for name, href in C.SOCIAL)
     social = f'<ul class="social">{social}</ul>' if social else ""
     return f'<footer class="site"><div class="wrap"><p>{text}</p>{social}</div></footer>'
 
@@ -473,13 +481,13 @@ def workshop_page():
     takeaways = "".join(f"<li>{t(i)}</li>" for i in w["takeaways"])
     buttons = []
     if C.WORKSHOP_FORM:
-        buttons.append(f'<a class="btn primary" href="{C.WORKSHOP_FORM}" '
-                       f'rel="noopener">{w["register_form"]}</a>')
+        buttons.append(f'<a class="btn primary" {link(C.WORKSHOP_FORM)}>'
+                       f'{w["register_form"]}</a>')
     kind = "btn" if C.WORKSHOP_FORM else "btn primary"
     buttons.append(f'<a class="{kind}" href="{mailto(w["register_subject"])}">'
                    f'{w["register_email"]}</a>')
     if C.WHATSAPP_LINK:
-        buttons.append(f'<a class="btn" href="{C.WHATSAPP_LINK}" rel="noopener">'
+        buttons.append(f'<a class="btn" {link(C.WHATSAPP_LINK)}>'
                        f'{page["cta_whatsapp"]}</a>')
     teacher = next(m for m in C.TEAM if m["page"] == "maths")
     event = {
