@@ -383,8 +383,7 @@ MATHS = {
             ],
             "prices_note": (
                 "Kasım 2026 ücretleridir. Beş derslik pakette %10 indirim var; 15 "
-                "dakikalık ön görüşme ücretsiz. Yüz yüze dersler Beşiktaş, Kadıköy, "
-                "Üsküdar ve Pendik–Tuzla’da."
+                "dakikalık ön görüşme ücretsiz."
             ),
             "events_title": "Atölye",
             "events": [
@@ -516,8 +515,7 @@ MATHS = {
             ],
             "prices_note": (
                 "Prices as of November 2026. A five-lesson pack is 10% off, and the "
-                "first 15-minute call is free. In-person lessons in Beşiktaş, Kadıköy, "
-                "Üsküdar and Pendik–Tuzla."
+                "first 15-minute call is free."
             ),
             "events_title": "Workshop",
             "events": [
@@ -652,8 +650,7 @@ MATHS = {
             ],
             "prices_note": (
                 "Tarifs de novembre 2026. Le forfait de cinq séances bénéficie de 10 % "
-                "de remise, et le premier appel de 15 minutes est offert. Séances en "
-                "présentiel à Beşiktaş, Kadıköy, Üsküdar et Pendik–Tuzla."
+                "de remise, et le premier appel de 15 minutes est offert."
             ),
             "events_title": "Atelier",
             "events": [
