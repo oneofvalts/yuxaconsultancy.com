@@ -28,6 +28,10 @@ WORKSHOP_FORM = ""
 
 LANGS = ["tr", "en", "fr"]
 
+# The browser tab's title on the three home pages, at the owner's word
+# (11 November 2026); PAGES[...]["title"] stays the social preview's title.
+HOME_TAB_TITLE = "Yuxa"
+
 PAGES = {
     "tr": {
         "path": "",

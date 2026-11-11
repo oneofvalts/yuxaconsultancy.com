@@ -111,15 +111,18 @@ def image(spec, stem: str, alt: str, prefix: str):
 
 
 def document(*, lang, prefix, title, description, canonical, locale, body,
-             image="assets/og.png", jsonld=(), alternates=(), scripts=(), index=True):
+             image="assets/og.png", jsonld=(), alternates=(), scripts=(), index=True,
+             tab_title=None):
     """A complete HTML page. prefix leads from the page to the site root;
+    tab_title, when given, is the browser tab's title, and title then names
+    the page only in its social preview;
     image is the social preview, 1200 x 630; jsonld the schema.org nodes
     describing the page; alternates the same page in each language; scripts
     the paths of the scripts the page runs once it is parsed."""
     head = [
         '<meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
-        f"<title>{esc(title)}</title>",
+        f"<title>{esc(tab_title or title)}</title>",
         f'<meta name="description" content="{esc(description)}">',
     ]
     if not index:
@@ -335,7 +338,7 @@ def home_page(lang):
     alternates.append(("x-default", url("")))
     jsonld = [website(), organisation(), *(person_node(m, lang) for m in C.TEAM)]
     return document(lang=lang, prefix=prefix, title=page["title"],
-                    description=page["description"],
+                    tab_title=C.HOME_TAB_TITLE, description=page["description"],
                     canonical=url(page["path"]), locale=page["locale"],
                     body=body, jsonld=jsonld, alternates=alternates)
 
