@@ -214,10 +214,9 @@ MATHS = {
             "panel": {
                 "title": "Matematik, programlama, LaTeX ve yapay zekâ",
                 "text": (
-                    "Türkçe, Fransızca ya da İngilizce özel ders veriyor: üniversite "
-                    "matematiği ve programlama, IB ve Fransız müfredatı, GSÜ Fransızca "
-                    "hazırlık. LaTeX ile tez ve belge diziyor, küçük ekipler için "
-                    "otomasyon kuruyor."
+                    "Türkçe, Fransızca ya da İngilizce özel ders: üniversite matematiği "
+                    "ve programlama, IB ve Fransız müfredatı, GSÜ Fransızca hazırlık. "
+                    "LaTeX ile tez ve belge dizgisi. Küçük ekipler için otomasyon."
                 ),
                 "alt": (
                     "Desargues teoremi: bir noktaya göre perspektif iki üçgenin "
@@ -330,11 +329,10 @@ MATHS = {
             "panel": {
                 "title": "Mathematics, programming, LaTeX and AI",
                 "text": (
-                    "He gives private lessons in Turkish, French or English: university "
-                    "mathematics and programming, IB and French-curriculum maths, and "
-                    "French for Galatasaray University’s preparatory year. He also "
-                    "typesets theses and documents in LaTeX and builds automations for "
-                    "small teams."
+                    "Private lessons in Turkish, French or English: university "
+                    "mathematics and programming, IB and French-curriculum maths, French "
+                    "for Galatasaray University’s preparatory year. LaTeX typesetting of "
+                    "theses and documents. Automation for small teams."
                 ),
                 "alt": (
                     "Desargues’s theorem: when two triangles are in perspective from a "
@@ -448,11 +446,11 @@ MATHS = {
             "panel": {
                 "title": "Mathématiques, informatique, LaTeX et IA",
                 "text": (
-                    "Il donne des cours particuliers en français, en turc ou en anglais : "
+                    "Cours particuliers en français, en turc ou en anglais : "
                     "mathématiques du collège à l’université, programme français, bac et "
-                    "IB, programmation, et français pour l’année préparatoire de "
-                    "l’Université Galatasaray. Il compose aussi thèses et documents en "
-                    "LaTeX et automatise des tâches pour les petites équipes."
+                    "IB, programmation, français pour l’année préparatoire de "
+                    "l’Université Galatasaray. Composition de thèses et de documents en "
+                    "LaTeX. Automatisation pour les petites équipes."
                 ),
                 "alt": (
                     "Théorème de Desargues : si deux triangles sont en perspective par "
@@ -626,9 +624,8 @@ WOODWORK = {
             "panel": {
                 "title": "Oyma",
                 "text": (
-                    "Sipariş üzerine kaşık, ölçek, kuksa, kase ve kutu oyuyor; her "
-                    "parçayı tek tek, elde yapıyor. Yeni başlayanlara ve gruplara oyma "
-                    "atölyeleri veriyor."
+                    "Sipariş üzerine, tek tek elde oyulan kaşık, ölçek, kuksa, kase ve "
+                    "kutu. Yeni başlayanlara ve gruplara oyma atölyeleri."
                 ),
                 "alt": "Durmuş Uyu’nun oyduğu üç kuksa",
                 # Starting prices; keep them in step with the price list below.
@@ -712,9 +709,8 @@ WOODWORK = {
             "panel": {
                 "title": "Woodcarving",
                 "text": (
-                    "He carves spoons, scoops, kuksas, bowls and boxes to order, by hand "
-                    "and one at a time. He also runs carving workshops for beginners and "
-                    "for groups."
+                    "Spoons, scoops, kuksas, bowls and boxes, carved to order by hand, "
+                    "one at a time. Carving workshops for beginners and for groups."
                 ),
                 "alt": "Three kuksas carved by Durmuş Uyu",
                 "rows": [
@@ -799,9 +795,9 @@ WOODWORK = {
             "panel": {
                 "title": "Sculpture sur bois",
                 "text": (
-                    "Il sculpte sur commande cuillères, doseurs, kuksas, bols et boîtes, "
-                    "à la main et une à une. Il anime aussi des ateliers de sculpture "
-                    "pour débutants et pour groupes."
+                    "Cuillères, doseurs, kuksas, bols et boîtes, sculptés sur commande, "
+                    "à la main et pièce par pièce. Ateliers de sculpture pour débutants "
+                    "et pour groupes."
                 ),
                 "alt": "Trois kuksas de Durmuş Uyu",
                 "rows": [
