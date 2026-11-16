@@ -1,25 +1,22 @@
 // yuxaconsultancy.com: the photo viewer of the work pages, the site's only
-// script. A click on a photograph of the gallery shows it in the page's
+// script. A click on a photograph of a gallery shows it in the page's
 // viewer dialog, as large as the window allows, with its caption. The
 // buttons, the arrow keys and a sideways swipe turn to the previous or next
-// photograph; the close button, Escape, a click beside the photograph, a
+// photograph of the same gallery; the close button, Escape, a click beside the photograph, a
 // swipe down and the browser's back button close the viewer. Without this
 // script, each photograph's link opens its 2000 px copy.
 
 (() => {
   const viewer = document.querySelector("dialog.viewer");
-  const figures = document.querySelectorAll(".gallery figure");
-  if (!viewer || !viewer.showModal || !figures.length) return;
+  const galleries = document.querySelectorAll(".gallery");
+  if (!viewer || !viewer.showModal || !galleries.length) return;
 
   const frame = viewer.querySelector(".frame");
   const text = viewer.querySelector(".text");
   const count = viewer.querySelector(".count");
-  const photos = [...figures].map((figure) => ({
-    link: figure.querySelector("a"),
-    copy: figure.querySelector("img").src,
-    caption: figure.querySelector("figcaption").textContent,
-    ratio: figure.style.getPropertyValue("--r"),
-  }));
+  // The photographs of the gallery the viewer shows; each gallery is a
+  // sequence of its own.
+  let photos = [];
   const at = (i) => (i + photos.length) % photos.length;
   let current = 0;
   // Whether opening the viewer added an entry to the history: the back
@@ -43,16 +40,25 @@
     count.textContent = `${current + 1} / ${photos.length}`;
   }
 
-  photos.forEach((photo, i) => {
-    photo.link.addEventListener("click", (event) => {
-      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      show(i);
-      viewer.showModal();
-      history.pushState({ viewer: true }, "");
-      pushed = true;
+  for (const gallery of galleries) {
+    const sequence = [...gallery.querySelectorAll("figure")].map((figure) => ({
+      link: figure.querySelector("a"),
+      copy: figure.querySelector("img").src,
+      caption: figure.querySelector("figcaption").textContent,
+      ratio: figure.style.getPropertyValue("--r"),
+    }));
+    sequence.forEach((photo, i) => {
+      photo.link.addEventListener("click", (event) => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        photos = sequence;
+        show(i);
+        viewer.showModal();
+        history.pushState({ viewer: true }, "");
+        pushed = true;
+      });
     });
-  });
+  }
 
   viewer.querySelector(".close").addEventListener("click", () => viewer.close());
   viewer.querySelector(".prev").addEventListener("click", () => show(current - 1));

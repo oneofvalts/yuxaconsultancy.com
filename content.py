@@ -10,9 +10,13 @@ Strings may contain inline HTML. French strings are written with ordinary
 spaces; build.py adds the unbreakable spaces French typography wants before
 : ; ! ? and inside numbers.
 
+The photographs of the woodwork pages are listed in woodwork_photos.py.
+
 Never put a phone number here: this repository is public. WhatsApp is reached
 through a WhatsApp Business short link, which does not show the number.
 """
+
+import woodwork_photos
 
 SITE = "https://yuxaconsultancy.com"
 EMAIL = "contact@yuxaconsultancy.com"
@@ -168,7 +172,9 @@ TEAM = [
 
 # A work page has, in each language, a hero (kicker, heading, lead*) and these
 # sections, in this order; those marked * are optional:
-#   gallery*   photographs, when the spec lists photos, then gallery_note*
+#   gallery*   photographs, when the spec lists products: an index of the
+#              products, each opening its own photographs; then gallery_note*
+#   album*     more photographs in one sequence, when the spec has an album
 #   offers     cards of what the person offers, then offers_note*
 #   prices     price groups, then prices_note*
 #   events*    dated events, each leading to its page
@@ -494,52 +500,16 @@ MATHS = {
     },
 }
 
-# Photographs of Durmuş's work in gallery order: the file name in
-# assets/woodwork/ (made by `make photos` in the private repository, which
-# keeps the originals), then the caption in Turkish, English and French.
-WOODWORK_PHOTOS = [
-    ("three-kuksas", "Kuksalar", "Kuksas", "Kuksas"),
-    ("kuksa-single-hole", "Kuksa", "Kuksa", "Kuksa"),
-    ("kuksa-two-hole", "İki delikli kuksa", "Kuksa with a two-hole handle",
-     "Kuksa à anse à deux trous"),
-    ("painted-box-closed", "Boyalı kutu", "Painted box", "Boîte peinte"),
-    ("painted-box-open", "Boyalı kutu, açık", "Painted box, open",
-     "Boîte peinte, ouverte"),
-    ("painted-box-top", "Boyalı kutu, kapak", "Painted box, the lid",
-     "Boîte peinte, le couvercle"),
-    ("three-spoons", "Üç kaşık", "Three spoons", "Trois cuillères"),
-    ("spoon-bowl-closeup", "Kaşık, ayrıntı", "Spoon, detail", "Cuillère, détail"),
-    ("spoon-on-rug", "Kaşık", "Spoon", "Cuillère"),
-    ("notched-spoon-horizontal", "Çentikli saplı kaşık", "Spoon with a notched handle",
-     "Cuillère au manche cranté"),
-    ("notched-spoon-vertical", "Çentikli saplı kaşık, üstten",
-     "Spoon with a notched handle, from above",
-     "Cuillère au manche cranté, vue de dessus"),
-    ("leaf-tip-handle", "Yaprak uçlu sap", "Handle ending in a leaf",
-     "Manche terminé en feuille"),
-    ("double-ended-scoop", "Çift başlı ölçek", "Double-ended scoop",
-     "Doseur à deux têtes"),
-    ("faceted-handle-scoop", "Köşeli saplı ölçek", "Scoop with a faceted handle",
-     "Doseur au manche à facettes"),
-    ("wooden-scoop", "Küçük ölçek", "Small scoop", "Petit doseur"),
-    ("lidded-bowl-closed", "Kapaklı kase", "Lidded bowl", "Bol à couvercle"),
-    ("lidded-bowl-open", "Kapaklı kase, açık", "Lidded bowl, open",
-     "Bol à couvercle, ouvert"),
-    ("wooden-ashtray", "Küllük", "Ashtray", "Cendrier"),
-    ("wooden-ashtray-bottom", "Küllük, alttan", "Ashtray, from below",
-     "Cendrier, vu de dessous"),
-    ("footed-tray-side", "Ayaklı tepsi", "Footed tray", "Plateau sur pieds"),
-    ("footed-tray-bottom", "Ayaklı tepsi, alttan", "Footed tray, from below",
-     "Plateau sur pieds, vu de dessous"),
-]
-
 # The woodwork pages: Durmuş's pieces and workshops, one page per language.
 WOODWORK = {
     "person": "Durmuş Uyu",
-    "photos": WOODWORK_PHOTOS,
+    "categories": woodwork_photos.CATEGORIES,
+    "products": woodwork_photos.PRODUCTS,
+    "album": woodwork_photos.ALBUM,
+    "album_labels": woodwork_photos.ALBUM_LABELS,
     "photo_dir": "assets/woodwork/",
     # What a photograph's alt text and search engines say of it, around its
-    # caption.
+    # caption (the name of the product it shows).
     "photo_alt": {"tr": "Elde oyma ahşap: {}", "en": "Hand-carved wood: {}",
                   "fr": "Bois sculpté à la main : {}"},
     "cover": "assets/woodwork/three-kuksas-1000.jpg",
@@ -555,7 +525,7 @@ WOODWORK = {
                 "üzerine. Yeni başlayanlar için kaşık oyma, gruplar için ahşap "
                 "atölyeleri."
             ),
-            "ids": {"gallery": "isler", "offers": "siparis-ve-atolyeler",
+            "ids": {"gallery": "isler", "album": "album", "offers": "siparis-ve-atolyeler",
                     "prices": "fiyatlar", "contact": "iletisim"},
             "panel": {
                 "title": "Oyma",
@@ -575,6 +545,10 @@ WOODWORK = {
             "heading": "Oyma",
             "mail_subject": "Ahşap",
             "gallery_title": "İşler",
+            # The product index's name for screen readers; a product's count.
+            "index_label": "Ürünler",
+            "count": "{} fotoğraf",
+            "album_title": "Albüm",
             "offers_title": "Sipariş ve atölyeler",
             "offers": [
                 {
@@ -625,7 +599,7 @@ WOODWORK = {
                 "made to order. Spoon carving for beginners and woodworking workshops "
                 "for groups."
             ),
-            "ids": {"gallery": "work", "offers": "commissions-and-workshops",
+            "ids": {"gallery": "work", "album": "album", "offers": "commissions-and-workshops",
                     "prices": "prices", "contact": "contact"},
             "panel": {
                 "title": "Woodcarving",
@@ -644,6 +618,9 @@ WOODWORK = {
             "heading": "Woodcarving",
             "mail_subject": "Woodwork",
             "gallery_title": "Work",
+            "index_label": "Pieces",
+            "count": "{} photos",
+            "album_title": "Album",
             "offers_title": "Commissions and workshops",
             "offers": [
                 {
@@ -694,7 +671,8 @@ WOODWORK = {
                 "Cuillères, kuksas, bols et boîtes sculptés à la main par Durmuş Uyu, "
                 "sur commande ; ateliers de sculpture pour débutants et pour groupes."
             ),
-            "ids": {"gallery": "realisations", "offers": "commandes-et-ateliers",
+            "ids": {"gallery": "realisations", "album": "album",
+                    "offers": "commandes-et-ateliers",
                     "prices": "tarifs", "contact": "contact"},
             "panel": {
                 "title": "Sculpture sur bois",
@@ -714,6 +692,9 @@ WOODWORK = {
             "heading": "Sculpture sur bois",
             "mail_subject": "Travail du bois",
             "gallery_title": "Réalisations",
+            "index_label": "Pièces",
+            "count": "{} photos",
+            "album_title": "Album",
             "offers_title": "Commandes et ateliers",
             "offers": [
                 {

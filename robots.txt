@@ -3,6 +3,7 @@ Allow: /
 Disallow: /README.md
 Disallow: /build.py
 Disallow: /content.py
+Disallow: /woodwork_photos.py
 Disallow: /tools/
 
 Sitemap: https://yuxaconsultancy.com/sitemap.xml

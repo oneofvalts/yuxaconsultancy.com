@@ -74,12 +74,12 @@ def jpeg_size(path: Path) -> tuple[int, int]:
     raise ValueError(f"{path}: no frame header")
 
 
-def caption(spec, stem: str, lang: str) -> str:
-    """The caption of one of a work page's photographs."""
-    for name, *captions in spec["photos"]:
-        if name == stem:
-            return dict(zip(C.LANGS, captions))[lang]
-    raise KeyError(stem)
+def product_name(spec, slug: str, lang: str) -> str:
+    """The name of one of a work page's products, or of an album label."""
+    for product in spec["products"]:
+        if product["slug"] == slug:
+            return dict(zip(C.LANGS, product["name"]))[lang]
+    return dict(zip(C.LANGS, spec["album_labels"][slug]))[lang]
 
 
 def cover(spec, alt: str, prefix: str, first: bool = False) -> str:
@@ -97,20 +97,35 @@ def cover(spec, alt: str, prefix: str, first: bool = False) -> str:
             + (' fetchpriority="high"' if first else "") + ">")
 
 
+SIZES = {}  # a copy's path: its width and height
+
+
+def copy_size(path: str) -> tuple[int, int]:
+    if path not in SIZES:
+        if not (ROOT / path).exists():
+            raise SystemExit(f"{path} is missing: run `make photos` in the private "
+                             "repository")
+        SIZES[path] = jpeg_size(ROOT / path)
+    return SIZES[path]
+
+
 def image(spec, stem: str, alt: str, prefix: str, eager: bool = False):
-    """The <img> of a photograph's 1000 px copy, and the copy's aspect ratio.
-    Photographs load as the reader reaches them, except the eager ones, which
-    are in view when the page opens."""
+    """The <img> of a photograph, and its aspect ratio: the 1000 px copy, or
+    the 400 px one where that is wide enough. Photographs load as the reader
+    reaches them, except the eager ones, which are in view when the page
+    opens."""
     path = f"{spec['photo_dir']}{stem}"
-    for size in (1000, 2000):
-        if not (ROOT / f"{path}-{size}.jpg").exists():
-            raise SystemExit(f"{path}-{size}.jpg is missing: run `make photos` in "
-                             "the private repository")
-    width, height = jpeg_size(ROOT / f"{path}-1000.jpg")
-    tag = (f'<img src="{prefix}{path}-1000.jpg" width="{width}" height="{height}" '
+    width, height = copy_size(f"{path}-1000.jpg")
+    small = copy_size(f"{path}-400.jpg")[0]
+    copy_size(f"{path}-2000.jpg")
+    ratio = width / height
+    # A gallery row is about 11rem high, and grows by up to half.
+    tag = (f'<img src="{prefix}{path}-1000.jpg" '
+           f'srcset="{prefix}{path}-400.jpg {small}w, {prefix}{path}-1000.jpg {width}w" '
+           f'sizes="{round(ratio * 270)}px" width="{width}" height="{height}" '
            f'alt="{esc(alt)}" decoding="async"'
            + ("" if eager else ' loading="lazy"') + ">")
-    return tag, width / height
+    return tag, ratio
 
 
 def document(*, lang, prefix, title, description, canonical, locale, body,
@@ -377,29 +392,68 @@ EAGER_PHOTOS = 3  # the photographs of the gallery's first row
 
 
 def photo_nodes(spec, lang):
-    """The gallery's photographs for image search: what each shows and whose
-    it is."""
+    """The first photograph of each product, for image search: what it shows
+    and whose it is."""
     return [{"@type": "ImageObject",
-             "contentUrl": url(f"{spec['photo_dir']}{stem}-2000.jpg"),
-             "name": spec["photo_alt"][lang].format(caption(spec, stem, lang)),
+             "contentUrl": url(f"{spec['photo_dir']}{product['photos'][0]}-2000.jpg"),
+             "name": spec["photo_alt"][lang].format(
+                 product_name(spec, product["slug"], lang)),
              "creditText": "YUXA Consultancy",
              "copyrightNotice": "YUXA Consultancy",
              "creator": {"@id": ORGANISATION}}
-            for stem, *_ in spec["photos"]]
+            for product in spec["products"]]
 
 
-def gallery(spec, lang, prefix):
-    """Photographs in justified rows; each links to its 2000 px copy, which
-    assets/viewer.js shows in the viewer instead."""
+def gallery(spec, lang, prefix, photos, eager=0):
+    """Photographs in justified rows, each a pair of its name and the key of
+    its caption; each links to its 2000 px copy, which assets/viewer.js
+    shows in the viewer instead."""
     figures = []
-    for n, (stem, *_) in enumerate(spec["photos"]):
-        text = caption(spec, stem, lang)
+    for n, (stem, key) in enumerate(photos):
+        text = product_name(spec, key, lang)
         alt = typo(lang, spec["photo_alt"][lang].format(text))
-        img, ratio = image(spec, stem, alt, prefix, eager=n < EAGER_PHOTOS)
+        img, ratio = image(spec, stem, alt, prefix, eager=n < eager)
         figures.append(f'<figure style="--r:{ratio:.3f}">'
                        f'<a href="{prefix}{spec["photo_dir"]}{stem}-2000.jpg">{img}</a>'
-                       f"<figcaption>{esc(text)}</figcaption></figure>")
+                       f"<figcaption>{esc(typo(lang, text))}</figcaption></figure>")
     return '<div class="gallery">' + "".join(figures) + "</div>"
+
+
+def products(spec, lang, prefix, w):
+    """The index of the products, by category, then each product's
+    photographs. assets/products.js turns the index into tabs that show one
+    product at a time; without it, the index links to the products, all
+    shown one after the other."""
+    t = lambda s: typo(lang, s)  # noqa: E731
+    k = C.LANGS.index(lang)
+    groups = []
+    for key, *names in spec["categories"]:
+        tabs = []
+        for product in spec["products"]:
+            if product["category"] != key:
+                continue
+            name = product_name(spec, product["slug"], lang)
+            path = f"{spec['photo_dir']}{product['photos'][0]}-400.jpg"
+            width, height = copy_size(path)
+            tabs.append(f'<li><a class="tab" href="#{product["slug"]}">'
+                        f'<img src="{prefix}{path}" width="{width}" height="{height}" '
+                        f'alt="" decoding="async" loading="lazy">'
+                        f"<span>{esc(t(name))}</span></a></li>")
+        groups.append(f'<div class="shelf-group"><h3>{t(names[k])}</h3>'
+                      f'<ul>{"".join(tabs)}</ul></div>')
+    panels = []
+    for n, product in enumerate(spec["products"]):
+        slug, photos = product["slug"], product["photos"]
+        name = product_name(spec, slug, lang)
+        panels.append(f'<div class="product" id="{slug}">'
+                      f'<h3>{esc(t(name))} <span class="count">'
+                      f'{t(w["count"].format(len(photos)))}</span></h3>'
+                      + gallery(spec, lang, prefix, [(s, slug) for s in photos],
+                                eager=EAGER_PHOTOS if n == 0 else 0)
+                      + "</div>")
+    return ('<div class="shelf-and-products">'
+            f'<nav class="shelf" aria-label="{esc(w["index_label"])}">{"".join(groups)}</nav>'
+            f'<div class="products">{"".join(panels)}</div></div>')
 
 
 # The viewer's buttons and the paths of their icons, drawn on a 24 x 24 grid.
@@ -437,12 +491,18 @@ def work_page(key, lang):
     buttons = dict(subject=w["mail_subject"], booking=spec["booking"])
 
     sections, scripts = [], []
-    if "photos" in spec:
+    if "products" in spec:
         sections.append(section(ids["gallery"], t(w["gallery_title"]),
-                                gallery(spec, lang, prefix),
+                                products(spec, lang, prefix, w),
                                 f'<p class="note">{t(w["gallery_note"])}</p>'
                                 if "gallery_note" in w else "",
+                                "" if "album" in spec else viewer(lang, w["gallery_title"])))
+        scripts.append("assets/products.js")
+    if "album" in spec:
+        sections.append(section(ids["album"], t(w["album_title"]),
+                                gallery(spec, lang, prefix, spec["album"]),
                                 viewer(lang, w["gallery_title"])))
+    if "products" in spec or "album" in spec:
         scripts.append("assets/viewer.js")
     offers = []
     for offer in w["offers"]:
@@ -491,7 +551,7 @@ def work_page(key, lang):
     ])
     jsonld = [person_node(person, lang), organisation(full=False),
               breadcrumbs(lang, dict(page["nav"])[key], w["path"])]
-    if "photos" in spec:
+    if "products" in spec:
         jsonld += photo_nodes(spec, lang)
     return document(lang=lang, prefix=prefix, title=w["title"],
                     description=w["description"], canonical=url(w["path"]),
@@ -538,15 +598,17 @@ def sitemap_extras():
                        for h, u in alternates)
     extras = {C.PAGES[lang]["path"]: links(home_alternates()) for lang in C.LANGS}
     for key, spec in C.WORK_PAGES.items():
+        stems = [s for p in spec.get("products", ()) for s in p["photos"]]
+        stems += [s for s, _ in spec.get("album", ())]
         photos = "".join(
             f"<image:image><image:loc>{url(spec['photo_dir'])}{stem}-2000.jpg"
-            "</image:loc></image:image>" for stem, *_ in spec.get("photos", ()))
+            "</image:loc></image:image>" for stem in dict.fromkeys(stems))
         for lang in C.LANGS:
             extras[page_path(key, lang)] = links(work_alternates(key)) + photos
     return extras
 
 
-NOT_PAGES = ("README.md", "build.py", "content.py", "tools/")
+NOT_PAGES = ("README.md", "build.py", "content.py", "woodwork_photos.py", "tools/")
 
 
 def write(path: str, text: str) -> bool:
