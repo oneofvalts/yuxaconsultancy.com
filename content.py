@@ -147,8 +147,8 @@ PAGES = {
 }
 
 # The people of YUXA, in the order the home page shows them; page is the key
-# of their work page in WORK_PAGES, facts what search engines read about them
-# (schema.org Person properties).
+# of their work page in WORK_PAGES, facts and role what search engines read
+# about them (schema.org Person properties; role is the jobTitle).
 TEAM = [
     {
         "name": "Abdullah Uyu",
@@ -165,42 +165,6 @@ TEAM = [
             "fr": "Cours de mathématiques et d’informatique, composition LaTeX, "
                   "automatisation",
         },
-        "bio": {
-            "tr": [
-                "Galatasaray Üniversitesi Matematik Bölümü’nü 2025’te bitirdi; aynı "
-                "üniversitede yüksek lisans yapıyor. Eğitimini Fransızca aldı, "
-                "İngilizceyi de akıcı konuşuyor.",
-                "2015’ten beri programlama yapıyor (Python, C, C++, Scheme). Lisans "
-                "bitirme projesinde Desargues teoremini Lean ile biçimselleştirdi. Bir "
-                "siber güvenlik araştırma şirketinde matematikçi danışman, Ziraat "
-                "Teknoloji’de yapay zekâ uygulamaları alanında yazılım danışmanı olarak "
-                "çalıştı; n8n ile ajan tabanlı iş akışları geliştirdi.",
-                "Onlarca belgeyi LaTeX ile dizdi.",
-            ],
-            "en": [
-                "Abdullah graduated in mathematics from Galatasaray University in 2025, "
-                "where teaching is in French, and is now a master’s student there. He "
-                "speaks Turkish, French and English.",
-                "He has been programming since 2015 (Python, C, C++, Scheme); for his "
-                "graduation project he formalized Desargues’s theorem in Lean. He has "
-                "worked as a mathematician consultant at a cyber-security research "
-                "company and as a programmer consultant on AI applications at Ziraat "
-                "Teknoloji, building agentic workflows in n8n.",
-                "He has typeset dozens of documents in LaTeX.",
-            ],
-            "fr": [
-                "Diplômé en mathématiques de l’Université Galatasaray en 2025, où "
-                "l’enseignement est en français, Abdullah y prépare aujourd’hui un "
-                "master. Il parle français, turc et anglais.",
-                "Il programme depuis 2015 (Python, C, C++, Scheme) ; pour son projet de "
-                "fin d’études, il a formalisé le théorème de Desargues en Lean. Il a été "
-                "mathématicien consultant dans une entreprise de recherche en "
-                "cybersécurité, puis consultant en programmation au département des "
-                "applications d’IA de Ziraat Teknoloji, où il construisait des flux "
-                "agentiques avec n8n.",
-                "Il a composé des dizaines de documents en LaTeX.",
-            ],
-        },
     },
     {
         "name": "Durmuş Uyu",
@@ -213,22 +177,6 @@ TEAM = [
             "en": "Woodcarving and woodworking",
             "fr": "Sculpture et travail du bois",
         },
-        "bio": {
-            "tr": [
-                "Boğaziçi Üniversitesi’nde matematik öğretmenliği okuyor. Kaşık, ölçek, "
-                "kuksa, kase ve kutu oyuyor; oyma ve ahşap işçiliği atölyeleri veriyor.",
-            ],
-            "en": [
-                "Durmuş studies mathematics education at Boğaziçi University. He carves "
-                "spoons, scoops, kuksas, bowls and boxes, and gives carving and "
-                "woodworking workshops.",
-            ],
-            "fr": [
-                "Étudiant en enseignement des mathématiques à l’Université du Bosphore "
-                "(Boğaziçi), Durmuş sculpte cuillères, doseurs, kuksas, bols et boîtes, "
-                "et anime des ateliers de sculpture et de travail du bois.",
-            ],
-        },
     },
 ]
 
@@ -239,7 +187,6 @@ TEAM = [
 #   how*       steps of how working together goes, one sentence each
 #   prices     price groups, then prices_note
 #   events*    dated events, each leading to its page
-#   about      the person's bio from TEAM, and aside_title and aside* next to it
 #   contact    a few words, the buttons and the way back home
 # ids holds the anchors of the sections present. panel is what the home page
 # shows: a title, a few words, a few prices and the link here, under the

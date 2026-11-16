@@ -400,22 +400,6 @@ table.price td + td {
   background: var(--panel);
 }
 
-.role {
-  color: var(--muted);
-}
-
-.about h2 {
-  margin-bottom: 0.4rem;
-}
-
-.about .role {
-  margin-top: 0;
-}
-
-.about p {
-  max-width: var(--measure);
-}
-
 /* Home: a panel for each person, side by side, led by a picture of their
    work. The panels share the rows of one grid (subgrid), so pictures,
    titles, price lists and buttons line up across them. */
@@ -675,14 +659,6 @@ dialog.viewer[open] {
   .gallery img {
     transition: none;
   }
-}
-
-/* Two columns: the person and what stands next to them */
-
-.two {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  gap: 2rem 3rem;
 }
 
 /* Footer */

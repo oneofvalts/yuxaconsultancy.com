@@ -25,7 +25,7 @@ Commit the generated files with the change; GitHub Pages serves them as they are
 Every person has a panel on the home page and a work page of their own.
 
 1. Add an entry to `TEAM` in `content.py`: name, the key of their work page,
-   and role and bio in each language. The order of `TEAM` is the order of
+   and role in each language (search engines read it as the job title). The order of `TEAM` is the order of
    the panels.
 2. Write the work page: a dict like `MATHS` or `WOODWORK`, registered in
    `WORK_PAGES` under that key; the comment above `MATHS` lists its sections.

@@ -474,12 +474,6 @@ def work_page(key, lang):
                            f'<p><a href="{target}">{t(event["link"])}</a></p></div>')
         sections.append(section(ids["events"], t(w["events_title"]),
                                 f'<div class="teasers">{"".join(teasers)}</div>'))
-    bio = "".join(f"<p>{t(p)}</p>" for p in person["bio"][lang])
-    about = (f'<div><h2>{person["name"]}</h2>'
-             f'<p class="role">{t(person["role"][lang])}</p>{bio}</div>')
-    if "aside" in w:
-        about += f'<div><h2>{t(w["aside_title"])}</h2><p>{t(w["aside"])}</p></div>'
-    sections.append(f'<section class="about"><div class="wrap two">{about}</div></section>')
     sections.append(section(
         ids["contact"], t(w["contact_title"]), f'<p>{t(w["contact_text"])}</p>',
         contact_buttons(page, email_label=C.EMAIL, **buttons),
