@@ -340,29 +340,6 @@ h3 {
   margin: 0.3rem 0;
 }
 
-ol.steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 1.25rem 2rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: step;
-}
-
-ol.steps li {
-  counter-increment: step;
-}
-
-ol.steps li::before {
-  content: counter(step);
-  display: block;
-  margin-bottom: 0.2rem;
-  color: var(--accent);
-  font-size: 1.6rem;
-  font-weight: 500;
-}
-
 .prices {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));

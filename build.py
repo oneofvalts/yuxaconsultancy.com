@@ -427,8 +427,8 @@ def viewer(lang, label):
 
 def work_page(key, lang):
     """One person's work, in the sections content.py lists before MATHS:
-    photographs if any, what they offer and for how much, dated events, who
-    they are, and how to reach them."""
+    photographs if any, what they offer and for how much, dated events, and
+    how to reach them."""
     spec, page = C.WORK_PAGES[key], C.PAGES[lang]
     w = spec["pages"][lang]
     t = lambda s: typo(lang, s)  # noqa: E731
@@ -457,10 +457,6 @@ def work_page(key, lang):
         ids["offers"], t(w["offers_title"]), f'<div class="cards">{"".join(offers)}</div>',
         f'<p class="note notes-line">{t(w["offers_note"])}</p>' if "offers_note" in w
         else ""))
-    if "how" in w:
-        steps = "".join(f"<li>{t(step)}</li>" for step in w["how"])
-        sections.append(section(ids["how"], t(w["how_title"]),
-                                f'<ol class="steps">{steps}</ol>'))
     groups = "".join(f"<div><h3>{t(name)}</h3>{price_table(rows, t)}</div>"
                      for name, rows in w["prices"])
     sections.append(section(ids["prices"], t(w["prices_title"]),
@@ -477,7 +473,7 @@ def work_page(key, lang):
         sections.append(section(ids["events"], t(w["events_title"]),
                                 f'<div class="teasers">{"".join(teasers)}</div>'))
     sections.append(section(
-        ids["contact"], t(w["contact_title"]), f'<p>{t(w["contact_text"])}</p>',
+        ids["contact"], t(w["contact_title"]),
         contact_buttons(page, email_label=C.EMAIL, **buttons),
         f'<p><a href="{prefix}{page["path"]}">{t(page["back"])}</a></p>'))
 

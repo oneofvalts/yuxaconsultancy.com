@@ -184,10 +184,9 @@ TEAM = [
 # sections, in this order; those marked * are optional:
 #   gallery*   photographs, when the spec lists photos, then gallery_note*
 #   offers     cards of what the person offers, then offers_note*
-#   how*       steps of how working together goes, one sentence each
 #   prices     price groups, then prices_note*
 #   events*    dated events, each leading to its page
-#   contact    a few words, the buttons and the way back home
+#   contact    the buttons and the way back home
 # ids holds the anchors of the sections present. panel is what the home page
 # shows: a title, a few words, a few prices and the link here, under the
 # spec's cover picture (600 x 400, or a photograph in 3:2), described by alt.
@@ -210,7 +209,7 @@ MATHS = {
                 "hazırlık için özel ders; LaTeX ile tez dizgisi; yapay zekâ ve "
                 "otomasyon. Online ya da yüz yüze."
             ),
-            "ids": {"offers": "hizmetler", "how": "nasil", "prices": "ucretler", "contact": "iletisim"},
+            "ids": {"offers": "hizmetler", "prices": "ucretler", "contact": "iletisim"},
             "panel": {
                 "title": "Matematik, programlama, LaTeX ve yapay zekâ",
                 "text": (
@@ -277,14 +276,6 @@ MATHS = {
                 "Her dersten sonra, işlediğimiz konuları ve çözdüğümüz soruları "
                 "özetleyen, dizilmiş kısa bir PDF gönderiyorum."
             ),
-            "how_title": "Nasıl çalışır",
-            "how": [
-                "15 dakikalık ücretsiz bir görüşmede ihtiyacınızı, seviyenizi ve "
-                "hedefinizi konuşuruz.",
-                "Dersler online (Google Meet) ya da yüz yüze olur.",
-                "Her dersten sonra dizilmiş özet notlar, her işin sonunda da derlenmiş "
-                "kaynak dosyalar sizde kalır.",
-            ],
             "prices_title": "Ücretler",
             "prices": [
                 ("Özel ders", [
@@ -308,10 +299,6 @@ MATHS = {
                 ]),
             ],
             "contact_title": "İletişim",
-            "contact_text": (
-                "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, ya da bir "
-                "dizgi veya otomasyon işi. En geç bir iş günü içinde dönerim."
-            ),
         },
         "en": {
             "path": "en/maths/",
@@ -321,7 +308,7 @@ MATHS = {
                 "maths; theses typeset in LaTeX; AI and automation. Online or in "
                 "person."
             ),
-            "ids": {"offers": "services", "how": "how", "prices": "prices", "contact": "contact"},
+            "ids": {"offers": "services", "prices": "prices", "contact": "contact"},
             "panel": {
                 "title": "Mathematics, programming, LaTeX and AI",
                 "text": (
@@ -390,14 +377,6 @@ MATHS = {
                 "After every lesson you get a short, typeset PDF of what we covered and "
                 "solved."
             ),
-            "how_title": "How it works",
-            "how": [
-                "It starts with a free 15-minute call about what you need, your level "
-                "and your goal.",
-                "Lessons are online (Google Meet) or in person.",
-                "You keep typeset notes from every lesson, and the compiled source "
-                "files at the end of every job.",
-            ],
             "prices_title": "Prices",
             "prices": [
                 ("Lessons", [
@@ -421,10 +400,6 @@ MATHS = {
                 ]),
             ],
             "contact_title": "Contact",
-            "contact_text": (
-                "Tell me briefly what it is about: a course and your level, or a "
-                "typesetting or automation job. I reply within one working day."
-            ),
         },
         "fr": {
             "path": "fr/maths/",
@@ -434,7 +409,7 @@ MATHS = {
                 "programmation ; composition de thèses en LaTeX ; IA et automatisation. En "
                 "ligne ou en personne."
             ),
-            "ids": {"offers": "services", "how": "methode", "prices": "tarifs", "contact": "contact"},
+            "ids": {"offers": "services", "prices": "tarifs", "contact": "contact"},
             "panel": {
                 "title": "Mathématiques, informatique, LaTeX et IA",
                 "text": (
@@ -505,14 +480,6 @@ MATHS = {
                 "Après chaque séance, vous recevez une courte fiche composée (PDF) qui "
                 "reprend ce que nous avons vu et résolu."
             ),
-            "how_title": "Comment ça marche",
-            "how": [
-                "Tout commence par un appel gratuit de 15 minutes pour cerner votre "
-                "besoin, votre niveau et votre objectif.",
-                "Les séances ont lieu en ligne (Google Meet) ou en présentiel.",
-                "Vous gardez une fiche composée de chaque séance, et les fichiers "
-                "sources compilés à la fin de chaque travail.",
-            ],
             "prices_title": "Tarifs",
             "prices": [
                 ("Cours", [
@@ -537,11 +504,6 @@ MATHS = {
                 ]),
             ],
             "contact_title": "Contact",
-            "contact_text": (
-                "Dites-moi en quelques mots ce qui vous amène : la matière et le "
-                "niveau, ou un travail de composition ou d’automatisation. Je "
-                "réponds sous un jour ouvré."
-            ),
         },
     },
 }
@@ -668,10 +630,6 @@ WOODWORK = {
                 ]),
             ],
             "contact_title": "Sipariş ve iletişim",
-            "contact_text": (
-                "Ne istediğinizi kısaca yazın: parça ve ölçü, ya da atölye için kişi "
-                "sayısı ve tarih. En geç bir iş günü içinde dönerim."
-            ),
         },
         "en": {
             "path": "en/woodwork/",
@@ -742,11 +700,6 @@ WOODWORK = {
                 ]),
             ],
             "contact_title": "Orders and contact",
-            "contact_text": (
-                "Tell me briefly what you would like: the piece and its size, or for a "
-                "workshop the number of people and a date. I reply within one working "
-                "day."
-            ),
         },
         "fr": {
             "path": "fr/bois/",
@@ -817,11 +770,6 @@ WOODWORK = {
                 ]),
             ],
             "contact_title": "Commandes et contact",
-            "contact_text": (
-                "Dites-moi en quelques mots ce que vous souhaitez : la pièce et sa "
-                "taille, ou, pour un atelier, le nombre de personnes et une date. Je "
-                "réponds sous un jour ouvré."
-            ),
         },
     },
 }
