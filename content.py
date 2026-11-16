@@ -753,9 +753,6 @@ WOODWORK = {
                      "more, per person", "1,250 TL"),
                 ]),
             ],
-            "prices_note": (
-                "Workshops are in Turkish; ask me about English."
-            ),
             "contact_title": "Orders and contact",
             "contact_text": (
                 "Tell me briefly what you would like: the piece and its size, or for a "
@@ -831,9 +828,6 @@ WOODWORK = {
                      "association, 6 personnes au moins, par personne", "1 250 TL"),
                 ]),
             ],
-            "prices_note": (
-                "Ateliers en turc ; pour l’anglais, demandez-moi."
-            ),
             "contact_title": "Commandes et contact",
             "contact_text": (
                 "Dites-moi en quelques mots ce que vous souhaitez : la pièce et sa "
