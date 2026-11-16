@@ -56,7 +56,7 @@ PAGES = {
         "nav_label": "Ana menü",
         # A work page by its key in WORK_PAGES, or a section of the page.
         "nav": [
-            ("maths", "Matematik ve LaTeX"),
+            ("maths", "Matematik"),
             ("woodwork", "Ahşap"),
             ("contact", "İletişim"),
         ],
@@ -90,7 +90,7 @@ PAGES = {
         "ids": {"contact": "contact"},
         "nav_label": "Main menu",
         "nav": [
-            ("maths", "Maths and LaTeX"),
+            ("maths", "Maths"),
             ("woodwork", "Woodwork"),
             ("contact", "Contact"),
         ],
@@ -125,7 +125,7 @@ PAGES = {
         "ids": {"contact": "contact"},
         "nav_label": "Menu principal",
         "nav": [
-            ("maths", "Maths et LaTeX"),
+            ("maths", "Maths"),
             ("woodwork", "Bois"),
             ("contact", "Contact"),
         ],
