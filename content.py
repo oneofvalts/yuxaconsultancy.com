@@ -624,8 +624,7 @@ WOODWORK = {
             "panel": {
                 "title": "Oyma",
                 "text": (
-                    "Sipariş üzerine, tek tek elde oyulan kaşık, ölçek, kuksa, kase ve "
-                    "kutu. Yeni başlayanlara ve gruplara oyma atölyeleri."
+                    "Sipariş üzerine kaşık, ölçek, kuksa, kase ve kutu. Yeni başlayanlara ve gruplara oyma atölyeleri."
                 ),
                 "alt": "Durmuş Uyu’nun oyduğu üç kuksa",
                 # Starting prices; keep them in step with the price list below.
@@ -709,8 +708,7 @@ WOODWORK = {
             "panel": {
                 "title": "Woodcarving",
                 "text": (
-                    "Spoons, scoops, kuksas, bowls and boxes, carved to order by hand, "
-                    "one at a time. Carving workshops for beginners and for groups."
+                    "Spoons, scoops, kuksas, bowls and boxes, carved to order. Carving workshops for beginners and for groups."
                 ),
                 "alt": "Three kuksas carved by Durmuş Uyu",
                 "rows": [
@@ -795,8 +793,7 @@ WOODWORK = {
             "panel": {
                 "title": "Sculpture sur bois",
                 "text": (
-                    "Cuillères, doseurs, kuksas, bols et boîtes, sculptés sur commande, "
-                    "à la main et pièce par pièce. Ateliers de sculpture pour débutants "
+                    "Cuillères, doseurs, kuksas, bols et boîtes, sculptés sur commande. Ateliers de sculpture pour débutants "
                     "et pour groupes."
                 ),
                 "alt": "Trois kuksas de Durmuş Uyu",
