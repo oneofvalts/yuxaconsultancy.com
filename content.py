@@ -307,10 +307,6 @@ MATHS = {
                     ("Yapay zekâ koçluğu, 60 dk", "2.000 TL"),
                 ]),
             ],
-            "prices_note": (
-                "Kasım 2026 ücretleridir. Beş derslik pakette %10 indirim var; 15 "
-                "dakikalık ön görüşme ücretsiz."
-            ),
             "contact_title": "İletişim",
             "contact_text": (
                 "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, ya da bir "
@@ -424,10 +420,6 @@ MATHS = {
                     ("AI coaching, 60 min", "2,000 TL"),
                 ]),
             ],
-            "prices_note": (
-                "Prices as of November 2026. A five-lesson pack is 10% off, and the "
-                "first 15-minute call is free."
-            ),
             "contact_title": "Contact",
             "contact_text": (
                 "Tell me briefly what it is about: a course and your level, or a "
@@ -544,10 +536,6 @@ MATHS = {
                     ("Accompagnement IA, 60 min", "2 000 TL"),
                 ]),
             ],
-            "prices_note": (
-                "Tarifs de novembre 2026. Le forfait de cinq séances bénéficie de 10 % "
-                "de remise, et le premier appel de 15 minutes est offert."
-            ),
             "contact_title": "Contact",
             "contact_text": (
                 "Dites-moi en quelques mots ce qui vous amène : la matière et le "
