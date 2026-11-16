@@ -157,7 +157,7 @@ TEAM = [
             "alumniOf": {"@type": "CollegeOrUniversity",
                          "name": "Galatasaray Üniversitesi"},
             "knowsLanguage": ["tr", "fr", "en"],
-            "knowsAbout": ["Mathematics", "Programming", "LaTeX", "Lean", "n8n"],
+            "knowsAbout": ["Mathematics", "Programming", "LaTeX", "Lean"],
         },
         "role": {
             "tr": "Matematik ve bilgisayar dersleri, LaTeX dizgi, otomasyon",
@@ -263,7 +263,7 @@ MATHS = {
                 {
                     "title": "Otomasyon ve yapay zekâ",
                     "body": (
-                        "Tekrarlayan işler için n8n iş akışları ve yapay zekâ ajanları; "
+                        "Tekrarlayan işler için iş akışları ve yapay zekâ ajanları; "
                         "günlük işte yapay zekâ kullanımı üzerine birebir çalışma."
                     ),
                     "items": [
@@ -322,7 +322,7 @@ MATHS = {
             "title": "Maths tutoring, LaTeX thesis typesetting and AI – YUXA",
             "description": (
                 "Lessons in university maths and programming, IB and French-curriculum "
-                "maths; theses typeset in LaTeX; AI and automation with n8n. Online or in "
+                "maths; theses typeset in LaTeX; AI and automation. Online or in "
                 "person."
             ),
             "ids": {"offers": "services", "how": "how", "prices": "prices", "contact": "contact"},
@@ -380,7 +380,7 @@ MATHS = {
                 {
                     "title": "Automation and AI",
                     "body": (
-                        "n8n workflows and AI agents for repetitive work, and "
+                        "Workflows and AI agents for repetitive work, and "
                         "one-to-one coaching on using AI in your daily work."
                     ),
                     "items": [
@@ -499,7 +499,7 @@ MATHS = {
                 {
                     "title": "Automatisation et IA",
                     "body": (
-                        "Flux n8n et agents d’IA pour les tâches répétitives ; "
+                        "Flux automatisés et agents d’IA pour les tâches répétitives ; "
                         "accompagnement individuel à l’usage de l’IA au quotidien."
                     ),
                     "items": [
