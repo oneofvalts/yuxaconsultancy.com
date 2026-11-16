@@ -449,8 +449,9 @@ def work_page(key, lang):
     for offer in w["offers"]:
         anchor = f' id="{offer["id"]}"' if "id" in offer else ""
         items = "".join(f"<li>{t(i)}</li>" for i in offer["items"])
+        body = f'<p>{t(offer["body"])}</p>' if "body" in offer else ""
         offers.append(f'<article class="card"{anchor}>'
-                      f'<h3>{t(offer["title"])}</h3><p>{t(offer["body"])}</p>'
+                      f'<h3>{t(offer["title"])}</h3>{body}'
                       f"<ul>{items}</ul></article>")
     sections.append(section(
         ids["offers"], t(w["offers_title"]), f'<div class="cards">{"".join(offers)}</div>',
@@ -464,7 +465,8 @@ def work_page(key, lang):
                      for name, rows in w["prices"])
     sections.append(section(ids["prices"], t(w["prices_title"]),
                             f'<div class="prices">{groups}</div>',
-                            f'<p class="note">{t(w["prices_note"])}</p>'))
+                            f'<p class="note">{t(w["prices_note"])}</p>'
+                            if "prices_note" in w else ""))
     if "events" in w:
         teasers = []
         for event in w["events"]:

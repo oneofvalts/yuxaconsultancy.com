@@ -185,7 +185,7 @@ TEAM = [
 #   gallery*   photographs, when the spec lists photos, then gallery_note*
 #   offers     cards of what the person offers, then offers_note*
 #   how*       steps of how working together goes, one sentence each
-#   prices     price groups, then prices_note
+#   prices     price groups, then prices_note*
 #   events*    dated events, each leading to its page
 #   contact    a few words, the buttons and the way back home
 # ids holds the anchors of the sections present. panel is what the home page
@@ -644,10 +644,6 @@ WOODWORK = {
                 {
                     "id": "siparis",
                     "title": "Sipariş",
-                    "body": (
-                        "Mutfak, sofra ya da hediye için: ne istediğinizi yazın, ölçüyü "
-                        "ve biçimi birlikte belirleyelim."
-                    ),
                     "items": [
                         "Kaşık ve ölçek",
                         "Kuksa (İskandinav usulü oyma bardak) ve kase",
@@ -662,8 +658,7 @@ WOODWORK = {
                         "El aletleriyle, adım adım oymaya ve ahşap işçiliğine giriş."
                     ),
                     "items": [
-                        "Kaşık oyma: yeni başlayanlar için; kendi kaşığınızı oyup "
-                        "götürürsünüz",
+                        "Kaşık oyma: yeni başlayanlar için",
                         "Ahşap işçiliği: el aletleriyle temel teknikler",
                         "Okul, şirket ve dernekler için grup atölyeleri",
                         "Aletler ve ahşap benden",
@@ -684,11 +679,6 @@ WOODWORK = {
                      "başı", "1.250 TL"),
                 ]),
             ],
-            "prices_note": (
-                "Parçalarda kesin fiyat ölçüye ve işçiliğe göre değişir. Tepsi ve tek "
-                "parça işler ile ahşap işçiliği atölyelerinin fiyatı için yazın. Açık "
-                "atölyelerin tarihleri bu sayfada duyurulacak."
-            ),
             "contact_title": "Sipariş ve iletişim",
             "contact_text": (
                 "Ne istediğinizi kısaca yazın: parça ve ölçü, ya da atölye için kişi "
@@ -727,10 +717,6 @@ WOODWORK = {
                 {
                     "id": "commissions",
                     "title": "Commissions",
-                    "body": (
-                        "For the kitchen, the table or as a gift: tell me what you have "
-                        "in mind and we will settle the size and the shape together."
-                    ),
                     "items": [
                         "Spoons and scoops",
                         "Kuksas (Nordic carved cups) and bowls",
@@ -746,8 +732,7 @@ WOODWORK = {
                         "hand tools."
                     ),
                     "items": [
-                        "Spoon carving for beginners: you carve your own spoon and take "
-                        "it home",
+                        "Spoon carving for beginners",
                         "Woodworking: the basics with hand tools",
                         "Group workshops for schools, companies and associations",
                         "Tools and wood provided",
@@ -769,10 +754,7 @@ WOODWORK = {
                 ]),
             ],
             "prices_note": (
-                "For pieces, the final price depends on the size and the work. For "
-                "trays, one-off pieces and woodworking workshops, ask me for a price. "
-                "Dates of open workshops will be announced on this page. Workshops are "
-                "in Turkish; ask me about English."
+                "Workshops are in Turkish; ask me about English."
             ),
             "contact_title": "Orders and contact",
             "contact_text": (
@@ -813,10 +795,6 @@ WOODWORK = {
                 {
                     "id": "commandes",
                     "title": "Sur commande",
-                    "body": (
-                        "Pour la cuisine, la table ou pour offrir : dites-moi ce que "
-                        "vous souhaitez, nous fixerons ensemble la taille et la forme."
-                    ),
                     "items": [
                         "Cuillères et doseurs",
                         "Kuksas (tasses sculptées nordiques) et bols",
@@ -832,8 +810,7 @@ WOODWORK = {
                         "avec des outils à main."
                     ),
                     "items": [
-                        "Sculpture de cuillère pour débutants : vous repartez avec la "
-                        "vôtre",
+                        "Sculpture de cuillère pour débutants",
                         "Travail du bois : les bases avec des outils à main",
                         "Ateliers de groupe pour écoles, entreprises et associations",
                         "Outils et bois fournis",
@@ -855,11 +832,7 @@ WOODWORK = {
                 ]),
             ],
             "prices_note": (
-                "Pour les pièces, le prix final dépend de la taille et du travail. Pour "
-                "les plateaux, les pièces uniques et les ateliers de travail du bois, "
-                "demandez-moi un devis. Les dates des ateliers ouverts seront "
-                "annoncées sur cette page. Ateliers en turc ; pour l’anglais, "
-                "demandez-moi."
+                "Ateliers en turc ; pour l’anglais, demandez-moi."
             ),
             "contact_title": "Commandes et contact",
             "contact_text": (
