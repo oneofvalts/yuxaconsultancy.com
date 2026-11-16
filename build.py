@@ -361,7 +361,6 @@ def home_page(lang):
         f'<div class="wrap panels">{"".join(panels)}</div>',
         f'<div class="upcoming"><div class="wrap">{upcoming}</div></div>' if upcoming else "",
         section(page["ids"]["contact"], t(page["contact_title"]),
-                f'<p>{t(page["contact_text"])}</p>',
                 contact_buttons(page, email_label=C.EMAIL, booking=False)),
         "</main>",
         footer(t(page["footer"])),

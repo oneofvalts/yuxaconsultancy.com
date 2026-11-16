@@ -69,10 +69,6 @@ PAGES = {
         "mail_subject": "Bilgi talebi",
         "book_subject": "Ön görüşme",
         "contact_title": "İletişim",
-        "contact_text": (
-            "Ne için yazdığınızı kısaca anlatın: ders ve seviyeniz, bir dizgi ya da "
-            "otomasyon işi, ya da ahşap. En geç bir iş günü içinde dönerim."
-        ),
         "footer": "© 2026 YUXA Consultancy",
     },
     "en": {
@@ -102,11 +98,6 @@ PAGES = {
         "mail_subject": "Enquiry",
         "book_subject": "Free call",
         "contact_title": "Contact",
-        "contact_text": (
-            "Tell me briefly what it is about: a course and your level, a "
-            "typesetting or automation job, or woodwork. I reply within one working "
-            "day."
-        ),
         "footer": "© 2026 YUXA Consultancy",
     },
     "fr": {
@@ -137,11 +128,6 @@ PAGES = {
         "mail_subject": "Demande de renseignements",
         "book_subject": "Appel découverte",
         "contact_title": "Contact",
-        "contact_text": (
-            "Dites-moi en quelques mots ce qui vous amène : la matière et le niveau, "
-            "un travail de composition ou d’automatisation, ou le bois. Je réponds "
-            "sous un jour ouvré."
-        ),
         "footer": "© 2026 YUXA Consultancy",
     },
 }
