@@ -85,6 +85,12 @@ PRODUCTS = [
             "hexagonal-maple-spoon-23", "hexagonal-maple-spoon-24",
             "hexagonal-maple-spoon-25", "hexagonal-maple-spoon-26",
             "hexagonal-maple-spoon-27", "hexagonal-maple-spoon-28",
+            "hexagonal-maple-spoon-29", "hexagonal-maple-spoon-30",
+            "hexagonal-maple-spoon-31", "hexagonal-maple-spoon-32",
+            "hexagonal-maple-spoon-33", "hexagonal-maple-spoon-34",
+            "hexagonal-maple-spoon-35", "hexagonal-maple-spoon-36",
+            "hexagonal-maple-spoon-37", "hexagonal-maple-spoon-38",
+            "hexagonal-maple-spoon-39",
         ],
     },
     {
@@ -289,7 +295,36 @@ PRODUCTS = [
             "Cuillères à soupe en buis 2",
         ),
         "photos": [
-            "boxwood-spoons-2-01",
+            "boxwood-spoons-2-02", "boxwood-spoons-2-03", "boxwood-spoons-2-04",
+            "boxwood-spoons-2-05", "boxwood-spoons-2-01", "boxwood-spoons-2-06",
+            "boxwood-spoons-2-07", "boxwood-spoons-2-08", "boxwood-spoons-2-09",
+            "boxwood-spoons-2-10",
+        ],
+    },
+    {
+        "slug": "spear-handle-juniper-spoon",
+        "category": "spoons",
+        "name": (
+            "Mızrak saplı ardıç kaşık",
+            "Juniper spoon with a spear-shaped handle",
+            "Cuillère en genévrier au manche en fer de lance",
+        ),
+        "photos": [
+            "spear-handle-juniper-spoon-01", "spear-handle-juniper-spoon-02",
+            "spear-handle-juniper-spoon-03", "spear-handle-juniper-spoon-04",
+        ],
+    },
+    {
+        "slug": "spear-handle-boxwood-spoon",
+        "category": "spoons",
+        "name": (
+            "Mızrak saplı şimşir kaşık",
+            "Boxwood spoon with a spear-shaped handle",
+            "Cuillère en buis au manche en fer de lance",
+        ),
+        "photos": [
+            "spear-handle-boxwood-spoon-01", "spear-handle-boxwood-spoon-02",
+            "spear-handle-boxwood-spoon-03", "spear-handle-boxwood-spoon-04",
         ],
     },
     {
@@ -314,7 +349,12 @@ PRODUCTS = [
             "Longue cuillère en charme",
         ),
         "photos": [
+            "long-hornbeam-spoon-03", "long-hornbeam-spoon-04",
+            "long-hornbeam-spoon-05", "long-hornbeam-spoon-06",
             "long-hornbeam-spoon-01", "long-hornbeam-spoon-02",
+            "long-hornbeam-spoon-07", "long-hornbeam-spoon-08",
+            "long-hornbeam-spoon-09", "long-hornbeam-spoon-10",
+            "long-hornbeam-spoon-11", "long-hornbeam-spoon-12",
         ],
     },
     {
@@ -340,6 +380,18 @@ PRODUCTS = [
         ),
         "photos": [
             "sugar-spoon-01", "sugar-spoon-02",
+        ],
+    },
+    {
+        "slug": "boxwood-dance-spoons",
+        "category": "spoons",
+        "name": (
+            "Şimşir oyun kaşıkları",
+            "Boxwood spoons for folk dance",
+            "Cuillères en buis pour la danse folklorique",
+        ),
+        "photos": [
+            "boxwood-dance-spoons-01",
         ],
     },
     {
@@ -378,6 +430,33 @@ PRODUCTS = [
         ],
     },
     {
+        "slug": "carved-oak-measuring-spoon",
+        "category": "scoops",
+        "name": (
+            "İşlemeli meşe ölçek kaşık",
+            "Carved oak measuring spoon",
+            "Cuillère doseuse en chêne sculptée",
+        ),
+        "photos": [
+            "carved-oak-measuring-spoon-01", "carved-oak-measuring-spoon-02",
+            "carved-oak-measuring-spoon-03", "carved-oak-measuring-spoon-04",
+            "carved-oak-measuring-spoon-05", "carved-oak-measuring-spoon-06",
+        ],
+    },
+    {
+        "slug": "carved-linden-scoop",
+        "category": "scoops",
+        "name": (
+            "İşlemeli ıhlamur ölçek",
+            "Carved linden scoop",
+            "Doseur en tilleul sculpté",
+        ),
+        "photos": [
+            "carved-linden-scoop-01", "carved-linden-scoop-02",
+            "carved-linden-scoop-03", "carved-linden-scoop-04",
+        ],
+    },
+    {
         "slug": "oak-scoop-1",
         "category": "scoops",
         "name": (
@@ -392,18 +471,6 @@ PRODUCTS = [
             "oak-scoop-1-13", "oak-scoop-1-14", "oak-scoop-1-15", "oak-scoop-1-16",
             "oak-scoop-1-17", "oak-scoop-1-18", "oak-scoop-1-19", "oak-scoop-1-20",
             "oak-scoop-1-21",
-        ],
-    },
-    {
-        "slug": "double-ended-scoop",
-        "category": "scoops",
-        "name": (
-            "Çift başlı ölçek",
-            "Double-ended scoop",
-            "Doseur à deux têtes",
-        ),
-        "photos": [
-            "double-ended-scoop",
         ],
     },
     {
@@ -558,6 +625,51 @@ PRODUCTS = [
         ],
     },
     {
+        "slug": "mulberry-cup",
+        "category": "cups",
+        "name": (
+            "Dut bardak",
+            "Mulberry cup",
+            "Tasse en mûrier",
+        ),
+        "photos": [
+            "mulberry-cup-01", "mulberry-cup-02", "mulberry-cup-03", "mulberry-cup-04",
+            "mulberry-cup-05", "mulberry-cup-06", "mulberry-cup-07", "mulberry-cup-08",
+            "mulberry-cup-09", "mulberry-cup-10", "mulberry-cup-11", "mulberry-cup-12",
+            "mulberry-cup-13", "mulberry-cup-14",
+        ],
+    },
+    {
+        "slug": "cedar-cup",
+        "category": "cups",
+        "name": (
+            "Sedir bardak",
+            "Cedar cup",
+            "Tasse en cèdre",
+        ),
+        "photos": [
+            "cedar-cup-01", "cedar-cup-02", "cedar-cup-03", "cedar-cup-04",
+            "cedar-cup-05", "cedar-cup-06", "cedar-cup-07", "cedar-cup-08",
+            "cedar-cup-09", "cedar-cup-10", "cedar-cup-11",
+        ],
+    },
+    {
+        "slug": "chip-carved-plane-cup",
+        "category": "cups",
+        "name": (
+            "Türk üçgeni oymalı çınar bardak",
+            "Plane cup carved with Turkish triangles",
+            "Tasse en platane sculptée de triangles turcs",
+        ),
+        "photos": [
+            "chip-carved-plane-cup-01", "chip-carved-plane-cup-02",
+            "chip-carved-plane-cup-03", "chip-carved-plane-cup-04",
+            "chip-carved-plane-cup-05", "chip-carved-plane-cup-06",
+            "chip-carved-plane-cup-07", "chip-carved-plane-cup-08",
+            "chip-carved-plane-cup-09", "chip-carved-plane-cup-10",
+        ],
+    },
+    {
         "slug": "hornbeam-cups",
         "category": "cups",
         "name": (
@@ -650,6 +762,19 @@ PRODUCTS = [
             "boxwood-cup-1-07", "boxwood-cup-1-08", "boxwood-cup-1-09",
             "boxwood-cup-1-10", "boxwood-cup-1-11", "boxwood-cup-1-12",
             "boxwood-cup-1-13", "boxwood-cup-1-14", "boxwood-cup-1-15",
+        ],
+    },
+    {
+        "slug": "boxwood-cup-3",
+        "category": "cups",
+        "name": (
+            "Şimşir bardak 3",
+            "Boxwood cup 3",
+            "Tasse en buis 3",
+        ),
+        "photos": [
+            "boxwood-cup-3-01", "boxwood-cup-3-02", "boxwood-cup-3-03",
+            "boxwood-cup-3-04", "boxwood-cup-3-05", "boxwood-cup-3-06",
         ],
     },
     {
@@ -818,6 +943,18 @@ PRODUCTS = [
         ],
     },
     {
+        "slug": "oak-tray",
+        "category": "boxes",
+        "name": (
+            "Meşe tabaka",
+            "Oak tray",
+            "Plateau en chêne",
+        ),
+        "photos": [
+            "oak-tray-01", "oak-tray-02", "oak-tray-03", "oak-tray-04", "oak-tray-05",
+        ],
+    },
+    {
         "slug": "oak-snack-bowl",
         "category": "boxes",
         "name": (
@@ -918,6 +1055,10 @@ PRODUCTS = [
             "several-pieces-30", "several-pieces-31", "several-pieces-32",
             "several-pieces-33", "several-pieces-34", "several-pieces-35",
             "several-pieces-36", "several-pieces-37", "several-pieces-38",
+            "several-pieces-39", "several-pieces-40", "several-pieces-41",
+            "several-pieces-42", "several-pieces-43", "several-pieces-44",
+            "several-pieces-45", "several-pieces-46", "several-pieces-47",
+            "several-pieces-48", "several-pieces-49",
         ],
     },
     {
